@@ -4,6 +4,8 @@ import java.util.List;
 public class Grid {
     private List<GridElement> firstLayer;
     private List<GridElement> secondLayer;
+    private int sizeX;
+    private int sizeY;
 
     public Grid() {
         this.firstLayer = new ArrayList<>();
@@ -12,6 +14,20 @@ public class Grid {
     public Grid(List<GridElement> firstLayer, List<GridElement> secondLayer) {
         this.firstLayer = firstLayer;
         this.secondLayer = secondLayer;
+    }
+
+    public void addFirstLayerElement(GridElement element) {
+        if (!element.insideGrid(sizeX, sizeY)) {
+            // exception ?
+        }
+        this.firstLayer.add(element);
+    }
+
+    public void addSecondLayerElement(GridElement element) {
+        if (!element.insideGrid(sizeX, sizeY)) {
+            // exception ?
+        }
+        this.secondLayer.add(element);
     }
 
     public void draw() {
