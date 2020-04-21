@@ -1,14 +1,16 @@
 public abstract class Enemy extends GridElement {
     private char symbol;
+    private int hp;
     private AttackStrategy strategy;
 
-    public Enemy(Position pos, char symbol) {
+    public Enemy(Position pos, char symbol, int hp, int damage) {
         super(pos);
         this.symbol = symbol;
-        this.strategy = createAttackStrategy();
+        this.hp = hp;
+        this.strategy = createAttackStrategy(damage);
     }
 
-    protected abstract AttackStrategy createAttackStrategy();
+    protected abstract AttackStrategy createAttackStrategy(int damage);
 
     @Override
     public void draw() {}
