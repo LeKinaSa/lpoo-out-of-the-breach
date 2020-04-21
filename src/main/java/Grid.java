@@ -7,9 +7,11 @@ public class Grid {
     private int sizeX;
     private int sizeY;
 
-    public Grid() {
+    public Grid(int sizeX, int sizeY) {
         this.firstLayer = new ArrayList<>();
         this.secondLayer = new ArrayList<>();
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
     }
     public Grid(List<GridElement> firstLayer, List<GridElement> secondLayer) {
         this.firstLayer = firstLayer;
