@@ -7,10 +7,10 @@ import java.io.IOException;
 
 // Code modified from https://github.com/arestivo/hero/blob/master/src/main/java/com/aor/hero/gui/Gui.java
 
-public class Gui {
+public class LanternaTerminal {
     private final TerminalScreen screen;
 
-    public Gui(int x, int y) throws IOException {
+    public LanternaTerminal(int x, int y) throws IOException {
         TerminalSize terminalSize = new TerminalSize(x, y);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
