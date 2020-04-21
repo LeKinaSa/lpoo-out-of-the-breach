@@ -1,10 +1,9 @@
-public class GridElement {
-    private char symbol;
+public abstract class GridElement {
+    private Position pos;
 
-    public GridElement(char symbol) {
-        this.symbol = symbol;
+    public GridElement(Position pos) {
+        this.pos = pos;
     }
 
-    public void draw() {
-    }
+    public abstract void draw();
 }
