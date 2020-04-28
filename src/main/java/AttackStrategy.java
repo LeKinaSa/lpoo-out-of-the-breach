@@ -1,3 +1,3 @@
 public interface AttackStrategy {
-    void attack(Position pos);
+    void attack(Grid grid, Position pos);
 }

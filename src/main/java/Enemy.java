@@ -16,7 +16,7 @@ public abstract class Enemy extends GridElement {
     @Override
     public void draw() {}
 
-    public void attack() {
-        this.strategy.attack(this.position);
+    public void attack(Grid grid) {
+        this.strategy.attack(grid, this.position);
     }
 }
