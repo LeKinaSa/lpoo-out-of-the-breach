@@ -46,9 +46,11 @@ public class Grid {
     }
 
     public void inflictDamage(Position pos, int damage) {
-        for (GridElement element : secondLayer) {
-            if (element.getPos().same(pos)) {
-                element.takeDamage(damage);
+        if (pos.insideRectangle(new Position(0, 0), new Position(this.sizeX, this.sizeY))) {
+            for (GridElement element : this.secondLayer) {
+                if (element.getPos().same(pos)) {
+                    element.takeDamage(damage);
+                }
             }
         }
     }
