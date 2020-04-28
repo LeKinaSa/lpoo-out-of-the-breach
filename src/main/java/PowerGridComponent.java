@@ -20,7 +20,7 @@ public class PowerGridComponent extends ColorfulRectangle {
     public void draw(TextGraphics buffer) {
         super.draw(buffer);
 
-        buffer.setBackgroundColor(new TextColor.RGB(0,49,82));
+        buffer.setBackgroundColor(new TextColor.RGB(0,59,92));
         buffer.enableModifiers(SGR.BOLD);
 
         buffer.putString(1, 0, "POWER");

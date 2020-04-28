@@ -23,19 +23,11 @@ public class Application {
         );
 
         root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(15, 3),
-                        new AbsComponentPosition(0, 3, ScreenCorner.TopLeft),
-                        new TextColor.RGB(0,6,177)
-                )
+                new EndTurnButton()
         );
 
         root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(8, 3),
-                        new AbsComponentPosition(17, 3, ScreenCorner.TopLeft),
-                        new TextColor.RGB(0,6,177)
-                )
+                new UndoMoveButton()
         );
 
         root.addComponent(
@@ -55,27 +47,7 @@ public class Application {
         );
 
         root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(40, 7),
-                        new AbsComponentPosition(0, 0, ScreenCorner.BottomRight),
-                        new TextColor.RGB(0,6,177)
-                )
-        );
-
-        root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(30, 7),
-                        new AbsComponentPosition(0, 4, ScreenCorner.TopRight),
-                        new TextColor.RGB(0,6,177)
-                )
-        );
-
-        root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(30, 3),
-                        new AbsComponentPosition(0, 0, ScreenCorner.TopRight),
-                        new TextColor.RGB(0,6,177)
-                )
+                new EnemyRoutedComponent()
         );
 
         while (true) {
