@@ -6,6 +6,8 @@
 - 8x8 grid with 2 layers
 
 ### Design Patterns Used
+- Factory-Method Pattern
+- Strategy Pattern
 
 ### Existing Code Smells
 
