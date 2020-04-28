@@ -4,18 +4,20 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class ColorfulRectangle extends GUIcomponent {
+public class ColorfulRectangle extends GUIparentNode {
+    private TextColor color;
 
-    public ColorfulRectangle() {
-        super(new TerminalSize(10, 10), new CenteredComponentPosition());
+    public ColorfulRectangle(TerminalSize componentSize, iGUIcomponentPosition position, TextColor color) {
+        super(componentSize, position);
+        this.color = color;
     }
 
     @Override
     public void draw(TextGraphics buffer) {
-        //System.out.println("Colorful");
-        //System.out.println(buffer.getSize());
-        //buffer.fillRectangle(new TerminalPosition(0, 0), buffer.getSize(), 'X');
-        buffer.drawRectangle(new TerminalPosition(0, 0), buffer.getSize(), 'X');
-        buffer.fillRectangle(new TerminalPosition(0, 0), buffer.getSize(), new TextCharacter('A', new TextColor.RGB(128, 128, 128), new TextColor.RGB(128, 128, 128)));
+        buffer.fillRectangle(
+                new TerminalPosition(0, 0),
+                buffer.getSize(),
+                new TextCharacter('A', color, color)
+        );
     }
 }

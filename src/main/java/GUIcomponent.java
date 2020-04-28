@@ -11,8 +11,6 @@ public abstract class GUIcomponent {
     }
 
     public void bondedDraw(TextGraphics buffer) {
-        System.out.println("SSSSSSSS");
-        System.out.println(position.getActualOffset(buffer, componentSize));
         TextGraphics bondedBuffer = buffer.newTextGraphics(
                 position.getActualOffset(buffer, componentSize),
                 componentSize

@@ -1,6 +1,7 @@
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GUIparentNode extends GUIcomponent {
@@ -8,6 +9,7 @@ public class GUIparentNode extends GUIcomponent {
 
     public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position) {
         super(componentSize, position);
+        components = new ArrayList<>();
     }
 
     public void addComponent(GUIcomponent component) {

@@ -45,12 +45,7 @@ public class LanternaTerminal {
         return screen.pollInput();
     }
 
-    public boolean terminalWasResized() {
-        if (termListener.isTerminalResized()) {
-            screen.doResizeIfNecessary();
-            return true;
-        } else {
-            return false;
-        }
+    public void resizeIfNecessary() {
+        screen.doResizeIfNecessary();
     }
 }
