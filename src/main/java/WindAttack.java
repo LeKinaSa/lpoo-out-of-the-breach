@@ -2,9 +2,9 @@ public class WindAttack implements AttackStrategy {
     private int damage;
     private int range;
 
-    public WindAttack(int damage) {
+    public WindAttack(int damage, int range) {
         this.damage = damage;
-        this.range = 8;
+        this.range = range;
     }
 
     @Override

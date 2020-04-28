@@ -5,6 +5,6 @@ public class Insect extends Enemy {
 
     @Override
     protected AttackStrategy createAttackStrategy(int damage, int range) {
-        return new WindAttack(damage);
+        return new WindAttack(damage, range);
     }
 }

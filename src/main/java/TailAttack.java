@@ -2,8 +2,8 @@ public class TailAttack implements AttackStrategy {
     private int damage;
     private int range;
 
-    public TailAttack(int range) {
-        this.damage = 3;
+    public TailAttack(int damage, int range) {
+        this.damage = damage;
         this.range = range;
     }
 
