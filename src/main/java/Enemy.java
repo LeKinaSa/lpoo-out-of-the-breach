@@ -27,4 +27,9 @@ public abstract class Enemy extends GridElement {
             this.hp = 0;
         }
     }
+
+    @Override
+    public boolean isDead() {
+        return this.hp == 0;
+    }
 }
