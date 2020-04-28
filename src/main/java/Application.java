@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
-        GUIRoot root       = new GUIRoot(t);
+        GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
 
         root.addComponent(
                 new ColorfulRectangle(
@@ -19,11 +19,7 @@ public class Application {
         );
 
         root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(40, 2),
-                        new AbsComponentPosition(0, 0, ScreenCorner.TopLeft),
-                        new TextColor.RGB(0,6,177)
-                )
+                new PowerGridComponent()
         );
 
         root.addComponent(

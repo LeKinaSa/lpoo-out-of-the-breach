@@ -2,8 +2,8 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class GUIcomponent {
-    private TerminalSize componentSize;
-    private iGUIcomponentPosition position;
+    private final TerminalSize componentSize;
+    private final iGUIcomponentPosition position;
 
     public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position) {
         this.componentSize = componentSize;
@@ -17,6 +17,14 @@ public abstract class GUIcomponent {
         );
 
         draw(bondedBuffer);
+    }
+
+    public TerminalSize getComponentSize() {
+        return componentSize;
+    }
+
+    public iGUIcomponentPosition getPosition() {
+        return position;
     }
 
     public abstract void draw(TextGraphics buffer);
