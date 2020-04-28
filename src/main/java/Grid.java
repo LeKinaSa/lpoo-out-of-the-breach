@@ -14,9 +14,11 @@ public class Grid {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
     }
-    public Grid(List<GridElement> firstLayer, List<GridElement> secondLayer) {
+    public Grid(int sizeX, int sizeY, List<GridElement> firstLayer, List<GridElement> secondLayer) {
         this.firstLayer = firstLayer;
         this.secondLayer = secondLayer;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
     }
 
     public void addFirstLayerElement(GridElement element) {
