@@ -40,4 +40,12 @@ public class Grid {
             gridElement.draw();
         }
     }
+
+    public void inflictDamage(Position pos, int damage) {
+        for (GridElement element : secondLayer) {
+            if (element.getPos().same(pos)) {
+                element.takeDamage(damage);
+            }
+        }
+    }
 }
