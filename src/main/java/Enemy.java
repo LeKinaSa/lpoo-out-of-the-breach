@@ -1,4 +1,5 @@
 public abstract class Enemy extends GridElement {
+    private Position position;
     private char symbol;
     private int hp;
     private AttackStrategy strategy;
@@ -16,6 +17,6 @@ public abstract class Enemy extends GridElement {
     public void draw() {}
 
     public void attack() {
-        this.strategy.attack();
+        this.strategy.attack(this.position);
     }
 }
