@@ -5,6 +5,10 @@ public abstract class GridElement {
         this.pos = pos;
     }
 
+    public Position getPos() {
+        return this.pos;
+    }
+
     public abstract void draw();
 
     public abstract void takeDamage(int damage);
