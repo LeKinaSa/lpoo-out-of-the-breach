@@ -7,8 +7,26 @@ public class Position {
         this.y = y;
     }
 
-    public boolean inside(Position minimum, Position maximum) {
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public boolean insideRectangle(Position minimum, Position maximum) {
         return ((minimum.x < this.x) && (minimum.y < this.y)
                 && (this.x <= maximum.x) && (this.y <= maximum.y));
+    }
+
+    public boolean insideCircle(Position center, int radius) {
+        float distance = (this.x - center.x)^2 + (this.y - center.y)^2;
+        float radius_pow = (float)(radius) * (float)(radius);
+        return distance < radius_pow;
+    }
+
+    public boolean same(Position pos) {
+        return ((this.x == pos.x) && (this.y == pos.y));
     }
 }
