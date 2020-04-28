@@ -19,4 +19,12 @@ public abstract class Enemy extends GridElement {
     public void attack(Grid grid) {
         this.strategy.attack(grid, this.position);
     }
+
+    @Override
+    public void takeDamage(int damage) {
+        this.hp = this.hp - damage;
+        if (this.hp < 0) {
+            this.hp = 0;
+        }
+    }
 }
