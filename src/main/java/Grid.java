@@ -22,14 +22,14 @@ public class Grid {
     }
 
     public void addFirstLayerElement(GridElement element) {
-        if (!element.insideGrid(sizeX, sizeY)) {
+        if (!element.insideGrid(this.sizeX, this.sizeY)) {
             // exception ?
         }
         this.firstLayer.add(element);
     }
 
     public void addSecondLayerElement(GridElement element) {
-        if (!element.insideGrid(sizeX, sizeY)) {
+        if (!element.insideGrid(this.sizeX, this.sizeY)) {
             // exception ?
         }
         this.secondLayer.add(element);
@@ -42,7 +42,7 @@ public class Grid {
         for (GridElement gridElement : this.secondLayer) {
             gridElement.draw();
         }
-        ally.draw();
+        this.ally.draw();
     }
 
     public void inflictDamage(Position pos, int damage) {
@@ -54,9 +54,9 @@ public class Grid {
     }
 
     public void cleanDeadBodies() {
-        for (GridElement element : secondLayer) {
+        for (GridElement element : this.secondLayer) {
             if (element.isDead()) {
-                secondLayer.remove(element);
+                this.secondLayer.remove(element);
             }
         }
     }
