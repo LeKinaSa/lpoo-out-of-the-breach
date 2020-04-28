@@ -9,11 +9,11 @@ public class WindAttack implements AttackStrategy {
 
     @Override
     public void attack(Grid grid, Position pos) {
-        for (int x = pos.getX() - range; x <= pos.getX() + range; x++) {
-            for (int y = pos.getY() - range; y <= pos.getY() + range; y++) {
+        for (int x = pos.getX() - this.range; x <= pos.getX() + this.range; x++) {
+            for (int y = pos.getY() - this.range; y <= pos.getY() + this.range; y++) {
                 Position p = new Position(x, y);
                 if ((x == y) && (!p.same(pos))) {
-                    grid.inflictDamage(p, damage);
+                    grid.inflictDamage(p, this.damage);
                 }
             }
         }
