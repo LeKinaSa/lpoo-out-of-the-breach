@@ -48,4 +48,12 @@ public class Grid {
             }
         }
     }
+
+    public void cleanDeadBodies() {
+        for (GridElement element : secondLayer) {
+            if (element.isDead()) {
+                secondLayer.remove(element);
+            }
+        }
+    }
 }

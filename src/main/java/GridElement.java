@@ -16,4 +16,6 @@ public abstract class GridElement {
     public boolean insideGrid(int x, int y) {
         return (this.pos.insideRectangle(new Position(0, 0), new Position(x, y)));
     }
+
+    public abstract boolean isDead();
 }
