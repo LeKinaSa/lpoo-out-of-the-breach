@@ -21,11 +21,12 @@ public class Position {
     }
 
     public boolean insideCircle(Position center, int radius) {
-        if ((this.x == center.x) && (this.y == center.y)) {
-            return false;
-        }
         float distance = (this.x - center.x)^2 + (this.y - center.y)^2;
         float radius_pow = (float)(radius) * (float)(radius);
         return distance < radius_pow;
+    }
+
+    public boolean same(Position pos) {
+        return ((this.x == pos.x) && (this.y == pos.y));
     }
 }
