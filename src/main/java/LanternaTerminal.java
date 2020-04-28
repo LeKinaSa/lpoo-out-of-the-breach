@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class LanternaTerminal {
     private final TerminalScreen screen;
-    private SimpleTerminalResizeListener termListener;
+    private final SimpleTerminalResizeListener termListener;
 
     public LanternaTerminal(int x, int y) throws IOException {
         TerminalSize terminalSize = new TerminalSize(x, y);
