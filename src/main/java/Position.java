@@ -15,7 +15,7 @@ public class Position {
         return this.y;
     }
 
-    public boolean insideSquare(Position minimum, Position maximum) {
+    public boolean insideRectangle(Position minimum, Position maximum) {
         return ((minimum.x < this.x) && (minimum.y < this.y)
                 && (this.x <= maximum.x) && (this.y <= maximum.y));
     }
