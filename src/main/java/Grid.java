@@ -4,6 +4,7 @@ import java.util.List;
 public class Grid {
     private List<GridElement> firstLayer;
     private List<GridElement> secondLayer;
+    private Ally ally;
     private int sizeX;
     private int sizeY;
 
@@ -39,6 +40,7 @@ public class Grid {
         for (GridElement gridElement : this.secondLayer) {
             gridElement.draw();
         }
+        ally.draw();
     }
 
     public void inflictDamage(Position pos, int damage) {
