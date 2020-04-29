@@ -42,14 +42,13 @@ public class Grid {
         }
     }
 
-    public void draw() {
-        for (TerrainTile terrainTile : this.firstLayer) {
-            terrainTile.draw();
+    public void addEntity(Entity entity) {
+        if (!this.hasEntity(entity.getPosition())) {
+            this.entities.set(entity.getPosition().getLinearMatrixPosition(), entity);
         }
-        for (GridElement gridElement : this.secondLayer) {
-            gridElement.draw();
+        else {
+            // exception
         }
-        this.ally.draw();
     }
 
     public void inflictDamage(Position pos, int damage) {
