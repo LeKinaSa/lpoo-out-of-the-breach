@@ -1,8 +1,6 @@
 package model;
 
 public class NoAttack implements AttackStrategy {
-    private int damage;
-
     public NoAttack() {}
 
     @Override

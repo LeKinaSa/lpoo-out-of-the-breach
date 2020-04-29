@@ -14,6 +14,6 @@ public class AttackNorth implements AttackStrategy {
 
     @Override
     public void attack(Grid grid, Position pos) {
-        grid.inflictDamage(new Position(pos.getX(), pos.getY() - 1), damage);
+        grid.inflictDamage(new Position(pos.getX(), pos.getY() - 1), this.damage);
     }
 }

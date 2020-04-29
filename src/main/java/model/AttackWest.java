@@ -1,8 +1,5 @@
 package model;
 
-import model.AttackStrategy;
-import model.DamageMatrix;
-
 public class AttackWest implements AttackStrategy {
     private int damage;
 
@@ -17,6 +14,6 @@ public class AttackWest implements AttackStrategy {
 
     @Override
     public void attack(Grid grid, Position pos) {
-        grid.inflictDamage(new Position(pos.getX() - 1, pos.getY()), damage);
+        grid.inflictDamage(new Position(pos.getX() - 1, pos.getY()), this.damage);
     }
 }
