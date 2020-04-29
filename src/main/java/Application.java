@@ -1,4 +1,4 @@
-import com.googlecode.lanterna.TerminalPosition;
+import GUI.*;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 

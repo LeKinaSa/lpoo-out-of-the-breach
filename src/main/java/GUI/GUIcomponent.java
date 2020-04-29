@@ -1,3 +1,6 @@
+package GUI;
+
+import GUI.iGUIcomponentPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 

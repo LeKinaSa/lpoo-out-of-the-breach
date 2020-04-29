@@ -1,9 +1,12 @@
+import GUI.AbsComponentPosition;
+import GUI.ColorfulRectangle;
+import GUI.ScreenCorner;
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class EnemyRoutedComponent extends ColorfulRectangle{
+public class EnemyRoutedComponent extends ColorfulRectangle {
     private int nTurns;
     public EnemyRoutedComponent() {
         super(
