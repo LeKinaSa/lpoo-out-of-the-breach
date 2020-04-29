@@ -7,14 +7,14 @@ public class MovementMatrix {
     List<Boolean> possibleMoves;
 
     public MovementMatrix() {
-        possibleMoves = new ArrayList<>(64);
+        this.possibleMoves = new ArrayList<>(64);
     }
 
-    public void setMove(int x, int y, boolean canMove) {
-        possibleMoves.set(x + y * 8, canMove);
+    public void setMove(Position pos, boolean canMove) {
+        this.possibleMoves.set(pos.getLinearMatrixPosition(), canMove);
     }
 
-    public boolean getmove(int x, int y) {
-        return possibleMoves.get(x + y * 8);
+    public boolean getMove(Position pos) {
+        return this.possibleMoves.get(pos.getLinearMatrixPosition());
     }
 }

@@ -7,14 +7,14 @@ public class DamageMatrix {
     List<Integer> incomingDamage;
 
     public DamageMatrix() {
-        incomingDamage = new ArrayList<>(64);
+        this.incomingDamage = new ArrayList<>(64);
     }
 
-    public void setDamage(int x, int y, int damage) {
-        incomingDamage.set(x + y * 8, damage);
+    public void setDamage(Position pos, int damage) {
+        this.incomingDamage.set(pos.getLinearMatrixPosition(), damage);
     }
 
-    public int getDamage(int x, int y) {
-        return incomingDamage.get(x + y * 8);
+    public int getDamage(Position pos) {
+        return this.incomingDamage.get(pos.getLinearMatrixPosition());
     }
 }
