@@ -51,13 +51,6 @@ public class Grid {
         }
     }
 
-    public void inflictDamage(Position pos, int damage) {
-        if (pos.insideRectangle(new Position(0, 0), new Position(this.sizeX, this.sizeY))) {
-            for (GridElement element : this.secondLayer) {
-                if (element.getPos().same(pos)) {
-                    element.takeDamage(damage);
-                }
-            }
     public void draw() {
         for (TerrainTile terrainTile : this.terrain) {
             //terrainTile.draw(); // TROUBLE
@@ -67,10 +60,12 @@ public class Grid {
         }
     }
 
-    public void cleanDeadBodies() {
-        for (GridElement element : this.secondLayer) {
-            if (element.isDead()) {
-                this.secondLayer.remove(element);
+    public void inflictDamage(Position pos, int damage) {
+        if (this.hasEntity(pos)) {
+            Entity entity = this.getEntityAt(pos);
+            entity.takeDamage(damage);
+            if (entity.isDead()) {
+                this.entities.remove(entity);
             }
         }
     }
