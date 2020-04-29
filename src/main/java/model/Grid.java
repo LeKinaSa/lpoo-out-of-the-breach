@@ -8,11 +8,6 @@ public class Grid {
     private List<Entity> entities;
 
     public Grid() {
-
-    public void addSecondLayerElement(GridElement element) {
-        if (!element.insideGrid(this.sizeX, this.sizeY)) {
-            return;
-            // exception ?
         this.terrain = new ArrayList<>(64);
         this.entities = new ArrayList<>(64);
     }
@@ -22,7 +17,6 @@ public class Grid {
         this.entities = entities;
     }
         }
-        this.secondLayer.add(element);
     }
 
     public void draw() {
