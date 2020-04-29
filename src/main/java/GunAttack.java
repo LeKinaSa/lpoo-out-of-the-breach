@@ -1,3 +1,7 @@
+/*import model.AttackStrategy;
+import model.Grid;
+import model.Position;
+
 public class GunAttack implements AttackStrategy {
     private int damage;
     private int range;
@@ -23,4 +27,4 @@ public class GunAttack implements AttackStrategy {
             this.range += 1;
         }
     }
-}
+}*/
