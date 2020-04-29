@@ -38,11 +38,11 @@ public class Model {
         return cities;
     }
 
-    public boolean tileOccupied(int x, int y) {
+    public boolean tileOccupied(Position pos) {
         return true;
     }
 
-    public Entity getEntityAt(int x, int y) {
+    public Entity getEntityAt(Position pos) {
         return null;
     }
 }
