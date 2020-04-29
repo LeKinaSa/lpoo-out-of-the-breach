@@ -58,6 +58,12 @@ public class Grid {
                     element.takeDamage(damage);
                 }
             }
+    public void draw() {
+        for (TerrainTile terrainTile : this.terrain) {
+            //terrainTile.draw(); // TROUBLE
+        }
+        for (Entity entity : this.entities) {
+            entity.draw();
         }
     }
 
