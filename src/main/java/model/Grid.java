@@ -16,6 +16,29 @@ public class Grid {
         this.terrain = terrain;
         this.entities = entities;
     }
+
+    public boolean hasTerrain(Position pos) {
+        return true;
+    }
+
+    public TerrainTile getTerrainAt(Position pos) {
+        return null;
+    }
+
+    public boolean hasEntity(Position pos) {
+        return true;
+    }
+
+    public Entity getEntityAt(Position pos) {
+        return null;
+    }
+
+    public void addTerrain(TerrainTile terrainTile, Position pos) {
+        if (!this.hasTerrain(pos)) {
+            this.terrain.set(pos.getLinearMatrixPosition(), terrainTile);
+        }
+        else {
+            // exception
         }
     }
 
