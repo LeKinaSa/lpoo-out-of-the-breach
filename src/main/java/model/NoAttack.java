@@ -1,4 +1,4 @@
-import model.DamageMatrix;
+package model;
 
 public class NoAttack implements AttackStrategy {
     private int damage;

@@ -1,4 +1,4 @@
-import model.DamageMatrix;
+package model;
 
 public interface AttackStrategy {
     DamageMatrix planAttack(Grid grid, Position pos);
