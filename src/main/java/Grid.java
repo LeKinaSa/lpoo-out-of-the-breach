@@ -8,21 +8,22 @@ public class Grid {
     private int sizeX;
     private int sizeY;
 
-    public Grid(int sizeX, int sizeY) {
+    public Grid() {
         this.firstLayer = new ArrayList<>();
         this.secondLayer = new ArrayList<>();
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+        this.sizeX = 8;
+        this.sizeY = 8;
     }
-    public Grid(int sizeX, int sizeY, List<GridComponent> firstLayer, List<GridElement> secondLayer) {
+    public Grid(List<GridComponent> firstLayer, List<GridElement> secondLayer) {
         this.firstLayer = firstLayer;
         this.secondLayer = secondLayer;
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+        this.sizeX = 8;
+        this.sizeY = 8;
     }
 
     public void addFirstLayerElement(GridComponent component) {
         if (!component.insideGrid(this.sizeX, this.sizeY)) {
+            return;
             // exception ?
         }
         this.firstLayer.add(component);
@@ -30,6 +31,7 @@ public class Grid {
 
     public void addSecondLayerElement(GridElement element) {
         if (!element.insideGrid(this.sizeX, this.sizeY)) {
+            return;
             // exception ?
         }
         this.secondLayer.add(element);
