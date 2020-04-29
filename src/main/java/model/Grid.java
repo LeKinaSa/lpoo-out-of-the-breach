@@ -1,8 +1,12 @@
+package model;
+
+import model.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
-    private List<GridComponent> firstLayer;
+    private List<TerrainTile> firstLayer;
     private List<GridElement> secondLayer;
     private Ally ally;
     private int sizeX;
@@ -14,19 +18,11 @@ public class Grid {
         this.sizeX = 8;
         this.sizeY = 8;
     }
-    public Grid(List<GridComponent> firstLayer, List<GridElement> secondLayer) {
+    public Grid(List<TerrainTile> firstLayer, List<GridElement> secondLayer) {
         this.firstLayer = firstLayer;
         this.secondLayer = secondLayer;
         this.sizeX = 8;
         this.sizeY = 8;
-    }
-
-    public void addFirstLayerElement(GridComponent component) {
-        if (!component.insideGrid(this.sizeX, this.sizeY)) {
-            return;
-            // exception ?
-        }
-        this.firstLayer.add(component);
     }
 
     public void addSecondLayerElement(GridElement element) {
@@ -38,8 +34,8 @@ public class Grid {
     }
 
     public void draw() {
-        for (GridComponent gridComponent : this.firstLayer) {
-            gridComponent.draw();
+        for (TerrainTile terrainTile : this.firstLayer) {
+            terrainTile.draw();
         }
         for (GridElement gridElement : this.secondLayer) {
             gridElement.draw();
