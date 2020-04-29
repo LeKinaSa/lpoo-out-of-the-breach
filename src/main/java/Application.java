@@ -6,6 +6,11 @@ import java.io.IOException;
 
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException {
+      
+        Grid gameGrid = new Grid(8, 8);
+        Enemy monster = new Insect(new Position(2, 2), 20, 5, 2);
+        gameGrid.addSecondLayerElement(monster);
+        System.out.println("Hello, World!");
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
@@ -55,5 +60,6 @@ public class Application {
 
             root.draw();
         }
+        
     }
 }
