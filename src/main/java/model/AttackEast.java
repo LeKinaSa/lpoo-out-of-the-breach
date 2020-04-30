@@ -14,7 +14,14 @@ public class AttackEast implements AttackStrategy {
 
     @Override
     public void attack(Grid grid, Position pos) {
-        grid.inflictDamage(new Position(pos.getX() + 1, pos.getY()), this.damage);
+        Position p = null;
+        try {
+            p = new Position(pos.getX() + 1, pos.getY());
+        }
+        catch (OutsideOfTheGrid o) {
+            return;
+        }
+        grid.inflictDamage(p, this.damage);
     }
 }
 
