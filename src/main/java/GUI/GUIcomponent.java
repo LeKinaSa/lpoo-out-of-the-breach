@@ -9,11 +9,13 @@ public abstract class GUIcomponent {
     private final TerminalSize componentSize;
     private final iGUIcomponentPosition position;
     private boolean selectable;
+    private boolean selected;
 
     public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
         this.componentSize = componentSize;
         this.position = position;
         this.selectable = selectable;
+        this.selected = false;
     }
 
     public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position) {
@@ -55,4 +57,12 @@ public abstract class GUIcomponent {
     }
 
     public abstract void draw(TextGraphics buffer);
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

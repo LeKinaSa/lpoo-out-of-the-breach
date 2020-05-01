@@ -36,8 +36,17 @@ public class GUIparentNode extends GUIcomponent {
     public boolean processKeystroke(KeyStroke stroke) {
         for (; selectedComponent < components.size(); selectedComponent++) {
             GUIcomponent component = components.get(selectedComponent);
-            if (component.isSelectable() && component.processKeystroke(stroke)) {
+
+            if (component.isSelectable()) {
+                component.setSelectable(true);
+            } else {
+                continue;
+            }
+
+            if (component.processKeystroke(stroke)) {
                 return true;
+            } else {
+                component.setSelectable(false);
             }
         }
         selectedComponent = 0;

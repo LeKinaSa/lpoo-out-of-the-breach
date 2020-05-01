@@ -65,8 +65,17 @@ public class GUIRoot {
     public boolean processKeystroke(KeyStroke stroke) { //TODO: This loop isn't very readable
         for (int i = 0; i < components.size(); i++, selectedComponent = (selectedComponent + 1) % components.size()) {
             GUIcomponent component = components.get(selectedComponent);
-            if (component.isSelectable() && component.processKeystroke(stroke)) {
+
+            if (component.isSelectable()) {
+                component.setSelectable(true);
+            } else {
+                continue;
+            }
+
+            if (component.processKeystroke(stroke)) {
                 return true;
+            } else {
+                component.setSelectable(false);
             }
         }
         selectedComponent = 0;
