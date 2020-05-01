@@ -38,7 +38,7 @@ public class GUIparentNode extends GUIcomponent {
             GUIcomponent component = components.get(selectedComponent);
 
             if (component.isSelectable()) {
-                component.setSelectable(true);
+                component.setSelected(true);
             } else {
                 continue;
             }
