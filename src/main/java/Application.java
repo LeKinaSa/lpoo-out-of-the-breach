@@ -79,6 +79,9 @@ public class Application {
         while (true) {
             Thread.sleep(10);
 
+            if (!root.processInput()) {
+                break;
+            }
             root.draw();
         }
         

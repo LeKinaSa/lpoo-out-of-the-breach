@@ -50,4 +50,8 @@ public class LanternaTerminal {
     public void resizeIfNecessary() {
         screen.doResizeIfNecessary();
     }
+
+    public void close() throws IOException {
+        screen.close();
+    }
 }

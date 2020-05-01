@@ -8,10 +8,16 @@ import com.googlecode.lanterna.input.KeyStroke;
 public abstract class GUIcomponent {
     private final TerminalSize componentSize;
     private final iGUIcomponentPosition position;
+    private boolean selectable;
 
-    public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position) {
+    public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
         this.componentSize = componentSize;
         this.position = position;
+        this.selectable = selectable;
+    }
+
+    public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position) {
+        this(componentSize, position, false);
     }
 
     public void bondedDraw(TextGraphics buffer) {
@@ -29,6 +35,14 @@ public abstract class GUIcomponent {
 
     public iGUIcomponentPosition getPosition() {
         return position;
+    }
+
+    public boolean isSelectable() {
+        return selectable;
+    }
+
+    public void setSelectable(boolean selectable) {
+        this.selectable = selectable;
     }
 
     /**

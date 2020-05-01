@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,9 +48,24 @@ public class GUIRoot {
         terminal.refresh();
     }
 
-    public boolean processKeystroke(KeyStroke stroke) {
-        for (; selectedComponent < components.size(); selectedComponent++) {
-            if (components.get(selectedComponent).processKeystroke(stroke)) {
+    public boolean processInput() throws IOException {
+        KeyStroke stroke = terminal.pollInput();
+        if (stroke == null) {
+            return true;
+        }
+        if (stroke.getKeyType() == KeyType.EOF) {
+            terminal.close();
+            return false;
+        }
+
+        processKeystroke(stroke);
+        return true;
+    }
+
+    public boolean processKeystroke(KeyStroke stroke) { //TODO: This loop isn't very readable
+        for (int i = 0; i < components.size(); i++, selectedComponent = (selectedComponent + 1) % components.size()) {
+            GUIcomponent component = components.get(selectedComponent);
+            if (component.isSelectable() && component.processKeystroke(stroke)) {
                 return true;
             }
         }

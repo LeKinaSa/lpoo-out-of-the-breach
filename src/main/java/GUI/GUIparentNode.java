@@ -11,10 +11,14 @@ public class GUIparentNode extends GUIcomponent {
     private List<GUIcomponent> components;
     private int selectedComponent;
 
-    public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position) {
-        super(componentSize, position);
+    public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
+        super(componentSize, position, selectable);
         components = new ArrayList<>();
         selectedComponent = 0;
+    }
+
+    public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position) {
+        this(componentSize, position, false);
     }
 
     public void addComponent(GUIcomponent component) {
@@ -31,7 +35,8 @@ public class GUIparentNode extends GUIcomponent {
     @Override
     public boolean processKeystroke(KeyStroke stroke) {
         for (; selectedComponent < components.size(); selectedComponent++) {
-            if (components.get(selectedComponent).processKeystroke(stroke)) {
+            GUIcomponent component = components.get(selectedComponent);
+            if (component.isSelectable() && component.processKeystroke(stroke)) {
                 return true;
             }
         }
