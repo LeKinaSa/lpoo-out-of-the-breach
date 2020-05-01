@@ -41,7 +41,7 @@ public class Application {
         Model model        = new Model(tiles, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model)
+                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model))
         );
 
         root.addComponent(

@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,11 +14,14 @@ public class GUIRoot {
     private LanternaTerminal terminal;
     private List<GUIcomponent> components;
     private TextColor color;
+    private int selectedComponent;
+
 
     public GUIRoot(LanternaTerminal terminal, TextColor backgroundColor) {
         this.terminal = terminal;
         this.color    = backgroundColor;
         components = new ArrayList<>();
+        selectedComponent = 0;
     }
 
     public void addComponent(GUIcomponent component) {
@@ -41,5 +45,15 @@ public class GUIRoot {
         }
 
         terminal.refresh();
+    }
+
+    public boolean processKeystroke(KeyStroke stroke) {
+        for (; selectedComponent < components.size(); selectedComponent++) {
+            if (components.get(selectedComponent).processKeystroke(stroke)) {
+                return true;
+            }
+        }
+        selectedComponent = 0;
+        return false;
     }
 }
