@@ -22,8 +22,10 @@ public class BoardGUIOverlay extends GUIcomponent {
     }
 
     private void drawTileHighlighter(TextGraphics buffer, TextColor color, int x, int y) {
+        int offsetX = x * 5;
+        int offsetY = y * 3;
         buffer.drawRectangle(
-                new TerminalPosition(0, 0),
+                new TerminalPosition(offsetX, offsetY),
                 new TerminalSize(5, 3),
                 new TextCharacter('M', color, color)
         );
