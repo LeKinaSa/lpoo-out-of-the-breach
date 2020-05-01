@@ -75,7 +75,7 @@ public class GUIRoot {
             if (component.processKeystroke(stroke)) {
                 return true;
             } else {
-                component.setSelectable(false);
+                component.setSelected(false);
             }
         }
         selectedComponent = 0;
