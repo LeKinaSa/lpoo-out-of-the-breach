@@ -32,11 +32,41 @@ public class Model {
     }
 
     public boolean hasEntity(Position pos) {
-        //return this.entities.get(pos.getLinearMatrixPosition()) != null;
+        for (Enemy enemy : this.enemies) {
+            if (enemy.getPosition().same(pos)) {
+                return true;
+            }
+        }
+        for (Ally ally : this.allies) {
+            if (ally.getPosition().same(pos)) {
+                return true;
+            }
+        }
+        for (City city : this.cities) {
+            if (city.getPosition().same(pos)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Entity getEntityAt(Position pos) {
-        //return this.entities.get(pos.getLinearMatrixPosition());
+        for (Enemy enemy : this.enemies) {
+            if (enemy.getPosition().same(pos)) {
+                return enemy;
+            }
+        }
+        for (Ally ally : this.allies) {
+            if (ally.getPosition().same(pos)) {
+                return ally;
+            }
+        }
+        for (City city : this.cities) {
+            if (city.getPosition().same(pos)) {
+                return city;
+            }
+        }
+        return null;
     }
 
     public void addTerrain(TerrainTile terrainTile, Position pos) {
@@ -48,23 +78,32 @@ public class Model {
         }
     }
 
-    public void addEntity(Entity entity) {
-        if (!this.hasEntity(entity.getPosition())) {
-            //this.entities.set(entity.getPosition().getLinearMatrixPosition(), entity);
+    public void addEnemy(Enemy enemy) {
+        if (!this.hasEntity(enemy.getPosition())) {
+            this.enemies.add(enemy);
         }
         else {
             // exception
         }
     }
 
-    /*public void draw() {
-        for (TerrainTile terrainTile : this.terrain) {
-            //terrainTile.draw(); // TROUBLE
+    public void addAlly(Ally ally) {
+        if (!this.hasEntity(ally.getPosition())) {
+            this.allies.add(ally);
         }
-        for (Entity entity : this.entities) {
-            entity.draw();
+        else {
+            // exception
         }
-    }*/
+    }
+
+    public void addCity(City city) {
+        if (!this.hasEntity(city.getPosition())) {
+            this.cities.add(city);
+        }
+        else {
+            // exception
+        }
+    }
 
     public void inflictDamage(Position pos, int damage) {
         if (this.hasEntity(pos)) {
