@@ -1,3 +1,6 @@
+import GUI.AbsComponentPosition;
+import GUI.ColorfulRectangle;
+import GUI.ScreenCorner;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
