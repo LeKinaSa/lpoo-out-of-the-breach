@@ -23,14 +23,6 @@ public class BoardManager extends GUIcomponent {
         this.overlay = overlay;
     }
 
-    private void drawBoundingBox(TextGraphics buffer, TextColor color) {
-        buffer.drawRectangle(
-                new TerminalPosition(0, 0),
-                buffer.getSize(),
-                new TextCharacter('M', color, color)
-        );
-    }
-
     @Override
     public void draw(TextGraphics buffer) {
         tiles.draw(buffer);

@@ -1,7 +1,10 @@
 package GUI;
 
 import GUI.iGUIcomponentPosition;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
@@ -29,6 +32,14 @@ public abstract class GUIcomponent {
         );
 
         draw(bondedBuffer);
+    }
+
+    public void drawBoundingBox(TextGraphics buffer, TextColor color) {
+        buffer.drawRectangle(
+                position.getActualOffset(buffer, componentSize),
+                componentSize,
+                new TextCharacter('M', color, color)
+        );
     }
 
     public TerminalSize getComponentSize() {
