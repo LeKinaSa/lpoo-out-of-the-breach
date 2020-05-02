@@ -38,8 +38,8 @@ public class Application {
         List<City> cities = new ArrayList<>();
         cities.add(new City(new Position(0, 0), 2, 2));
 
-        List<Ally> allies = new ArrayList<>();
-        allies.add(new Ally(new Position(0, 1), 3));
+        List<Hero> allies = new ArrayList<>();
+        allies.add(new Hero(new Position(0, 1), 3));
 
         List<Enemy> enemies = new ArrayList<>();
         //enemies.add(new Enemy(new Position(0, 2), 2)

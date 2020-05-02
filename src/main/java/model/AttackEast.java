@@ -9,7 +9,7 @@ public class AttackEast implements AttackStrategy {
 
     @Override
     public DamageMatrix planAttack(Model grid, Position pos) {
-        return new DamageMatrix();
+        return new DamageMatrix();//TODO
     }
 
     @Override

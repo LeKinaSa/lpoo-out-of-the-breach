@@ -16,6 +16,4 @@ public class City extends Entity {
         this.power = power;
     }
 
-    @Override
-    public void draw() {}
 }
