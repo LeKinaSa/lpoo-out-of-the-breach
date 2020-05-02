@@ -1,37 +1,40 @@
 package model;
 
-public class Entity {
-    int x;
-    int y;
-    int hp;
+public abstract class Entity {
+    private Position pos;
+    private int hp;
 
-    public Entity(int x, int y, int hp) {
-        this.x = x;
-        this.y = y;
+    public Entity(Position pos, int hp) {
+        this.pos = pos;
         this.hp = hp;
     }
 
-    public int getX() {
-        return x;
+    public Position getPosition() {
+        return this.pos;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+    public void setPosition(Position pos) {
+        this.pos = pos;
     }
 
     public int getHp() {
-        return hp;
+        return this.hp;
     }
 
     public void setHp(int hp) {
         this.hp = hp;
     }
+
+    public void takeDamage(int damage) {
+        this.hp -= damage;
+        if (this.hp <= 0) {
+            this.hp = 0;
+        }
+    }
+
+    public boolean isDead() {
+        return this.hp == 0;
+    }
+
+    public abstract void draw();
 }
