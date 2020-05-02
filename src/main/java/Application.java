@@ -1,8 +1,7 @@
 import GUI.*;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
-import model.Model;
-import model.TerrainTile;
+import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +34,15 @@ public class Application {
 
         tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
         tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
+
+        List<City> cities = new ArrayList<>();
+        cities.add(new City(new Position(0, 0), 2, 2));
+
+        List<Ally> allies = new ArrayList<>();
+        allies.add(new Ally(new Position(0, 1), 3));
+
+        List<Enemy> enemies = new ArrayList<>();
+        //enemies.add(new Enemy(new Position(0, 2), 2)
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
