@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, OutsideOfTheGrid {
 
         List<TerrainTile> tiles = new ArrayList<>();
         tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
@@ -46,7 +46,7 @@ public class Application {
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
-        Model model        = new Model(tiles, allies, enemies, cities);
+        Model model        = new Model(tiles, enemies, allies, cities);
 
         root.addComponent(
                 new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model))

@@ -69,16 +69,21 @@ public class BoardTilesComponent extends GUIcomponent {
                         break;
                 }
 
-                if (model.tileOccupied(new Position(x, y))) {
-                    Entity entity = model.getEntityAt(new Position(x, y));
-                    if (entity instanceof City) {
-                        drawCity(tileBox);
-                    } else if (entity instanceof Ally) {
-                        drawAlly(tileBox);
-                    } else if (entity instanceof Enemy) {
-                        drawEnemy(tileBox);
+                try {
+                    if (model.tileOccupied(new Position(x, y))) {
+                        Entity entity = model.getEntityAt(new Position(x, y));
+                        if (entity instanceof City) {
+                            drawCity(tileBox);
+                        } else if (entity instanceof Ally) {
+                            drawAlly(tileBox);
+                        } else if (entity instanceof Enemy) {
+                            drawEnemy(tileBox);
+                        }
                     }
+                } catch (OutsideOfTheGrid e) {
+
                 }
+
             }
         }
     }
