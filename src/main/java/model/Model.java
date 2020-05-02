@@ -23,31 +23,8 @@ public class Model {
         this.cities = cities;
     }
 
-    public boolean hasTerrain(Position pos) {
-        return this.tiles.get(pos.getLinearMatrixPosition()) != null;
-    }
-
-    public TerrainTile getTerrainAt(Position pos) {
-        return this.tiles.get(pos.getLinearMatrixPosition());
-    }
-
-    public boolean hasEntity(Position pos) {
-        for (Enemy enemy : this.enemies) {
-            if (enemy.getPosition().same(pos)) {
-                return true;
-            }
-        }
-        for (Ally ally : this.allies) {
-            if (ally.getPosition().same(pos)) {
-                return true;
-            }
-        }
-        for (City city : this.cities) {
-            if (city.getPosition().same(pos)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean tileOccupied(Position pos) {
+        return getEntityAt(pos) != null;
     }
 
     public Entity getEntityAt(Position pos) {
@@ -69,15 +46,6 @@ public class Model {
         return null;
     }
 
-    public void addTerrain(TerrainTile terrainTile, Position pos) {
-        if (!this.hasTerrain(pos)) {
-            this.tiles.set(pos.getLinearMatrixPosition(), terrainTile);
-        }
-        else {
-            // exception
-        }
-    }
-
     public void addEnemy(Enemy enemy) {
         if (!this.hasEntity(enemy.getPosition())) {
             this.enemies.add(enemy);
@@ -94,7 +62,7 @@ public class Model {
         else {
             // exception
         }
-    }*/
+    }
 
     public void addCity(City city) {
         if (!this.hasEntity(city.getPosition())) {
@@ -103,31 +71,6 @@ public class Model {
         else {
             // exception
         }
-    }
-
-    public boolean tileOccupied(Position pos) {
-        return getEntityAt(pos) != null;
-    }
-
-    public Entity getEntityAt(Position pos) {
-        for (Entity i : cities) {
-            if (i.getPosition().same(pos)) {
-                return i;
-            }
-        }
-
-        for (Entity i : allies) {
-            if (i.getPosition().same(pos)) {
-                return i;
-            }
-        }
-
-        for (Entity i : enemies) {
-            if (i.getPosition().same(pos)) {
-                return i;
-            }
-        }
-        return null;
     }
 
     public void inflictDamage(Position pos, int damage) {
