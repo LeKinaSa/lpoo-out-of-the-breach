@@ -6,7 +6,7 @@ import java.util.List;
 public class Model {
     private List<TerrainTile> tiles;
     private List<Enemy> enemies;
-    private List<Ally> allies;
+    private List<Hero> allies;
     private List<City> cities;
 
     public Model() {
@@ -16,7 +16,7 @@ public class Model {
         this.cities = new ArrayList<>();
     }
 
-    public Model(List<TerrainTile> tiles, List<Enemy> enemies, List<Ally> allies, List<City> cities) {
+    public Model(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
         this.tiles = tiles;
         this.enemies = enemies;
         this.allies = allies;
@@ -99,11 +99,11 @@ public class Model {
         this.enemies = enemies;
     }
 
-    public List<Ally> getAllies() {
+    public List<Hero> getAllies() {
         return allies;
     }
 
-    public void setAllies(List<Ally> allies) {
+    public void setAllies(List<Hero> allies) {
         this.allies = allies;
     }
 
@@ -113,5 +113,13 @@ public class Model {
 
     public void setCities(List<City> cities) {
         this.cities = cities;
+    }
+
+    public void planAttack() {
+        //Move and plan
+    }
+
+    public void executeAttack() {
+
     }
 }

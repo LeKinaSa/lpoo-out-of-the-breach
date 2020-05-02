@@ -1,6 +1,8 @@
 package model;
 
-public interface AttackStrategy {
-    DamageMatrix planAttack(Model grid, Position pos);
-    void attack(Model grid, Position pos);
+public abstract class AttackStrategy {
+    public abstract DamageMatrix previewAttack(Position pos);
+    public void attack(Model grid, Position pos) {
+        //TODO:
+    }
 }
