@@ -1,7 +1,6 @@
 import GUI.AbsComponentPosition;
 import GUI.GUIcomponent;
 import GUI.ScreenCorner;
-import GUI.iGUIcomponentPosition;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
@@ -74,7 +73,7 @@ public class BoardTilesComponent extends GUIcomponent {
                         Entity entity = model.getEntityAt(new Position(x, y));
                         if (entity instanceof City) {
                             drawCity(tileBox);
-                        } else if (entity instanceof Ally) {
+                        } else if (entity instanceof Hero) {
                             drawAlly(tileBox);
                         } else if (entity instanceof Enemy) {
                             drawEnemy(tileBox);
