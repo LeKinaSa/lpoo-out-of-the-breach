@@ -1,8 +1,10 @@
+package GUI;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class AbsComponentPosition implements iGUIcomponentPosition{
+public class AbsComponentPosition implements iGUIcomponentPosition {
     private final int x;
     private final int y;
     private final ScreenCorner corner;

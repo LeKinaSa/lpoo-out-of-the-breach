@@ -1,3 +1,5 @@
+package GUI;
+
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -47,5 +49,9 @@ public class LanternaTerminal {
 
     public void resizeIfNecessary() {
         screen.doResizeIfNecessary();
+    }
+
+    public void close() throws IOException {
+        screen.close();
     }
 }

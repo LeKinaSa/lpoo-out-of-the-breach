@@ -25,11 +25,29 @@ public class Model {
         return null;
     }
 
-    public boolean hasEntity(Position pos) {
-        return true;
+
+    public boolean tileOccupied(Position pos) {
+        return getEntityAt(pos) != null;
     }
 
     public Entity getEntityAt(Position pos) {
+        for (Entity i : cities) {
+            if (i.getPosition().same(pos)) {
+                return i;
+            }
+        }
+
+        for (Entity i : allies) {
+            if (i.getPosition().same(pos)) {
+                return i;
+            }
+        }
+
+        for (Entity i : enemies) {
+            if (i.getPosition().same(pos)) {
+                return i;
+            }
+        }
         return null;
     }
 
