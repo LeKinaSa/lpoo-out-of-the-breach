@@ -18,19 +18,19 @@ public class Model {
     }
 
     public boolean hasTerrain(Position pos) {
-        return true;
+        return this.terrain.get(pos.getLinearMatrixPosition()) != null;
     }
 
     public TerrainTile getTerrainAt(Position pos) {
-        return null;
+        return this.terrain.get(pos.getLinearMatrixPosition());
     }
 
     public boolean hasEntity(Position pos) {
-        return true;
+        return this.entities.get(pos.getLinearMatrixPosition()) != null;
     }
 
     public Entity getEntityAt(Position pos) {
-        return null;
+        return this.entities.get(pos.getLinearMatrixPosition());
     }
 
     public void addTerrain(TerrainTile terrainTile, Position pos) {
