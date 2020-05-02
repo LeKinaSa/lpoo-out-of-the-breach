@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import model.Model;
 
 public class BoardGUIOverlay extends GUIcomponent {
@@ -14,7 +15,7 @@ public class BoardGUIOverlay extends GUIcomponent {
     Model model;
 
     public BoardGUIOverlay(Model model) {
-        super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft));
+        super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft), true);
         this.model = model;
 
         x = 0;
@@ -38,5 +39,49 @@ public class BoardGUIOverlay extends GUIcomponent {
     @Override
     public void draw(TextGraphics buffer) {
         drawSelector(buffer);
+    }
+
+    private void incrementY() {
+        y = (y == 7) ? 7 : y + 1;
+    }
+
+    private void decrementY() {
+        y = (y == 0) ? 0 : y - 1;
+    }
+
+    private void incrementX() {
+        x = (x == 7) ? 7 : x + 1;
+    }
+
+    private void decrementX() {
+        x = (x == 0) ? 0 : x - 1;
+    }
+
+    private boolean processArrowKeys(KeyStroke stroke) {
+        switch (stroke.getKeyType()) {
+            case ArrowUp:
+                decrementY();
+                return true;
+            case ArrowDown:
+                incrementY();
+                return true;
+            case ArrowLeft:
+                decrementX();
+                return true;
+            case ArrowRight:
+                incrementX();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean processKeystroke(KeyStroke stroke) {
+        if (processArrowKeys(stroke)) {
+            return true;
+        }
+
+        return super.processKeystroke(stroke);
     }
 }
