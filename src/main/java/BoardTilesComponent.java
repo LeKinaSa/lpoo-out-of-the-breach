@@ -7,7 +7,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import model.Model;
+import model.*;
 
 public class BoardTilesComponent extends GUIcomponent {
     private Model model;
@@ -33,6 +33,18 @@ public class BoardTilesComponent extends GUIcomponent {
         );
     }
 
+    private void drawCity(TextGraphics buffer) {
+        buffer.putString(1, 1, "CTY");
+    }
+
+    private void drawAlly(TextGraphics buffer) {
+        buffer.putString(1, 1, "HRO");
+    }
+
+    private void drawEnemy(TextGraphics buffer) {
+        buffer.putString(1, 1, "BUG");
+    }
+
     @Override
     public void draw(TextGraphics buffer) {
         for (int y = 0; y < 8; y++) {
@@ -55,6 +67,17 @@ public class BoardTilesComponent extends GUIcomponent {
                     case MOUNTAIN:
                         drawMountain(tileBox);
                         break;
+                }
+
+                if (model.tileOccupied(new Position(x, y))) {
+                    Entity entity = model.getEntityAt(new Position(x, y));
+                    if (entity instanceof City) {
+                        drawCity(tileBox);
+                    } else if (entity instanceof Ally) {
+                        drawAlly(tileBox);
+                    } else if (entity instanceof Enemy) {
+                        drawEnemy(tileBox);
+                    }
                 }
             }
         }

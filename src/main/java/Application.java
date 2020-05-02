@@ -46,7 +46,7 @@ public class Application {
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
-        Model model        = new Model(tiles, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Model model        = new Model(tiles, allies, enemies, cities);
 
         root.addComponent(
                 new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model))
