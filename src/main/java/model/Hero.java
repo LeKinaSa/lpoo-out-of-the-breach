@@ -11,8 +11,8 @@ public abstract class Hero extends Entity {
     public Hero(Position pos, int hp, int movementRange, List<AttackStrategy> strategies) {
         super(pos, hp);
         this.movementRange = movementRange;
-        hasMoved     = false;
-        hasEndedTurn = false;
+        this.hasMoved     = false;
+        this.hasEndedTurn = false;
         this.strategies = strategies;
     }
 
@@ -25,17 +25,18 @@ public abstract class Hero extends Entity {
     }
 
     public boolean moveTo(Position pos) {
-        if (hasMoved || hasEndedTurn || (!withinRange(pos))) {
+        if (this.hasMoved || this.hasEndedTurn || (!this.withinRange(pos))) {
             return false;
-        } else {
-            setPosition(pos);
-            hasMoved = true;
+        }
+        else {
+            super.setPosition(pos);
+            this.hasMoved = true;
             return true;
         }
     }
 
     public List<AttackStrategy> getStrategies() {
-        return strategies;
+        return this.strategies;
     }
 
     public DamageMatrix previewAttack(AttackStrategy strategy) {
