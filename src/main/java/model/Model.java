@@ -47,7 +47,7 @@ public class Model {
     }
 
     public void addEnemy(Enemy enemy) {
-        if (!this.hasEntity(enemy.getPosition())) {
+        if (!this.tileOccupied(enemy.getPosition())) {
             this.enemies.add(enemy);
         }
         else {
@@ -56,7 +56,7 @@ public class Model {
     }
 
     public void addAlly(Ally ally) {
-        if (!this.hasEntity(ally.getPosition())) {
+        if (!this.tileOccupied(ally.getPosition())) {
             this.allies.add(ally);
         }
         else {
@@ -65,7 +65,7 @@ public class Model {
     }
 
     public void addCity(City city) {
-        if (!this.hasEntity(city.getPosition())) {
+        if (!this.tileOccupied(city.getPosition())) {
             this.cities.add(city);
         }
         else {
