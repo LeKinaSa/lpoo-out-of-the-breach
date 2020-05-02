@@ -13,12 +13,12 @@ public abstract class Enemy extends Entity {
     @Override
     public void draw() {}
 
-    public DamageMatrix planAttack(Grid grid) {
+    public DamageMatrix planAttack(Model grid) {
         this.strategy = new AttackNorth(this.damage);
         return this.strategy.planAttack(grid, super.getPosition());
     }
 
-    public void attack(Grid grid) {
+    public void attack(Model grid) {
         this.strategy.attack(grid, super.getPosition());
     }
 }

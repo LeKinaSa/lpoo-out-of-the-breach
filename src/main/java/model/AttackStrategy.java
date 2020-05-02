@@ -1,6 +1,6 @@
 package model;
 
 public interface AttackStrategy {
-    DamageMatrix planAttack(Grid grid, Position pos);
-    void attack(Grid grid, Position pos);
+    DamageMatrix planAttack(Model grid, Position pos);
+    void attack(Model grid, Position pos);
 }
