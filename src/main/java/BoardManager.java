@@ -1,15 +1,11 @@
 import GUI.CenteredComponentPosition;
 import GUI.GUIcomponent;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import model.Model;
-
-import java.io.Console;
 
 public class BoardManager extends GUIcomponent {
     BoardTilesComponent tiles;
@@ -31,7 +27,7 @@ public class BoardManager extends GUIcomponent {
             if (overlay.isSelected()) { // If it's in "overlay mode", draw overlay
                 overlay.draw(buffer);
             } else {
-                drawBoundingBox(buffer, new TextColor.RGB(255, 255, 255));
+                drawBorder(buffer, new TextColor.RGB(255, 255, 255));
             }
         }
     }

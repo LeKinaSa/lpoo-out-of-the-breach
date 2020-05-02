@@ -34,7 +34,7 @@ public abstract class GUIcomponent {
         draw(bondedBuffer);
     }
 
-    public void drawBoundingBox(TextGraphics buffer, TextColor color) {
+    public void drawBorder(TextGraphics buffer, TextColor color) {
         buffer.drawRectangle(
                 position.getActualOffset(buffer, componentSize),
                 componentSize,
