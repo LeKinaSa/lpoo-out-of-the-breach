@@ -23,47 +23,41 @@ public class Model {
         this.cities = cities;
     }
 
-    public boolean hasTerrain(Position pos) {
-        return this.tiles.get(pos.getLinearMatrixPosition()) != null;
-    }
-
-    public TerrainTile getTerrainAt(Position pos) {
-        return this.tiles.get(pos.getLinearMatrixPosition());
-    }
-
-
-    /*public void addEntity(Entity entity) {
-        if (!this.hasEntity(entity.getPosition())) {
-            //this.entities.set(entity.getPosition().getLinearMatrixPosition(), entity);
-        }
-        else {
-            // exception
-        }
-    }*/
-
     public boolean tileOccupied(Position pos) {
         return getEntityAt(pos) != null;
     }
 
     public Entity getEntityAt(Position pos) {
-        for (Entity i : cities) {
-            if (i.getPosition().same(pos)) {
-                return i;
+        for (Enemy enemy : this.enemies) {
+            if (enemy.getPosition().same(pos)) {
+                return enemy;
             }
         }
-
-        for (Entity i : allies) {
-            if (i.getPosition().same(pos)) {
-                return i;
+        for (Ally ally : this.allies) {
+            if (ally.getPosition().same(pos)) {
+                return ally;
             }
         }
-
-        for (Entity i : enemies) {
-            if (i.getPosition().same(pos)) {
-                return i;
+        for (City city : this.cities) {
+            if (city.getPosition().same(pos)) {
+                return city;
             }
         }
         return null;
+    }
+
+
+    public boolean tileOccupied(Position pos) {
+        return getEntityAt(pos) != null;
+    }
+
+    public void addCity(City city) {
+        if (!this.tileOccupied(city.getPosition())) {
+            this.cities.add(city);
+        }
+        else {
+            // exception
+        }
     }
 
     public void inflictDamage(Position pos, int damage) {
