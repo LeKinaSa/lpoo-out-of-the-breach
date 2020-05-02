@@ -33,7 +33,7 @@ public class Model {
                 return enemy;
             }
         }
-        for (Ally ally : this.allies) {
+        for (Hero ally : this.allies) {
             if (ally.getPosition().same(pos)) {
                 return ally;
             }
@@ -46,9 +46,23 @@ public class Model {
         return null;
     }
 
+    public void addEnemy(Enemy enemy) {
+        if (!this.tileOccupied(enemy.getPosition())) {
+            this.enemies.add(enemy);
+        }
+        else {
+            // exception
+        }
+    }
 
-    public boolean tileOccupied(Position pos) {
-        return getEntityAt(pos) != null;
+    public void addAlly(Hero ally) {
+        if (!this.tileOccupied(ally.getPosition())) {
+            this.allies.add(ally);
+        }
+        else {
+            // exception
+        }
+
     }
 
     public void addCity(City city) {
@@ -71,7 +85,7 @@ public class Model {
     }
 
     public List<TerrainTile> getTiles() {
-        return tiles;
+        return this.tiles;
     }
 
     public void setTiles(List<TerrainTile> tiles) {
@@ -79,7 +93,7 @@ public class Model {
     }
 
     public List<Enemy> getEnemies() {
-        return enemies;
+        return this.enemies;
     }
 
     public void setEnemies(List<Enemy> enemies) {
@@ -87,7 +101,7 @@ public class Model {
     }
 
     public List<Hero> getAllies() {
-        return allies;
+        return this.allies;
     }
 
     public void setAllies(List<Hero> allies) {
@@ -95,7 +109,7 @@ public class Model {
     }
 
     public List<City> getCities() {
-        return cities;
+        return this.cities;
     }
 
     public void setCities(List<City> cities) {

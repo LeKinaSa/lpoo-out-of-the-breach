@@ -16,7 +16,7 @@ public abstract class Enemy extends Entity {
     }
 
     public AttackStrategy getCurrentStrategy() {
-        return currentStrategy;
+        return this.currentStrategy;
     }
 
     public void setCurrentStrategy(AttackStrategy currentStrategy) {
