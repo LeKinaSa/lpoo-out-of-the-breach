@@ -6,7 +6,7 @@ public abstract class AttackStrategy {
 
     public void attack(Model grid, Position pos) {
         DamageMatrix damageMatrix = this.previewAttack(pos);
-        Position p = null;
+        Position p;
         for (int x = 0; x < 8; x ++) {
             for (int y = 0; y < 8; y ++) {
                 try {
