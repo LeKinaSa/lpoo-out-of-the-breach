@@ -4,39 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    private List<TerrainTile> tiles;
-    private List<Ally> allies;
-    private List<Enemy> enemies;
-    private List<City> cities;
+    private List<TerrainTile> terrain;
+    private List<Entity> entities;
 
-    public Model(
-            List<TerrainTile> tiles,
-            List<Ally> allies,
-            List<Enemy> enemies,
-            List<City> cities
-    ) {
-        this.tiles = tiles;
-        this.allies = allies;
-        this.enemies = enemies;
-        this.cities = cities;
-        //TODO: verificar input
+    public Model() {
+        this.terrain = new ArrayList<>(64);
+        this.entities = new ArrayList<>(64);
     }
 
-    public List<TerrainTile> getTiles() {
-        return tiles;
+    public Model(List<TerrainTile> terrain, List<Entity> entities) {
+        this.terrain = terrain;
+        this.entities = entities;
     }
 
-    public List<Ally> getAllies() {
-        return allies;
+    public boolean hasTerrain(Position pos) {
+        return true;
     }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
+    public TerrainTile getTerrainAt(Position pos) {
+        return null;
     }
 
-    public List<City> getCities() {
-        return cities;
-    }
 
     public boolean tileOccupied(Position pos) {
         return getEntityAt(pos) != null;
@@ -61,5 +49,42 @@ public class Model {
             }
         }
         return null;
+    }
+
+    public void addTerrain(TerrainTile terrainTile, Position pos) {
+        if (!this.hasTerrain(pos)) {
+            this.terrain.set(pos.getLinearMatrixPosition(), terrainTile);
+        }
+        else {
+            // exception
+        }
+    }
+
+    public void addEntity(Entity entity) {
+        if (!this.hasEntity(entity.getPosition())) {
+            this.entities.set(entity.getPosition().getLinearMatrixPosition(), entity);
+        }
+        else {
+            // exception
+        }
+    }
+
+    public void draw() {
+        for (TerrainTile terrainTile : this.terrain) {
+            //terrainTile.draw(); // TROUBLE
+        }
+        for (Entity entity : this.entities) {
+            entity.draw();
+        }
+    }
+
+    public void inflictDamage(Position pos, int damage) {
+        if (this.hasEntity(pos)) {
+            Entity entity = this.getEntityAt(pos);
+            entity.takeDamage(damage);
+            if (entity.isDead()) {
+                this.entities.remove(entity);
+            }
+        }
     }
 }

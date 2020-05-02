@@ -8,12 +8,19 @@ public class AttackSouth implements AttackStrategy {
     }
 
     @Override
-    public DamageMatrix planAttack(Grid grid, Position pos) {
+    public DamageMatrix planAttack(Model grid, Position pos) {
         return new DamageMatrix();
     }
 
     @Override
-    public void attack(Grid grid, Position pos) {
-        grid.inflictDamage(new Position(pos.getX(), pos.getY() + 1), this.damage);
+    public void attack(Model grid, Position pos) {
+        Position p = null;
+        try {
+            p = new Position(pos.getX(), pos.getY() + 1);
+        }
+        catch (OutsideOfTheGrid o) {
+            return;
+        }
+        grid.inflictDamage(p, this.damage);
     }
 }

@@ -4,13 +4,13 @@ public class Position {
     private int x;
     private int y;
 
-    public Position(int x, int y) {
+    public Position(int x, int y) throws OutsideOfTheGrid {
         if ((0 <= x) && (x < 8) && (0 <= y) && (y < 8)) {
             this.x = x;
             this.y = y;
         }
         else {
-            // exception
+            throw(new OutsideOfTheGrid());
         }
     }
 

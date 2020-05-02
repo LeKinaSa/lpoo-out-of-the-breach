@@ -4,10 +4,10 @@ public class NoAttack implements AttackStrategy {
     public NoAttack() {}
 
     @Override
-    public DamageMatrix planAttack(Grid grid, Position pos) {
+    public DamageMatrix planAttack(Model grid, Position pos) {
         return new DamageMatrix();
     }
 
     @Override
-    public void attack(Grid grid, Position pos) {}
+    public void attack(Model grid, Position pos) {}
 }
