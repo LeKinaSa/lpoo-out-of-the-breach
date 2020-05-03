@@ -6,7 +6,10 @@ public abstract class Entity {
 
     public Entity(Position pos, int hp) {
         this.pos = pos;
-        this.hp = hp;
+        this.hp = 0;
+        if (hp > 0) {
+            this.hp = hp;
+        }
     }
 
     public Position getPosition() {
