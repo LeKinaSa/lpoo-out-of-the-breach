@@ -61,10 +61,6 @@ public class Application {
         );
 
         root.addComponent(
-                new UndoMoveButton()
-        );
-
-        root.addComponent(
                 new EnemyRoutedComponent()
         );
 
