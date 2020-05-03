@@ -7,10 +7,7 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import model.Entity;
-import model.Model;
-import model.OutsideOfTheGrid;
-import model.Position;
+import model.*;
 
 public class BoardGUIOverlay extends GUIcomponent {
     int x;
@@ -42,12 +39,24 @@ public class BoardGUIOverlay extends GUIcomponent {
     }
 
     private void drawSelector(TextGraphics buffer) {
-        drawTileHighlighter(buffer, new TextColor.RGB(0, 255, 0), x, y);
+        drawTileHighlighter(buffer, new TextColor.RGB(255, 255, 255), x, y);
     }
 
     @Override
     public void draw(TextGraphics buffer) {
         drawSelector(buffer);
+
+        Entity entity;
+        try {
+            entity = model.getEntityAt(new Position(x, y));
+        } catch (OutsideOfTheGrid e) {
+            entity = null; // This should never happen
+        }
+
+        if (entity instanceof Enemy) {
+            Enemy enemy = (Enemy) entity;
+            drawDamageMatrix(buffer, enemy.previewAttack());
+        }
     }
 
     private void incrementY() {
@@ -64,6 +73,23 @@ public class BoardGUIOverlay extends GUIcomponent {
 
     private void decrementX() {
         x = (x == 0) ? 0 : x - 1;
+    }
+
+    private void drawDamageMatrix(TextGraphics buffer, DamageMatrix matrix) {
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                Position p = null;
+                try {
+                    p = new Position(x, y);
+                } catch (OutsideOfTheGrid e) {
+                    // Should never happen
+                }
+
+                if (matrix.getDamage(p) > 0) {
+                    drawTileHighlighter(buffer, new TextColor.RGB(255, 0, 0), x, y);
+                }
+            }
+        }
     }
 
     private boolean processArrowKeys(KeyStroke stroke) {
