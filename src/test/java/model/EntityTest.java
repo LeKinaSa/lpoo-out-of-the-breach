@@ -12,7 +12,7 @@ public class EntityTest {
         Position p = null;
         Position pos = null;
         try {
-            p = new Position(2, 2);
+            p   = new Position(2, 2);
             pos = new Position(3, 4);
         }
         catch (OutsideOfTheGrid o) {

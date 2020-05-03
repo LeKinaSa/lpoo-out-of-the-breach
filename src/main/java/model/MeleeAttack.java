@@ -22,6 +22,7 @@ public class MeleeAttack extends AttackStrategy {
     public MeleeAttack(int damage, AttackDirection direction) {
         super(direction);
         this.damage = damage;
+        this.possibleDirections = new ArrayList<>();
         this.possibleDirections.add(direction);
     }
 
