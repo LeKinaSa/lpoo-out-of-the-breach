@@ -1,5 +1,5 @@
-import model.OutsideOfTheGrid;
-import model.Position;
+package model;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
