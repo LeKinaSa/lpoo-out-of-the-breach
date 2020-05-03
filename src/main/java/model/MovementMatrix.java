@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MovementMatrix {
     List<Boolean> possibleMoves;
 
     public MovementMatrix() {
-        this.possibleMoves = new ArrayList<>(64);
+        this.possibleMoves = new ArrayList<Boolean>(Collections.nCopies(64, false));
     }
 
     public void setMove(Position pos, boolean canMove) {
