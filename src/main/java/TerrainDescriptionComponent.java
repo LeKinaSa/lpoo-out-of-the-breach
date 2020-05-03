@@ -17,6 +17,7 @@ public class TerrainDescriptionComponent extends ColorfulRectangle {
                 new TextColor.RGB(0,59,92)
         );
         text = "";
+        setEnabled(false);
     }
 
     @Override

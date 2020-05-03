@@ -89,4 +89,10 @@ public class BoardGUIOverlay extends GUIcomponent {
 
         return super.processKeystroke(stroke);
     }
+
+    @Override
+    public void setSelected(boolean selected) {
+        terrainDescription.setEnabled(selected);
+        super.setSelected(selected);
+    }
 }
