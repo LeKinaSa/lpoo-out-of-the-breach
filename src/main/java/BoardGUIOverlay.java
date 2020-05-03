@@ -61,6 +61,9 @@ public class BoardGUIOverlay extends GUIcomponent {
         if (mode == SelectorMode.MOVE) {
             drawMovementMatrix(buffer, selectedHero.displayMove());
         }
+        if (mode == SelectorMode.ATTACK) {
+            drawDamageMatrix(buffer, selectedHero.getStrategies().get(selectedAttack).previewAttack(selectedHero.getPosition()));
+        }
         drawSelector(buffer);
 
         tooltip.setText("Use the arrow keys to move around");
@@ -244,15 +247,16 @@ public class BoardGUIOverlay extends GUIcomponent {
     }
 
     public boolean processAttackKeystroke(KeyStroke stroke) {
+        int size = selectedHero.getStrategies().size();
         switch (stroke.getKeyType()) {
             case ArrowLeft:
-                selectedAttack = (selectedAttack - 1) % selectedHero.getStrategies().size();
+                selectedAttack = (selectedAttack + size - 1) % size;
                 return true;
             case ArrowRight:
-                selectedAttack = (selectedAttack + 1) % selectedHero.getStrategies().size();
+                selectedAttack = (selectedAttack + 1) % size;
                 return true;
             case Enter:
-                selectedHero.getStrategies().get(selectedAttack).attack(model, selectedHero.getPosition());
+                selectedHero.attack(model, selectedAttack);
                 selectedHero = null;
                 selectedAttack = 0;
                 mode = SelectorMode.NORMAL;

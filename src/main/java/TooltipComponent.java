@@ -11,7 +11,7 @@ public class TooltipComponent extends ColorfulRectangle {
 
     public TooltipComponent() {
         super(
-                new TerminalSize(40, 3),
+                new TerminalSize(46, 3),
                 new AbsComponentPosition(0, 0, ScreenCorner.BottomLeft),
                 new TextColor.RGB(0,59,92)
         );
