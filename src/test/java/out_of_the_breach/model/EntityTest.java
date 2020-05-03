@@ -74,6 +74,7 @@ public class EntityTest {
 
         entity.setHp(-10);
         assertEquals(0, entity.getHp());
+        assertEquals(true, entity.isDead());
 
         entity.setHp(20);
         assertEquals(20, entity.getHp());
@@ -83,6 +84,7 @@ public class EntityTest {
 
         entity.takeDamage(2);
         assertEquals(18, entity.getHp());
+        assertEquals(false, entity.isDead());
     }
 
     @Test
