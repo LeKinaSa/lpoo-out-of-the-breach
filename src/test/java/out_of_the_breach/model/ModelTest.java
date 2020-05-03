@@ -253,4 +253,80 @@ public class ModelTest {
         assertEquals(0,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());
     }
+
+    @Test
+    public void inflictDamageTest() {
+        class HeroStub extends Hero {
+            public HeroStub(Position pos, int hp, int movementRange, List<AttackStrategy> strategies) {
+                super(pos, hp, movementRange, strategies);
+            }
+            @Override
+            public boolean withinRange(Position pos) {
+                return true;
+            }
+        }
+
+        class EnemyStub extends Enemy {
+            public EnemyStub(Position pos, int hp, AttackStrategy strategy) {
+                super(pos, hp, strategy);
+            }
+            @Override
+            public void moveAndPlanAttack(Model grid) {
+                return;
+            }
+        }
+
+        Position p1 = Mockito.mock(Position.class);
+        Position p2 = Mockito.mock(Position.class);
+        Position p3 = Mockito.mock(Position.class);
+
+        Mockito.when(p1.same(p1)).thenReturn( true);
+        Mockito.when(p1.same(p2)).thenReturn(false);
+        Mockito.when(p1.same(p3)).thenReturn(false);
+
+        Mockito.when(p2.same(p1)).thenReturn(false);
+        Mockito.when(p2.same(p2)).thenReturn( true);
+        Mockito.when(p2.same(p3)).thenReturn(false);
+
+        Mockito.when(p3.same(p1)).thenReturn(false);
+        Mockito.when(p3.same(p2)).thenReturn(false);
+        Mockito.when(p3.same(p3)).thenReturn( true);
+
+        Enemy enemy = new EnemyStub(p1, 12, null);
+        Hero  hero  = new HeroStub (p2, 11, 2, new ArrayList<>());
+        City  city  = new City     (p3, 10, 2);
+
+        List<Enemy> enemies = new ArrayList<>();
+        enemies.add(enemy);
+        List<Hero > allies  = new ArrayList<>();
+        allies.add (hero );
+        List<City > cities  = new ArrayList<>();
+        cities.add (city );
+
+        Model grid = new Model(new ArrayList<>(), enemies, allies, cities);
+
+        assertEquals(1, grid.getEnemies().size());
+        assertEquals(1,  grid.getAllies().size());
+        assertEquals(1,  grid.getCities().size());
+
+        grid.inflictDamage(p1, 5);
+        grid.inflictDamage(p2, 5);
+        grid.inflictDamage(p3, 5);
+
+        assertEquals(1, grid.getEnemies().size());
+        assertEquals(1,  grid.getAllies().size());
+        assertEquals(1,  grid.getCities().size());
+
+        assertEquals(7, grid.getEnemies().get(0).getHp());
+        assertEquals(6,  grid.getAllies().get(0).getHp());
+        assertEquals(5,  grid.getCities().get(0).getHp());
+
+        grid.inflictDamage(p1, 10);
+        grid.inflictDamage(p2, 10);
+        grid.inflictDamage(p3, 10);
+
+        assertEquals(0, grid.getEnemies().size());
+        assertEquals(0,  grid.getAllies().size());
+        assertEquals(0,  grid.getCities().size());
+    }
 }
