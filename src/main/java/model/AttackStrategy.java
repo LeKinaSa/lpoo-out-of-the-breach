@@ -1,6 +1,19 @@
 package model;
 
 public abstract class AttackStrategy {
+    private AttackDirection direction;
+
+    protected AttackStrategy(AttackDirection direction) {
+        this.direction = direction;
+    }
+
+    public AttackDirection getDirection() {
+        return this.direction;
+    }
+    protected void setDirection(AttackDirection direction) {
+        this.direction = direction;
+    }
+
     public abstract Position getDamagedPosition(Position pos);
     public abstract DamageMatrix previewAttack(Position pos);
 

@@ -1,11 +1,11 @@
 package model;
 
-import java.util.List;
+import static model.AttackDirection.*;
 
 public class Bug extends Enemy {
 
-    public Bug(Position pos, int hp, int damage, List<AttackStrategy> strategies) {
-        super(pos, hp, damage, strategies);
+    public Bug(Position pos, int hp, int damage) {
+        super(pos, hp, new MeleeAttack(damage));
     }
 
     @Override

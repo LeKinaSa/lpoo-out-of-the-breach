@@ -1,35 +1,36 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Enemy extends Entity {
-    private int damage;
-    private AttackStrategy currentStrategy;
-    private List<AttackStrategy> strategies;
+    private AttackStrategy strategy;
 
-    public Enemy(Position pos, int hp, int damage, List<AttackStrategy> strategies) {
+    public Enemy(Position pos, int hp, AttackStrategy strategy) {
         super(pos, hp);
-        this.damage = damage;
-        this.currentStrategy = null;
-        this.strategies = strategies;
+        this.strategy = strategy;
     }
 
-    public AttackStrategy getCurrentStrategy() {
-        return this.currentStrategy;
+    public AttackStrategy getAttackStrategy() {
+        return this.strategy;
     }
 
-    public void setCurrentStrategy(AttackStrategy currentStrategy) {
-        this.currentStrategy = currentStrategy;
+    public void setAttackStrategy(AttackStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public AttackDirection getAttackDirection() {
+        return this.strategy.getDirection();
+    }
+
+    public void setAttackDirection(AttackDirection direction) {
+        this.strategy.setDirection(direction);
     }
 
     public abstract void moveAndPlanAttack(Model grid);
 
     public DamageMatrix previewAttack() {
-        return this.currentStrategy.previewAttack(super.getPosition());
+        return this.strategy.previewAttack(super.getPosition());
     }
 
     public void attack(Model grid) {
-        this.currentStrategy.attack(grid, super.getPosition());
+        this.strategy.attack(grid, super.getPosition());
     }
 }
