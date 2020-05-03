@@ -133,10 +133,14 @@ public class Model {
     }
 
     public void planAttack() {
-        //Move and plan
+        for (Enemy enemy : this.enemies) {
+            enemy.moveAndPlanAttack(this);
+        }
     }
 
     public void executeAttack() {
-
+        for (Enemy enemy : this.enemies) {
+            enemy.attack(this);
+        }
     }
 }
