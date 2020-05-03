@@ -65,22 +65,6 @@ public class Application {
         );
 
         root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(15, 15),
-                        new AbsComponentPosition(0, 7, ScreenCorner.TopLeft),
-                        new TextColor.RGB(0,6,177)
-                )
-        );
-
-        root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(50, 7),
-                        new AbsComponentPosition(0, 0, ScreenCorner.BottomLeft),
-                        new TextColor.RGB(0,6,177)
-                )
-        );
-
-        root.addComponent(
                 new EnemyRoutedComponent()
         );
 

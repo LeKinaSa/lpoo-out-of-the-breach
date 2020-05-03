@@ -12,7 +12,8 @@ public class EndTurnButton extends ColorfulRectangle {
         super(
                 new TerminalSize(15, 3),
                 new AbsComponentPosition(0, 3, ScreenCorner.TopLeft),
-                new TextColor.RGB(0,59,92)
+                new TextColor.RGB(0,59,92),
+                true
         );
     }
 
@@ -24,5 +25,10 @@ public class EndTurnButton extends ColorfulRectangle {
         buffer.enableModifiers(SGR.BOLD);
 
         buffer.putString(3, 1, "END TURN");
+
+        if (isSelected()) {
+
+            drawBorder(buffer, new TextColor.RGB(255, 255, 255));
+        }
     }
 }
