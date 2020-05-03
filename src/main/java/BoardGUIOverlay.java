@@ -10,6 +10,12 @@ import com.googlecode.lanterna.input.KeyStroke;
 import model.*;
 
 public class BoardGUIOverlay extends GUIcomponent {
+    private enum SelectorMode {
+        NORMAL,
+        MOVE,
+        ATTACK
+    }
+
     int x;
     int y;
     Model model;
@@ -46,6 +52,8 @@ public class BoardGUIOverlay extends GUIcomponent {
     public void draw(TextGraphics buffer) {
         drawSelector(buffer);
 
+        tooltip.setText("Use the arrow keys to move around");
+
         Entity entity;
         try {
             entity = model.getEntityAt(new Position(x, y));
@@ -56,6 +64,15 @@ public class BoardGUIOverlay extends GUIcomponent {
         if (entity instanceof Enemy) {
             Enemy enemy = (Enemy) entity;
             drawDamageMatrix(buffer, enemy.previewAttack());
+        } else if (entity instanceof Hero) {
+            Hero hero = (Hero) entity;
+            if (hero.getHasEndedTurn()) {
+                tooltip.setText("This hero has already finished its turn!");
+            } else if (hero.getHasMoved()) {
+                tooltip.setText("Press A to attack");
+            } else {
+                tooltip.setText("Press M to move, A to attack");
+            }
         }
     }
 

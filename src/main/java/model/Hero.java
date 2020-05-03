@@ -47,4 +47,15 @@ public abstract class Hero extends Entity {
         strategy.attack(grid, super.getPosition());
     }
 
+    public int getMovementRange() {
+        return movementRange;
+    }
+
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
+    public boolean getHasEndedTurn() {
+        return hasEndedTurn;
+    }
 }
