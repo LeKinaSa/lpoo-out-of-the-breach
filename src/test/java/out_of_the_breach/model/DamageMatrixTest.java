@@ -30,13 +30,13 @@ public class DamageMatrixTest {
 
         for (int index = 0; index <= 63; index ++) {
             if (index == 23) {
-                assertEquals(Integer.valueOf(5), dmgMatrix.incomingDamage.get(index));
+                assertEquals(Integer.valueOf(5), dmgMatrix.incomingDamage.get(index)); // p1
             }
             else if (index == 0) {
-                assertEquals(Integer.valueOf(3), dmgMatrix.incomingDamage.get(index));
+                assertEquals(Integer.valueOf(3), dmgMatrix.incomingDamage.get(index)); // p2
             }
             else {
-                assertEquals(Integer.valueOf(0), dmgMatrix.incomingDamage.get(index));
+                assertEquals(Integer.valueOf(0), dmgMatrix.incomingDamage.get(index)); // p3 + others
             }
         }
     }
