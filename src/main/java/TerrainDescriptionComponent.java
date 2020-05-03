@@ -37,7 +37,7 @@ public class TerrainDescriptionComponent extends ColorfulRectangle {
     public void updateDescription(TerrainTile tile) {
         switch (tile) {
             case PLAIN:
-                text = "Plains";
+                text = "Plain";
                 break;
             case MOUNTAIN:
                 text = "Mountain";

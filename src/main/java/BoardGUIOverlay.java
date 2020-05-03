@@ -7,7 +7,10 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import model.Entity;
 import model.Model;
+import model.OutsideOfTheGrid;
+import model.Position;
 
 public class BoardGUIOverlay extends GUIcomponent {
     int x;
@@ -15,12 +18,14 @@ public class BoardGUIOverlay extends GUIcomponent {
     Model model;
     TooltipComponent tooltip;
     TerrainDescriptionComponent terrainDescription;
+    EntityInfoComponent eic;
 
-    public BoardGUIOverlay(Model model, TooltipComponent tooltip, TerrainDescriptionComponent terrainDescription) {
+    public BoardGUIOverlay(Model model, TooltipComponent tooltip, TerrainDescriptionComponent terrainDescription, EntityInfoComponent eic) {
         super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft), true);
         this.model = model;
         this.tooltip = tooltip;
         this.terrainDescription = terrainDescription;
+        this.eic = eic;
 
         x = 0;
         y = 0;
@@ -84,6 +89,21 @@ public class BoardGUIOverlay extends GUIcomponent {
     public boolean processKeystroke(KeyStroke stroke) {
         if (processArrowKeys(stroke)) {
             terrainDescription.updateDescription(model.getTiles().get(y * 8 + x));
+
+            Entity entity;
+            try {
+                entity = model.getEntityAt(new Position(x, y));
+            } catch (OutsideOfTheGrid e) {
+                entity = null; // This should never happen
+            }
+
+            if (entity == null) {
+                eic.setEnabled(false);
+            } else {
+                eic.setEnabled(true);
+                eic.setSelectedEntity(entity);
+            }
+
             return true;
         }
 

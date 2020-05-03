@@ -52,9 +52,10 @@ public class Application {
 
         TooltipComponent tooltip = new TooltipComponent();
         TerrainDescriptionComponent terrainDescription = new TerrainDescriptionComponent();
+        EntityInfoComponent eic = new EntityInfoComponent();
 
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model, tooltip, terrainDescription), tooltip)
+                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model, tooltip, terrainDescription, eic), tooltip)
         );
 
         root.addComponent(
@@ -75,6 +76,10 @@ public class Application {
 
         root.addComponent(
                 terrainDescription
+        );
+
+        root.addComponent(
+                eic
         );
 
         while (true) {
