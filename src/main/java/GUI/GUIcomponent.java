@@ -36,8 +36,8 @@ public abstract class GUIcomponent {
 
     public void drawBorder(TextGraphics buffer, TextColor color) {
         buffer.drawRectangle(
-                position.getActualOffset(buffer, componentSize),
-                componentSize,
+                new TerminalPosition(0, 0),
+                buffer.getSize(),
                 new TextCharacter('M', color, color)
         );
     }
