@@ -47,4 +47,11 @@ public abstract class Hero extends Entity {
         strategy.attack(grid, super.getPosition());
     }
 
+    public int getMovementRange() {
+        return movementRange;
+    }
+
+    public void setMovementRange(int movementRange) {
+        this.movementRange = movementRange;
+    }
 }
