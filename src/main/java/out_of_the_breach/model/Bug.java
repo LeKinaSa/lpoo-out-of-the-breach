@@ -42,12 +42,12 @@ public class Bug extends Enemy {
 
         closerPosition = null; // To make sure the enemy doesn't go to the tile of its target
         smallerDistance = 64;
-        if (!grid.tileOccupied(north)) {
+        if ((north != null) && (!grid.tileOccupied(north))) {
             closerPosition = north;
             smallerDistance = pos.distanceTo(north);
             direction = NORTH;
         }
-        if (!grid.tileOccupied(south)) {
+        if ((south != null) && (!grid.tileOccupied(south))) {
             distance = pos.distanceTo(south);
             if (distance < smallerDistance) {
                 closerPosition = south;
@@ -55,7 +55,7 @@ public class Bug extends Enemy {
                 direction = SOUTH;
             }
         }
-        if (!grid.tileOccupied(east)) {
+        if ((east != null) && (!grid.tileOccupied(east))) {
             distance = pos.distanceTo(east);
             if (distance < smallerDistance) {
                 closerPosition = east;
@@ -63,7 +63,7 @@ public class Bug extends Enemy {
                 direction = EAST;
             }
         }
-        if (!grid.tileOccupied(west)) {
+        if ((west != null) && (!grid.tileOccupied(west))) {
             distance = pos.distanceTo(west);
             if (distance < smallerDistance) {
                 closerPosition = west;
