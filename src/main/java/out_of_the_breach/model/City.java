@@ -5,7 +5,10 @@ public class City extends Entity {
 
     public City(Position pos, int hp, int power) {
         super(pos, hp);
-        this.power = power;
+        this.power = 0;
+        if (power > 0) {
+            this.power = power;
+        }
     }
 
     public int getPower() {
@@ -13,7 +16,9 @@ public class City extends Entity {
     }
 
     public void setPower(int power) {
-        this.power = power;
+        if (power >= 0) {
+            this.power = power;
+        }
     }
 
 }
