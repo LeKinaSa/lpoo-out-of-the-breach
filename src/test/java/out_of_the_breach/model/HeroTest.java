@@ -72,7 +72,7 @@ public class HeroTest {
         assertEquals(true, hero.getHasEndedTurn());
     }
 
-    @Test
+    @Test //TODO
     public void attackTest() {
         Position p = Mockito.mock(Position.class);
         AttackStrategy strategy1 = Mockito.mock(AttackStrategy.class);
