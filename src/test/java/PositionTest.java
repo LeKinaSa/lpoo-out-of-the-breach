@@ -170,4 +170,32 @@ public class PositionTest {
         assertEquals(6,  west.getX());
         assertEquals(7,  west.getY());
     }
+
+    @Test
+    public void directionsTest3() {
+        Position pos = null;
+        try {
+            pos = new Position(3, 5);
+        }
+        catch (OutsideOfTheGrid o) {
+            assertEquals(false, true);
+        }
+        Position north = pos.north();
+        Position south = pos.south();
+        Position  east = pos.east ();
+        Position  west = pos.west ();
+
+        assertEquals(3, north.getX());
+        assertEquals(4, north.getY());
+
+        assertEquals(3, south.getX());
+        assertEquals(6, south.getY());
+
+        assertEquals(4,  east.getX());
+        assertEquals(5,  east.getY());
+
+        assertEquals(2,  west.getX());
+        assertEquals(5,  west.getY());
+
+    }
 }
