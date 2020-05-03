@@ -39,7 +39,8 @@ public class Application {
         cities.add(new City(new Position(0, 0), 2, 2));
 
         List<Hero> allies = new ArrayList<>();
-        //allies.add(new Hero(new Position(0, 1), 3));
+        List<AttackStrategy> strats = new ArrayList<>();
+        allies.add(new Tank(new Position(0, 1), 2, 3, strats));
 
         List<Enemy> enemies = new ArrayList<>();
         Bug mike = new Bug(new Position(0, 2), 2, 2, new ArrayList<>());

@@ -8,7 +8,7 @@ public class Tank extends Hero {
     }
 
     @Override
-    protected boolean withinRange(Position pos) {
-        return false;
+    public boolean withinRange(Position pos) {
+        return pos.getY() == 7;//TODO
     }
 }
