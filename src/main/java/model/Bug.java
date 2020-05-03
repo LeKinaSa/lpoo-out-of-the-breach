@@ -1,13 +1,80 @@
 package model;
 
-import java.util.List;
+import static model.AttackDirection.*;
 
 public class Bug extends Enemy {
 
-    public Bug(Position pos, int hp, int damage, List<AttackStrategy> strategies) {
-        super(pos, hp, damage, strategies);
+    public Bug(Position pos, int hp, int damage) {
+        super(pos, hp, new MeleeAttack(damage));
     }
 
     @Override
-    public void moveAndPlanAttack(Model grid) {}
+    public void moveAndPlanAttack(Model grid) {
+        Position closerPosition = super.getPosition();
+        int smallerDistance = 64;
+
+        Position pos = super.getPosition();
+        int distance;
+
+        // Find the Nearest Target (Priority : City then Hero)
+        for (City city : grid.getCities()) {
+            distance = pos.distanceTo(city.getPosition());
+            if (distance < smallerDistance) {
+                closerPosition = city.getPosition();
+                smallerDistance = distance;
+            }
+        }
+
+        for (Hero ally : grid.getAllies()) {
+            distance = pos.distanceTo(ally.getPosition());
+            if (distance < smallerDistance) {
+                closerPosition = ally.getPosition();
+                smallerDistance = distance;
+            }
+        }
+
+        // Find the Position where we can Attack and the Direction of the Attack
+        Position north = closerPosition.north();
+        Position south = closerPosition.south();
+        Position east  = closerPosition.east ();
+        Position west  = closerPosition.west ();
+        AttackDirection direction = NONE;
+
+        closerPosition = null; // To make sure the enemy doesn't go to the tile of its target
+        smallerDistance = 64;
+        if (!grid.tileOccupied(north)) {
+            closerPosition = north;
+            smallerDistance = pos.distanceTo(north);
+            direction = NORTH;
+        }
+        if (!grid.tileOccupied(south)) {
+            distance = pos.distanceTo(south);
+            if (distance < smallerDistance) {
+                closerPosition = south;
+                smallerDistance = distance;
+                direction = SOUTH;
+            }
+        }
+        if (!grid.tileOccupied(east)) {
+            distance = pos.distanceTo(east);
+            if (distance < smallerDistance) {
+                closerPosition = east;
+                smallerDistance = distance;
+                direction = EAST;
+            }
+        }
+        if (!grid.tileOccupied(west)) {
+            distance = pos.distanceTo(west);
+            if (distance < smallerDistance) {
+                closerPosition = west;
+                smallerDistance = distance;
+                direction = WEST;
+            }
+        }
+
+        if (closerPosition != null) {
+            this.setPosition(closerPosition);
+            this.getAttackStrategy().setDirection(direction);
+        }
+    }
 }

@@ -34,4 +34,53 @@ public class Position {
     public boolean same(Position pos) {
         return ((this.x == pos.x) && (this.y == pos.y));
     }
+
+    public int distanceTo(Position pos) {
+        return Math.abs(pos.x - this.x) + Math.abs(pos.y - this.y);
+    }
+
+    public Position north() {
+        Position p;
+        try {
+            p = new Position(this.getX(), this.getY() - 1);
+        }
+        catch (OutsideOfTheGrid o) {
+            return null;
+        }
+        return p;
+    }
+
+    public Position south() {
+        Position p;
+        try {
+            p = new Position(this.getX(), this.getY() + 1);
+        }
+        catch (OutsideOfTheGrid o) {
+            return null;
+        }
+        return p;
+    }
+
+    public Position east() {
+        Position p;
+        try {
+            p = new Position(this.getX() + 1, this.getY());
+        }
+        catch (OutsideOfTheGrid o) {
+            return null;
+        }
+        return p;
+    }
+
+    public Position west() {
+        Position p;
+        try {
+            p = new Position(this.getX() - 1, this.getY());
+        }
+        catch (OutsideOfTheGrid o) {
+            return null;
+        }
+        return p;
+    }
+
 }

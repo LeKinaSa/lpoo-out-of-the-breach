@@ -6,7 +6,10 @@ public abstract class Entity {
 
     public Entity(Position pos, int hp) {
         this.pos = pos;
-        this.hp = hp;
+        this.hp = 0;
+        if (hp > 0) {
+            this.hp = hp;
+        }
     }
 
     public Position getPosition() {
@@ -22,13 +25,17 @@ public abstract class Entity {
     }
 
     public void setHp(int hp) {
-        this.hp = hp;
+        if (hp > 0) {
+            this.hp = hp;
+        }
     }
 
     public void takeDamage(int damage) {
-        this.hp -= damage;
-        if (this.hp <= 0) {
-            this.hp = 0;
+        if (damage > 0){
+            this.hp -= damage;
+            if (this.hp <= 0) {
+                this.hp = 0;
+            }
         }
     }
 

@@ -46,32 +46,48 @@ public class Model {
         return null;
     }
 
-    public void addEnemy(Enemy enemy) {
+    public void addEnemy(Enemy enemy) throws OccupiedTile {
         if (!this.tileOccupied(enemy.getPosition())) {
             this.enemies.add(enemy);
         }
         else {
-            // exception
+            throw new OccupiedTile();
         }
     }
 
-    public void addAlly(Hero ally) {
+    public void addAlly(Hero ally) throws OccupiedTile {
         if (!this.tileOccupied(ally.getPosition())) {
             this.allies.add(ally);
         }
         else {
-            // exception
+            throw new OccupiedTile();
         }
 
     }
 
-    public void addCity(City city) {
+    public void addCity(City city) throws OccupiedTile {
         if (!this.tileOccupied(city.getPosition())) {
             this.cities.add(city);
         }
         else {
-            // exception
+            throw new OccupiedTile();
         }
+    }
+
+    public void removeEntity(Entity entity) {
+        if (entity.getClass() == Hero.class) {
+            this.allies.remove(entity);
+            return;
+        }
+        if (entity.getClass() == Enemy.class) {
+            enemies.remove(entity);
+            return;
+        }
+        if (entity.getClass() == City.class) {
+            cities.remove(entity);
+            return;
+        }
+        return;
     }
 
     public void inflictDamage(Position pos, int damage) {
@@ -79,7 +95,7 @@ public class Model {
             Entity entity = this.getEntityAt(pos);
             entity.takeDamage(damage);
             if (entity.isDead()) {
-                //this.entities.remove(entity);
+                this.removeEntity(entity);
             }
         }
     }
@@ -117,10 +133,14 @@ public class Model {
     }
 
     public void planAttack() {
-        //Move and plan
+        for (Enemy enemy : this.enemies) {
+            enemy.moveAndPlanAttack(this);
+        }
     }
 
     public void executeAttack() {
-
+        for (Enemy enemy : this.enemies) {
+            enemy.attack(this);
+        }
     }
 }

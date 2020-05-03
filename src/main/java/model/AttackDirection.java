@@ -4,5 +4,6 @@ public enum AttackDirection {
     NORTH,
     SOUTH,
     EAST,
-    WEST
+    WEST,
+    NONE
 }

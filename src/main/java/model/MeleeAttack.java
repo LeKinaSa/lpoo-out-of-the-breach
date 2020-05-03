@@ -1,50 +1,48 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static model.AttackDirection.*;
+
 public class MeleeAttack extends AttackStrategy {
     private int damage;
-    private AttackDirection direction;
+    private List<AttackDirection> possibleDirections;
 
-    public MeleeAttack(int damage, AttackDirection direction) {
+    public MeleeAttack(int damage) {
+        super(NONE);
         this.damage = damage;
-        this.direction = direction;
+        this.possibleDirections = new ArrayList<>();
+        this.possibleDirections.add( NONE);
+        this.possibleDirections.add(NORTH);
+        this.possibleDirections.add(SOUTH);
+        this.possibleDirections.add( EAST);
+        this.possibleDirections.add( WEST);
+    }
+    public MeleeAttack(int damage, AttackDirection direction) {
+        super(direction);
+        this.damage = damage;
+        this.possibleDirections.add(direction);
+    }
+
+    @Override
+    public void setDirection(AttackDirection direction) {
+        if (this.possibleDirections.contains(direction)) {
+            super.setDirection(direction);
+        }
     }
 
     @Override
     public Position getDamagedPosition(Position pos) {
-        Position p;
-        switch(this.direction) {
+        switch(super.getDirection()) {
             case NORTH:
-                try {
-                    p = new Position(pos.getX(), pos.getY() - 1);
-                }
-                catch (OutsideOfTheGrid o) {
-                    return null;
-                }
-                return p;
+                return pos.north();
             case SOUTH:
-                try {
-                    p = new Position(pos.getX(), pos.getY() + 1);
-                }
-                catch (OutsideOfTheGrid o) {
-                    return null;
-                }
-                return p;
+                return pos.south();
             case EAST:
-                try {
-                    p = new Position(pos.getX() + 1, pos.getY());
-                }
-                catch (OutsideOfTheGrid o) {
-                    return null;
-                }
-                return p;
+                return pos.east();
             case WEST:
-                try {
-                    p = new Position(pos.getX() - 1, pos.getY());
-                }
-                catch (OutsideOfTheGrid o) {
-                    return null;
-                }
-                return p;
+                return pos.west();
             default:
                 return null;
         }

@@ -41,14 +41,14 @@ public class Application {
         List<Hero> allies = new ArrayList<>();
         List<AttackStrategy> strats = new ArrayList<>();
         strats.add(new MeleeAttack(3, AttackDirection.NORTH));
-        strats.add(new MeleeAttack(3, AttackDirection.EAST));
+        strats.add(new MeleeAttack(3, AttackDirection.EAST ));
         strats.add(new MeleeAttack(3, AttackDirection.SOUTH));
-        strats.add(new MeleeAttack(3, AttackDirection.WEST));
+        strats.add(new MeleeAttack(3, AttackDirection.WEST ));
         allies.add(new Tank(new Position(0, 1), 2, 3, strats));
 
         List<Enemy> enemies = new ArrayList<>();
-        Bug mike = new Bug(new Position(0, 2), 2, 2, new ArrayList<>());
-        mike.setCurrentStrategy(new MeleeAttack(2, AttackDirection.NORTH));
+        Bug mike = new Bug(new Position(0, 2), 2, 2);
+        mike.setAttackDirection(AttackDirection.NORTH);
         enemies.add(mike);
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
