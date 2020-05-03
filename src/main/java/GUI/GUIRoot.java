@@ -63,11 +63,17 @@ public class GUIRoot {
     }
 
     public boolean processKeystroke(KeyStroke stroke) { //TODO: This loop isn't very readable
+        boolean stopAtFirstSelectable = false;
         for (int i = 0; i < components.size(); i++, selectedComponent = (selectedComponent + 1) % components.size()) {
             GUIcomponent component = components.get(selectedComponent);
 
             if (component.isSelectable()) {
                 component.setSelected(true);
+
+                if (stopAtFirstSelectable) {
+                    return false;
+                }
+
             } else {
                 continue;
             }
@@ -76,6 +82,7 @@ public class GUIRoot {
                 return true;
             } else {
                 component.setSelected(false);
+                stopAtFirstSelectable = true;
             }
         }
         selectedComponent = 0;
