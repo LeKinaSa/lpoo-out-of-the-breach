@@ -13,12 +13,14 @@ public abstract class GUIcomponent {
     private final iGUIcomponentPosition position;
     private boolean selectable;
     private boolean selected;
+    private boolean enabled;
 
     public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
         this.componentSize = componentSize;
         this.position = position;
         this.selectable = selectable;
         this.selected = false;
+        this.enabled = true;
     }
 
     public GUIcomponent(TerminalSize componentSize, iGUIcomponentPosition position) {
@@ -26,18 +28,20 @@ public abstract class GUIcomponent {
     }
 
     public void bondedDraw(TextGraphics buffer) {
-        TextGraphics bondedBuffer = buffer.newTextGraphics(
-                position.getActualOffset(buffer, componentSize),
-                componentSize
-        );
+        if (enabled) {
+            TextGraphics bondedBuffer = buffer.newTextGraphics(
+                    position.getActualOffset(buffer, componentSize),
+                    componentSize
+            );
 
-        draw(bondedBuffer);
+            draw(bondedBuffer);
+        }
     }
 
     public void drawBorder(TextGraphics buffer, TextColor color) {
         buffer.drawRectangle(
-                position.getActualOffset(buffer, componentSize),
-                componentSize,
+                new TerminalPosition(0, 0),
+                buffer.getSize(),
                 new TextCharacter('M', color, color)
         );
     }
@@ -51,6 +55,9 @@ public abstract class GUIcomponent {
     }
 
     public boolean isSelectable() {
+        if (!enabled) {
+            return false;
+        }
         return selectable;
     }
 
@@ -75,5 +82,13 @@ public abstract class GUIcomponent {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

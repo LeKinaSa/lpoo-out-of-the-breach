@@ -1,5 +1,7 @@
 package model;
 
+import com.googlecode.lanterna.TextColor;
+
 import java.util.List;
 
 public abstract class Hero extends Entity {
@@ -16,11 +18,25 @@ public abstract class Hero extends Entity {
         this.strategies = strategies;
     }
 
-    protected abstract boolean withinRange(Position pos);
+    public abstract boolean withinRange(Position pos);
 
     public MovementMatrix displayMove() {
         MovementMatrix canMove = new MovementMatrix();
-        //TODO: for loop, use withinRange
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                Position p = null;
+
+                try {
+                    p = new Position(x, y);
+                } catch (OutsideOfTheGrid e) {
+                    // Should never happen
+                }
+
+                if (withinRange(p)) {
+                    canMove.setMove(p, true);
+                }
+            }
+        }
         return canMove;
     }
 
@@ -45,6 +61,22 @@ public abstract class Hero extends Entity {
 
     public void attack(Model grid, AttackStrategy strategy) {
         strategy.attack(grid, super.getPosition());
+        hasEndedTurn = true;
     }
 
+    public void attack(Model grid, int strategyIndex) {
+        attack(grid, strategies.get(strategyIndex));
+    }
+
+    public int getMovementRange() {
+        return movementRange;
+    }
+
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
+    public boolean getHasEndedTurn() {
+        return hasEndedTurn;
+    }
 }

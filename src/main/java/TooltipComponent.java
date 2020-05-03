@@ -6,14 +6,16 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class UndoMoveButton extends ColorfulRectangle {
+public class TooltipComponent extends ColorfulRectangle {
+    private String text;
 
-    public UndoMoveButton() {
+    public TooltipComponent() {
         super(
-                new TerminalSize(15, 3),
-                new AbsComponentPosition(17, 3, ScreenCorner.TopLeft),
+                new TerminalSize(46, 3),
+                new AbsComponentPosition(0, 0, ScreenCorner.BottomLeft),
                 new TextColor.RGB(0,59,92)
         );
+        text = "";
     }
 
     @Override
@@ -23,6 +25,18 @@ public class UndoMoveButton extends ColorfulRectangle {
         buffer.setBackgroundColor(new TextColor.RGB(0,59,92));
         buffer.enableModifiers(SGR.BOLD);
 
-        buffer.putString(3, 1, "UNDO MOVE");
+        buffer.putString(
+                3,
+                1,
+                text
+        );
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
