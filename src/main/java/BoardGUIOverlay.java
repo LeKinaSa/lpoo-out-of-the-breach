@@ -13,10 +13,14 @@ public class BoardGUIOverlay extends GUIcomponent {
     int x;
     int y;
     Model model;
+    TooltipComponent tooltip;
+    TerrainDescriptionComponent terrainDescription;
 
-    public BoardGUIOverlay(Model model) {
+    public BoardGUIOverlay(Model model, TooltipComponent tooltip, TerrainDescriptionComponent terrainDescription) {
         super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft), true);
         this.model = model;
+        this.tooltip = tooltip;
+        this.terrainDescription = terrainDescription;
 
         x = 0;
         y = 0;
@@ -79,6 +83,7 @@ public class BoardGUIOverlay extends GUIcomponent {
     @Override
     public boolean processKeystroke(KeyStroke stroke) {
         if (processArrowKeys(stroke)) {
+            terrainDescription.updateDescription(model.getTiles().get(y * 8 + x));
             return true;
         }
 

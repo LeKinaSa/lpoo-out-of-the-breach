@@ -51,9 +51,10 @@ public class Application {
         Model model        = new Model(tiles, enemies, allies, cities);
 
         TooltipComponent tooltip = new TooltipComponent();
+        TerrainDescriptionComponent terrainDescription = new TerrainDescriptionComponent();
 
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model), tooltip)
+                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model, tooltip, terrainDescription), tooltip)
         );
 
         root.addComponent(
@@ -70,6 +71,10 @@ public class Application {
 
         root.addComponent(
                 tooltip
+        );
+
+        root.addComponent(
+                terrainDescription
         );
 
         while (true) {
