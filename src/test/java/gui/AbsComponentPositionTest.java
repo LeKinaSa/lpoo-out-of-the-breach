@@ -1,7 +1,7 @@
 package gui;
 
-import GUI.AbsComponentPosition;
-import GUI.ScreenCorner;
+import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
