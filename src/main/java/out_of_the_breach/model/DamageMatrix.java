@@ -12,7 +12,9 @@ public class DamageMatrix {
     }
 
     public void setDamage(Position pos, int damage) {
-        this.incomingDamage.set(pos.getLinearMatrixPosition(), damage);
+        if (damage >= 0) {
+            this.incomingDamage.set(pos.getLinearMatrixPosition(), damage);
+        }
     }
 
     public int getDamage(Position pos) {
