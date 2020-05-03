@@ -20,7 +20,18 @@ public abstract class Hero extends Entity {
 
     public MovementMatrix displayMove() {
         MovementMatrix canMove = new MovementMatrix();
-        //TODO: for loop, use withinRange
+        Position p;
+        for (int x = 0; x < 8; x ++) {
+            for (int y = 0; y < 8; y ++) {
+                try {
+                    p = new Position(x, y);
+                }
+                catch (OutsideOfTheGrid o) {
+                    continue;
+                }
+                canMove.setMove(p, this.withinRange(p));
+            }
+        }
         return canMove;
     }
 
