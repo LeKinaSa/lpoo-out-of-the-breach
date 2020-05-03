@@ -87,9 +87,9 @@ public class HeroTest {
         Hero hero = new Tank(p, 1, 3, strategies);
         assertEquals(strategies, hero.getStrategies());
 
-        // Exception Zone // TODO
-        //hero.attack(grid, 3);
-        //hero.attack(grid, -1);
+        // Exception Zone
+        hero.attack(grid, 3);
+        hero.attack(grid, -1);
         hero.attack(grid, 1);
 
         assertEquals(dmgMatrix, hero.previewAttack(strategy1));

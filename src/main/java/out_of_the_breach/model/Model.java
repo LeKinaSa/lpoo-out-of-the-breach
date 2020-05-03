@@ -10,17 +10,24 @@ public class Model {
     private List<City> cities;
 
     public Model() {
-        this.tiles = new ArrayList<>(64);
+        this.tiles   = new ArrayList<>(64);
         this.enemies = new ArrayList<>();
-        this.allies = new ArrayList<>();
-        this.cities = new ArrayList<>();
+        this.allies  = new ArrayList<>();
+        this.cities  = new ArrayList<>();
+    }
+
+    public Model(List<TerrainTile> tiles) {
+        this.tiles   = tiles;
+        this.enemies = new ArrayList<>();
+        this.allies  = new ArrayList<>();
+        this.cities  = new ArrayList<>();
     }
 
     public Model(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
-        this.tiles = tiles;
+        this.tiles   = tiles;
         this.enemies = enemies;
-        this.allies = allies;
-        this.cities = cities;
+        this.allies  = allies;
+        this.cities  = cities;
     }
 
     public boolean tileOccupied(Position pos) {
