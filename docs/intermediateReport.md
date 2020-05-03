@@ -13,9 +13,11 @@ Now that the foundations of the game are in place, we can focus on adding more â
 #Design
 * Strategy Pattern
 In order to avoid violation of the Single Responsibility Principle, we separate the enemy from its attack method (AttackStrategy). This allows us to easily change and design the types of attacks in our game.
+![Strategy Pattern](strategy_pattern.PNG)
 
 * Composite pattern
 The composite pattern is the core foundation of our GUI system. We leave here a rough UML sketch. (https://github.com/FEUP-LPOO/lpoo-2020-g21/tree/master/src/main/java/out_of_the_breach/GUI)
+![Composite Pattern](composite_pattern.PNG)
 
 
 * MVC pattern
