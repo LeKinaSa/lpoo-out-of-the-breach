@@ -60,11 +60,13 @@ public abstract class Hero extends Entity {
     }
 
     public void attack(Model grid, int strategyIndex) {
-        attack(grid, strategies.get(strategyIndex));
+        if ((strategyIndex >= 0) && (strategyIndex < this.strategies.size())) {
+            attack(grid, this.strategies.get(strategyIndex));
+        }
     }
 
     public int getMovementRange() {
-        return movementRange;
+        return this.movementRange;
     }
   
     public void setMovementRange(int movementRange) {
@@ -72,10 +74,10 @@ public abstract class Hero extends Entity {
     }
 
     public boolean getHasMoved() {
-        return hasMoved;
+        return this.hasMoved;
     }
 
     public boolean getHasEndedTurn() {
-        return hasEndedTurn;
+        return this.hasEndedTurn;
     }
 }
