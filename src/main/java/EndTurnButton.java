@@ -7,14 +7,16 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class EndTurnButton extends ColorfulRectangle {
+    private TooltipComponent tooltip;
 
-    public EndTurnButton() {
+    public EndTurnButton(TooltipComponent tooltip) {
         super(
                 new TerminalSize(15, 3),
                 new AbsComponentPosition(0, 3, ScreenCorner.TopLeft),
                 new TextColor.RGB(0,59,92),
                 true
         );
+        this.tooltip = tooltip;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class EndTurnButton extends ColorfulRectangle {
         buffer.putString(3, 1, "END TURN");
 
         if (isSelected()) {
-
+            tooltip.setText("Press Enter key to end turn");
             drawBorder(buffer, new TextColor.RGB(255, 255, 255));
         }
     }

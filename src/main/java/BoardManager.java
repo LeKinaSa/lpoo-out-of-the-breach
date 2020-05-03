@@ -11,12 +11,14 @@ public class BoardManager extends GUIcomponent {
     BoardTilesComponent tiles;
     BoardGUIOverlay overlay;
     Model model;
+    TooltipComponent tooltip;
 
-    public BoardManager(BoardTilesComponent tiles, Model model, BoardGUIOverlay overlay) {
+    public BoardManager(BoardTilesComponent tiles, Model model, BoardGUIOverlay overlay, TooltipComponent tooltip) {
         super(new TerminalSize(40, 24), new CenteredComponentPosition(), true);
         this.tiles = tiles;
         this.model = model;
         this.overlay = overlay;
+        this.tooltip = tooltip;
     }
 
     @Override
@@ -27,6 +29,7 @@ public class BoardManager extends GUIcomponent {
             if (overlay.isSelected()) { // If it's in "overlay mode", draw overlay
                 overlay.draw(buffer);
             } else {
+                tooltip.setText("Press Enter key to select board");
                 drawBorder(buffer, new TextColor.RGB(255, 255, 255));
             }
         }

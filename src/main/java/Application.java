@@ -42,14 +42,18 @@ public class Application {
         //allies.add(new Hero(new Position(0, 1), 3));
 
         List<Enemy> enemies = new ArrayList<>();
-        //enemies.add(new Enemy(new Position(0, 2), 2)
+        Bug mike = new Bug(new Position(0, 2), 2, 2, new ArrayList<>());
+        mike.setCurrentStrategy(new MeleeAttack(2, AttackDirection.NORTH));
+        enemies.add(mike);
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
         Model model        = new Model(tiles, enemies, allies, cities);
 
+        TooltipComponent tooltip = new TooltipComponent();
+
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model))
+                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model), tooltip)
         );
 
         root.addComponent(
@@ -57,11 +61,15 @@ public class Application {
         );
 
         root.addComponent(
-                new EndTurnButton()
+                new EndTurnButton(tooltip)
         );
 
         root.addComponent(
                 new EnemyRoutedComponent()
+        );
+
+        root.addComponent(
+                tooltip
         );
 
         while (true) {
