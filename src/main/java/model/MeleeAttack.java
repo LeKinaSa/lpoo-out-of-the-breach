@@ -19,6 +19,11 @@ public class MeleeAttack extends AttackStrategy {
         this.possibleDirections.add( EAST);
         this.possibleDirections.add( WEST);
     }
+    public MeleeAttack(int damage, AttackDirection direction) {
+        super(direction);
+        this.damage = damage;
+        this.possibleDirections.add(direction);
+    }
 
     @Override
     public void setDirection(AttackDirection direction) {
