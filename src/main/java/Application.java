@@ -68,7 +68,7 @@ public class Application {
         );
 
         root.addComponent(
-                new EndTurnButton(tooltip)
+                new EndTurnButton(model, tooltip)
         );
 
         root.addComponent(
