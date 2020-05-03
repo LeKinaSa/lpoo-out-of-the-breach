@@ -40,11 +40,11 @@ Some of our classes, such as DamageMatrix and MovementMatrix, can be considered 
 #Testing
 As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase.
 ## Coverage Report
-
+![Coverage Report](coverage_test.PNG)
 
 
 ##Mutation Testing Report
-
+![Mutation Report](mutation_test.PNG)
 
 #Self-Evaluation
 We consider that we both contributed substantially to the project and there aren’t any substantial disparities.
