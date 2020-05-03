@@ -1,5 +1,7 @@
 package model;
 
+import com.googlecode.lanterna.TextColor;
+
 import java.util.List;
 
 public abstract class Hero extends Entity {
@@ -16,7 +18,7 @@ public abstract class Hero extends Entity {
         this.strategies = strategies;
     }
 
-    protected abstract boolean withinRange(Position pos);
+    public abstract boolean withinRange(Position pos);
 
     public MovementMatrix displayMove() {
         MovementMatrix canMove = new MovementMatrix();
@@ -56,13 +58,26 @@ public abstract class Hero extends Entity {
 
     public void attack(Model grid, AttackStrategy strategy) {
         strategy.attack(grid, super.getPosition());
+        hasEndedTurn = true;
+    }
+
+    public void attack(Model grid, int strategyIndex) {
+        attack(grid, strategies.get(strategyIndex));
     }
 
     public int getMovementRange() {
         return movementRange;
     }
-
+  
     public void setMovementRange(int movementRange) {
         this.movementRange = movementRange;
+    }
+
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
+    public boolean getHasEndedTurn() {
+        return hasEndedTurn;
     }
 }

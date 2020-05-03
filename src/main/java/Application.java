@@ -39,17 +39,28 @@ public class Application {
         cities.add(new City(new Position(0, 0), 2, 2));
 
         List<Hero> allies = new ArrayList<>();
-        //allies.add(new Hero(new Position(0, 1), 3));
+        List<AttackStrategy> strats = new ArrayList<>();
+        strats.add(new MeleeAttack(3, AttackDirection.NORTH));
+        strats.add(new MeleeAttack(3, AttackDirection.EAST));
+        strats.add(new MeleeAttack(3, AttackDirection.SOUTH));
+        strats.add(new MeleeAttack(3, AttackDirection.WEST));
+        allies.add(new Tank(new Position(0, 1), 2, 3, strats));
 
         List<Enemy> enemies = new ArrayList<>();
-        //enemies.add(new Enemy(new Position(0, 2), 2)
+        Bug mike = new Bug(new Position(0, 2), 2, 2, new ArrayList<>());
+        mike.setCurrentStrategy(new MeleeAttack(2, AttackDirection.NORTH));
+        enemies.add(mike);
 
         LanternaTerminal t = new LanternaTerminal(110, 40);
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
         Model model        = new Model(tiles, enemies, allies, cities);
 
+        TooltipComponent tooltip = new TooltipComponent();
+        TerrainDescriptionComponent terrainDescription = new TerrainDescriptionComponent();
+        EntityInfoComponent eic = new EntityInfoComponent();
+
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model))
+                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model, tooltip, terrainDescription, eic), tooltip)
         );
 
         root.addComponent(
@@ -57,31 +68,23 @@ public class Application {
         );
 
         root.addComponent(
-                new EndTurnButton()
-        );
-
-        root.addComponent(
-                new UndoMoveButton()
-        );
-
-        root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(15, 15),
-                        new AbsComponentPosition(0, 7, ScreenCorner.TopLeft),
-                        new TextColor.RGB(0,6,177)
-                )
-        );
-
-        root.addComponent(
-                new ColorfulRectangle(
-                        new TerminalSize(50, 7),
-                        new AbsComponentPosition(0, 0, ScreenCorner.BottomLeft),
-                        new TextColor.RGB(0,6,177)
-                )
+                new EndTurnButton(model, tooltip)
         );
 
         root.addComponent(
                 new EnemyRoutedComponent()
+        );
+
+        root.addComponent(
+                tooltip
+        );
+
+        root.addComponent(
+                terrainDescription
+        );
+
+        root.addComponent(
+                eic
         );
 
         while (true) {
