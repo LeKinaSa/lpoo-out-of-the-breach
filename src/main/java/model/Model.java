@@ -46,31 +46,31 @@ public class Model {
         return null;
     }
 
-    public void addEnemy(Enemy enemy) {
+    public void addEnemy(Enemy enemy) throws OccupiedTile {
         if (!this.tileOccupied(enemy.getPosition())) {
             this.enemies.add(enemy);
         }
         else {
-            // exception
+            throw new OccupiedTile();
         }
     }
 
-    public void addAlly(Hero ally) {
+    public void addAlly(Hero ally) throws OccupiedTile {
         if (!this.tileOccupied(ally.getPosition())) {
             this.allies.add(ally);
         }
         else {
-            // exception
+            throw new OccupiedTile();
         }
 
     }
 
-    public void addCity(City city) {
+    public void addCity(City city) throws OccupiedTile {
         if (!this.tileOccupied(city.getPosition())) {
             this.cities.add(city);
         }
         else {
-            // exception
+            throw new OccupiedTile();
         }
     }
 
