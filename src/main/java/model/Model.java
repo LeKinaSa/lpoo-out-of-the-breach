@@ -74,12 +74,28 @@ public class Model {
         }
     }
 
+    public void removeEntity(Entity entity) {
+        if (entity.getClass() == Hero.class) {
+            this.allies.remove(entity);
+            return;
+        }
+        if (entity.getClass() == Enemy.class) {
+            enemies.remove(entity);
+            return;
+        }
+        if (entity.getClass() == City.class) {
+            cities.remove(entity);
+            return;
+        }
+        return;
+    }
+
     public void inflictDamage(Position pos, int damage) {
         if (this.tileOccupied(pos)) {
             Entity entity = this.getEntityAt(pos);
             entity.takeDamage(damage);
             if (entity.isDead()) {
-                //this.entities.remove(entity);
+                this.removeEntity(entity);
             }
         }
     }
