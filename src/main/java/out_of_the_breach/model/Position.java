@@ -39,48 +39,46 @@ public class Position {
         return Math.abs(pos.x - this.x) + Math.abs(pos.y - this.y);
     }
 
-    public Position north() {
+    public Position adjacentPos(int offsetX, int offsetY) {
         Position p;
         try {
-            p = new Position(this.getX(), this.getY() - 1);
+            p = new Position(this.getX() + offsetX, this.getY() + offsetY);
         }
         catch (OutsideOfTheGrid o) {
             return null;
         }
         return p;
+    }
+
+    public Position north() {
+        return adjacentPos(0, -1);
     }
 
     public Position south() {
-        Position p;
-        try {
-            p = new Position(this.getX(), this.getY() + 1);
-        }
-        catch (OutsideOfTheGrid o) {
-            return null;
-        }
-        return p;
+        return adjacentPos(0, 1);
     }
 
     public Position east() {
-        Position p;
-        try {
-            p = new Position(this.getX() + 1, this.getY());
-        }
-        catch (OutsideOfTheGrid o) {
-            return null;
-        }
-        return p;
+        return adjacentPos(1, 0);
     }
 
     public Position west() {
-        Position p;
-        try {
-            p = new Position(this.getX() - 1, this.getY());
+        return adjacentPos(-1, 0);
+    }
+
+    public Position adjacentPos(AttackDirection d) {
+        switch (d) {
+            case EAST:
+                return east();
+            case WEST:
+                return west();
+            case NORTH:
+                return north();
+            case SOUTH:
+                return south();
+            default:
+                return this;
         }
-        catch (OutsideOfTheGrid o) {
-            return null;
-        }
-        return p;
     }
 
 }
