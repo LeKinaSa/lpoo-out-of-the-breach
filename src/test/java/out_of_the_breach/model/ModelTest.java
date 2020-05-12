@@ -216,11 +216,37 @@ public class ModelTest {
         assertEquals(1,  grid.getCities().size());
     }
 
-    @Test //TODO
+    @Test
     public void removingTest() {
-        Enemy enemy = Mockito.mock(Enemy.class);
-        Hero  hero  = Mockito.mock( Hero.class);
-        City  city  = Mockito.mock( City.class);
+        class HeroStub extends Hero {
+            public HeroStub() {
+                super(null, 0, 0, null);
+            }
+            @Override
+            public boolean withinRange(Position pos) {
+                return true;
+            }
+        }
+
+        class EnemyStub extends Enemy {
+            public EnemyStub() {
+                super(null, 0, null);
+            }
+            @Override
+            public void moveAndPlanAttack(Model grid) {
+                return;
+            }
+        }
+
+        class CityStub extends City {
+            public CityStub() {
+                super(null, 0, 0);
+            }
+        }
+
+        Enemy enemy = new EnemyStub();
+        Hero  hero  = new  HeroStub();
+        City  city  = new  CityStub();
 
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(enemy);
@@ -234,9 +260,10 @@ public class ModelTest {
         assertEquals(1, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
         assertEquals(1,  grid.getCities().size());
-        /*
+
         grid.removeEntity(city);
 
+        assertEquals(City.class, city.getClass().getSuperclass());
         assertEquals(1, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());
@@ -251,10 +278,10 @@ public class ModelTest {
 
         assertEquals(0, grid.getEnemies().size());
         assertEquals(0,  grid.getAllies().size());
-        assertEquals(0,  grid.getCities().size());*/
+        assertEquals(0,  grid.getCities().size());
     }
 
-    @Test //TODO
+    @Test
     public void inflictDamageTest() {
         class HeroStub extends Hero {
             public HeroStub(Position pos, int hp, int movementRange, List<AttackStrategy> strategies) {
@@ -293,7 +320,7 @@ public class ModelTest {
         Mockito.when(p3.same(p3)).thenReturn( true);
 
         Enemy enemy = new EnemyStub(p1, 12, null);
-        Hero  hero  = new HeroStub (p2, 11, 2, new ArrayList<>());
+        Hero  hero  = new HeroStub (p2, 11, 2, null);
         City  city  = new City     (p3, 10, 2);
 
         List<Enemy> enemies = new ArrayList<>();
@@ -303,7 +330,7 @@ public class ModelTest {
         List<City > cities  = new ArrayList<>();
         cities.add (city );
 
-        Model grid = new Model(new ArrayList<>(), enemies, allies, cities);
+        Model grid = new Model(null, enemies, allies, cities);
 
         assertEquals(1, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
@@ -325,8 +352,8 @@ public class ModelTest {
         grid.inflictDamage(p2, 10);
         grid.inflictDamage(p3, 10);
 
-        //assertEquals(0, grid.getEnemies().size());
-        //assertEquals(0,  grid.getAllies().size());
-        //assertEquals(0,  grid.getCities().size());
+        assertEquals(0, grid.getEnemies().size());
+        assertEquals(0,  grid.getAllies().size());
+        assertEquals(0,  grid.getCities().size());
     }
 }

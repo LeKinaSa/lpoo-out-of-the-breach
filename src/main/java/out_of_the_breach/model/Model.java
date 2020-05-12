@@ -82,15 +82,15 @@ public class Model {
     }
 
     public void removeEntity(Entity entity) {
-        if (entity.getClass() == Hero.class) {
+        if (entity.getClass().getSuperclass() == Hero.class) {
             this.allies.remove(entity);
             return;
         }
-        if (entity.getClass() == Enemy.class) {
+        if (entity.getClass().getSuperclass() == Enemy.class) {
             enemies.remove(entity);
             return;
         }
-        if (entity.getClass() == City.class) {
+        if (entity.getClass().getSuperclass() == City.class) {
             cities.remove(entity);
             return;
         }
