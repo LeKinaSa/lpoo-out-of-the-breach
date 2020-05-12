@@ -238,15 +238,9 @@ public class ModelTest {
             }
         }
 
-        class CityStub extends City {
-            public CityStub() {
-                super(null, 0, 0);
-            }
-        }
-
         Enemy enemy = new EnemyStub();
         Hero  hero  = new  HeroStub();
-        City  city  = new  CityStub();
+        City  city  = new  City(null, 0, 0);
 
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(enemy);
@@ -263,7 +257,6 @@ public class ModelTest {
 
         grid.removeEntity(city);
 
-        assertEquals(City.class, city.getClass().getSuperclass());
         assertEquals(1, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());

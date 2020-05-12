@@ -90,7 +90,7 @@ public class Model {
             enemies.remove(entity);
             return;
         }
-        if (entity.getClass().getSuperclass() == City.class) {
+        if (entity.getClass() == City.class) {
             cities.remove(entity);
             return;
         }
