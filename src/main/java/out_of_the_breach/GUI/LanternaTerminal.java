@@ -16,20 +16,21 @@ public class LanternaTerminal {
     private final TerminalScreen screen;
     private final SimpleTerminalResizeListener termListener;
 
-    public LanternaTerminal(int x, int y) throws IOException {
-        TerminalSize terminalSize = new TerminalSize(x, y);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-
-        Terminal terminal = terminalFactory.createTerminal();
+    public LanternaTerminal(Terminal terminal) throws IOException {
         screen = new TerminalScreen(terminal);
 
         screen.setCursorPosition(null); // we don't need a cursor
         screen.startScreen();           // screens must be started
         screen.doResizeIfNecessary();   // resize screen if necessary
 
-        termListener = new SimpleTerminalResizeListener(terminalSize);
+        termListener = new SimpleTerminalResizeListener(screen.getTerminalSize());
         terminal.addResizeListener(termListener);
     }
+
+    public LanternaTerminal(int x, int y) throws IOException {
+        this(new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(x, y)).createTerminal());
+    }
+
 
     public void clear() {
         screen.clear();
