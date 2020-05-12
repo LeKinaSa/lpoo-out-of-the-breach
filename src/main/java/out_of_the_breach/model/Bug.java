@@ -10,6 +10,7 @@ public class Bug extends Enemy {
 
     @Override
     public void moveAndPlanAttack(Model grid) {
+        this.getAttackStrategy().setDirection(NONE);
         Position closerPosition = super.getPosition();
         int smallerDistance = 64;
 
@@ -31,6 +32,10 @@ public class Bug extends Enemy {
                 closerPosition = ally.getPosition();
                 smallerDistance = distance;
             }
+        }
+
+        if (super.getPosition().same(closerPosition)) {
+            return;
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
