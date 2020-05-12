@@ -95,7 +95,7 @@ public class Model {
             return;
         }
         return;
-    }
+    } // TODO : function very sensible to class (Enemy, Hero, City) creation
 
     public void inflictDamage(Position pos, int damage) {
         if (this.tileOccupied(pos)) {
