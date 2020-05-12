@@ -1,14 +1,14 @@
 package out_of_the_breach.model;
 
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class EnemyTest {
     @Test
@@ -29,11 +29,17 @@ public class EnemyTest {
     public void attackTest() {
         AttackStrategy strategy = Mockito.mock(AttackStrategy.class);
         DamageMatrix dmgMatrix = Mockito.mock(DamageMatrix.class);
-        Mockito.when(strategy.previewAttack(null)).thenReturn(dmgMatrix);
+        Position p1 = Mockito.mock(Position.class);
+        Mockito.when(strategy.previewAttack(p1)).thenReturn(dmgMatrix);
+        Mockito.when(strategy.previewAttack(p1)).thenReturn(dmgMatrix);
 
-        Enemy enemy = new Bug(null, 1, 2);
+        Enemy enemy = new Bug(p1, 1, 2);
         enemy.setAttackStrategy(strategy);
         assertEquals(dmgMatrix, enemy.previewAttack());
+
+        Model grid = Mockito.mock(Model.class);
+        enemy.attack(grid);
+        verify(strategy, times(1)).attack(grid, p1);
     }
 
     @Test
