@@ -96,7 +96,7 @@ public class EnemyTest {
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(north, enemy.getPosition());
-        assertEquals(AttackDirection.NORTH, enemy.getAttackDirection());
+        assertEquals(AttackDirection.SOUTH, enemy.getAttackDirection());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class EnemyTest {
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(west, enemy.getPosition());
-        assertEquals(AttackDirection.WEST, enemy.getAttackDirection());
+        assertEquals(AttackDirection.EAST, enemy.getAttackDirection());
     }
 
     @Test
@@ -216,7 +216,7 @@ public class EnemyTest {
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(east, enemy.getPosition());
-        assertEquals(AttackDirection.EAST, enemy.getAttackDirection());
+        assertEquals(AttackDirection.WEST, enemy.getAttackDirection());
     }
 
     @Test
@@ -276,7 +276,7 @@ public class EnemyTest {
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(south, enemy.getPosition());
-        assertEquals(AttackDirection.SOUTH, enemy.getAttackDirection());
+        assertEquals(AttackDirection.NORTH, enemy.getAttackDirection());
     }
 
     @Test
@@ -343,7 +343,7 @@ public class EnemyTest {
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(west, enemy.getPosition());
-        assertEquals(AttackDirection.WEST, enemy.getAttackDirection());
+        assertEquals(AttackDirection.EAST, enemy.getAttackDirection());
     }
 
     @Test

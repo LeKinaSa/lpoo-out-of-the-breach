@@ -50,14 +50,14 @@ public class Bug extends Enemy {
         if ((north != null) && (!grid.tileOccupied(north))) {
             closerPosition = north;
             smallerDistance = pos.distanceTo(north);
-            direction = NORTH;
+            direction = SOUTH;
         }
         if ((south != null) && (!grid.tileOccupied(south))) {
             distance = pos.distanceTo(south);
             if (distance < smallerDistance) {
                 closerPosition = south;
                 smallerDistance = distance;
-                direction = SOUTH;
+                direction = NORTH;
             }
         }
         if ((east != null) && (!grid.tileOccupied(east))) {
@@ -65,7 +65,7 @@ public class Bug extends Enemy {
             if (distance < smallerDistance) {
                 closerPosition = east;
                 smallerDistance = distance;
-                direction = EAST;
+                direction = WEST;
             }
         }
         if ((west != null) && (!grid.tileOccupied(west))) {
@@ -73,7 +73,7 @@ public class Bug extends Enemy {
             if (distance < smallerDistance) {
                 closerPosition = west;
                 smallerDistance = distance;
-                direction = WEST;
+                direction = EAST;
             }
         }
 
