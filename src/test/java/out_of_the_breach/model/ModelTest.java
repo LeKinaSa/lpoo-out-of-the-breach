@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class ModelTest {
     @Test
@@ -348,5 +350,51 @@ public class ModelTest {
         assertEquals(0, grid.getEnemies().size());
         assertEquals(0,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());
+    }
+
+    @Test
+    public void planAttackTest() {
+        Enemy enemy1 = Mockito.mock(Enemy.class);
+        Enemy enemy2 = Mockito.mock(Enemy.class);
+        Enemy enemy3 = Mockito.mock(Enemy.class);
+        List<Enemy> enemies = new ArrayList<>();
+        enemies.add(enemy1);
+        enemies.add(enemy2);
+        enemies.add(enemy3);
+
+        Model grid = new Model(new ArrayList<>(), enemies, new ArrayList<>(), new ArrayList<>());
+
+        verify(enemy1, times(0)).moveAndPlanAttack(grid);
+        verify(enemy2, times(0)).moveAndPlanAttack(grid);
+        verify(enemy3, times(0)).moveAndPlanAttack(grid);
+
+        grid.planAttack();
+
+        verify(enemy1, times(1)).moveAndPlanAttack(grid);
+        verify(enemy2, times(1)).moveAndPlanAttack(grid);
+        verify(enemy3, times(1)).moveAndPlanAttack(grid);
+    }
+
+    @Test
+    public void executeAttackTest() {
+        Enemy enemy1 = Mockito.mock(Enemy.class);
+        Enemy enemy2 = Mockito.mock(Enemy.class);
+        Enemy enemy3 = Mockito.mock(Enemy.class);
+        List<Enemy> enemies = new ArrayList<>();
+        enemies.add(enemy1);
+        enemies.add(enemy2);
+        enemies.add(enemy3);
+
+        Model grid = new Model(new ArrayList<>(), enemies, new ArrayList<>(), new ArrayList<>());
+
+        verify(enemy1, times(0)).attack(grid);
+        verify(enemy2, times(0)).attack(grid);
+        verify(enemy3, times(0)).attack(grid);
+
+        grid.executeAttack();
+
+        verify(enemy1, times(1)).attack(grid);
+        verify(enemy2, times(1)).attack(grid);
+        verify(enemy3, times(1)).attack(grid);
     }
 }
