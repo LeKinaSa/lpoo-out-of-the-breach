@@ -5,6 +5,12 @@ import java.util.List;
 
 import static out_of_the_breach.model.AttackDirection.*;
 
+/*
+    This class represents a melee attack.
+    This attack will affect 1 square in the chosen direction.
+    The possible directions are NONE, NORTH, SOUTH, EAST and WEST.
+ */
+
 public class MeleeAttack extends AttackStrategy {
     private int damage;
     private List<AttackDirection> possibleDirections;
