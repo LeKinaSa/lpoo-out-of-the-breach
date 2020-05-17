@@ -32,7 +32,7 @@ public class Lizard extends Enemy {
         AttackDirection direction = NONE;
 
         // Check what's the closest position to the current position of the lizard
-        for (int index = 0; index < targets.size(); index ++) {
+        for (int index = 0; (index < targets.size()) && (smallerDistance != 0); index ++) {
             targetPosition = targets.get(index).getPosition();
 
             Position north = targetPosition.north();
