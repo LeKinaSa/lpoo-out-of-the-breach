@@ -2,6 +2,13 @@ package out_of_the_breach.model;
 
 import static out_of_the_breach.model.AttackDirection.*;
 
+/*
+    Very Stupid Enemy
+    It only targets the weakest hero or city. (The one with less hp)
+    If that targeted unit is inaccessible, it won't move.
+    Prioritizes heros.
+ */
+
 public class Bug extends Enemy {
 
     public Bug(Position pos, int hp, int damage) {
@@ -11,51 +18,61 @@ public class Bug extends Enemy {
     @Override
     public void moveAndPlanAttack(Model grid) {
         this.getAttackStrategy().setDirection(NONE);
-        Position closerPosition = super.getPosition();
-        int smallerDistance = 64;
+        Position targetedPosition = null;
+        int lowerHp = -1;
+        int hp;
 
-        Position pos = super.getPosition();
-        int distance;
-
-        // Find the Nearest Target (Priority : City then Hero)
-        for (City city : grid.getCities()) {
-            distance = pos.distanceTo(city.getPosition());
-            if (distance < smallerDistance) {
-                closerPosition = city.getPosition();
-                smallerDistance = distance;
-            }
-        }
-
+        // Find the Weakest Target -> (Prioritize the attacks on heros)
         for (Hero ally : grid.getAllies()) {
-            distance = pos.distanceTo(ally.getPosition());
-            if (distance < smallerDistance) {
-                closerPosition = ally.getPosition();
-                smallerDistance = distance;
+            hp = ally.getHp();
+            if (hp < lowerHp) {
+                lowerHp = hp;
+                targetedPosition = ally.getPosition();
+            }
+            else if (lowerHp == -1) {
+                lowerHp = hp;
+                targetedPosition = ally.getPosition();
             }
         }
 
-        if (super.getPosition().same(closerPosition)) {
+        for (City city : grid.getCities()) {
+            hp = city.getHp();
+            if (hp < lowerHp) {
+                lowerHp = hp;
+                targetedPosition = city.getPosition();
+            }
+            else if (lowerHp == -1) {
+                lowerHp = hp;
+                targetedPosition = city.getPosition();
+            }
+        }
+
+        if (targetedPosition == null) {
             return;
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
-        Position north = closerPosition.north();
-        Position south = closerPosition.south();
-        Position east  = closerPosition.east ();
-        Position west  = closerPosition.west ();
+        Position north = targetedPosition.north();
+        Position south = targetedPosition.south();
+        Position east  = targetedPosition.east ();
+        Position west  = targetedPosition.west ();
         AttackDirection direction = NONE;
 
-        closerPosition = null; // To make sure the enemy doesn't go to the tile of its target
-        smallerDistance = 64;
+        targetedPosition = null; // To make sure the enemy doesn't go to the tile of its target
+        Position pos = super.getPosition();
+        int smallerDistance = 64;
+        int distance;
+
         if ((north != null) && (!grid.tileOccupied(north))) {
-            closerPosition = north;
-            smallerDistance = pos.distanceTo(north);
+            distance = pos.distanceTo(north);
+            targetedPosition = north;
+            smallerDistance = distance;
             direction = SOUTH;
         }
         if ((south != null) && (!grid.tileOccupied(south))) {
             distance = pos.distanceTo(south);
             if (distance < smallerDistance) {
-                closerPosition = south;
+                targetedPosition = south;
                 smallerDistance = distance;
                 direction = NORTH;
             }
@@ -63,7 +80,7 @@ public class Bug extends Enemy {
         if ((east != null) && (!grid.tileOccupied(east))) {
             distance = pos.distanceTo(east);
             if (distance < smallerDistance) {
-                closerPosition = east;
+                targetedPosition = east;
                 smallerDistance = distance;
                 direction = WEST;
             }
@@ -71,14 +88,13 @@ public class Bug extends Enemy {
         if ((west != null) && (!grid.tileOccupied(west))) {
             distance = pos.distanceTo(west);
             if (distance < smallerDistance) {
-                closerPosition = west;
-                smallerDistance = distance;
+                targetedPosition = west;
                 direction = EAST;
             }
         }
 
-        if (closerPosition != null) {
-            this.setPosition(closerPosition);
+        if (targetedPosition != null) {
+            this.setPosition(targetedPosition);
             this.getAttackStrategy().setDirection(direction);
         }
     }
