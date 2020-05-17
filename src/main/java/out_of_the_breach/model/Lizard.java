@@ -3,11 +3,14 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import static out_of_the_breach.model.AttackDirection.*;
+/*
+    This enemy will look to damage the most possible heros or cities.
+    Prioritizes cities.
+ */
 
 public class Lizard extends Enemy {
     public Lizard(Position pos, int hp, int damage) {
-        super(pos, hp, new LineAttack(damage));
+        super(pos, hp, new AOEAttack(damage));
     }
 
     @Override
@@ -23,13 +26,12 @@ public class Lizard extends Enemy {
             targets.add(ally);
         }
 
-        // Find the Position where we can Attack and the Direction of the Attack
+        // Find the Position where we can Attack
         Position pos = super.getPosition();
         Position closerPosition = null;
         Position targetPosition;
         double smallerDistance = 64;
         double distance;
-        AttackDirection direction = NONE;
 
         // Check what's the closest position to the current position of the lizard
         for (int index = 0; (index < targets.size()) && (smallerDistance != 0); index ++) {
@@ -41,11 +43,10 @@ public class Lizard extends Enemy {
             Position west  = targetPosition.west ();
 
             if ((north != null) && (!grid.tileOccupied(north))) {
-                distance = pos.distanceTo(south);
+                distance = pos.distanceTo(north);
                 if (distance < smallerDistance) {
                     closerPosition = north;
                     smallerDistance = distance;
-                    direction = SOUTH;
                 }
             }
             if ((south != null) && (!grid.tileOccupied(south))) {
@@ -53,7 +54,6 @@ public class Lizard extends Enemy {
                 if (distance < smallerDistance) {
                     closerPosition = south;
                     smallerDistance = distance;
-                    direction = NORTH;
                 }
             }
             if ((east != null) && (!grid.tileOccupied(east))) {
@@ -61,7 +61,6 @@ public class Lizard extends Enemy {
                 if (distance < smallerDistance) {
                     closerPosition = east;
                     smallerDistance = distance;
-                    direction = WEST;
                 }
             }
             if ((west != null) && (!grid.tileOccupied(west))) {
@@ -69,17 +68,12 @@ public class Lizard extends Enemy {
                 if (distance < smallerDistance) {
                     closerPosition = west;
                     smallerDistance = distance;
-                    direction = EAST;
                 }
             }
         }
 
         if (closerPosition != null) {
             this.setPosition(closerPosition);
-            this.getAttackStrategy().setDirection(direction);
-        }
-        else {
-            this.getAttackStrategy().setDirection(NONE);
         }
     }
 }
