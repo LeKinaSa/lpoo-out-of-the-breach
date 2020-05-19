@@ -18,7 +18,7 @@ public class EnemyTest {
         Mockito.when(strategy.getDirection()).thenReturn(NORTH);
         Enemy enemy = new Bug(null, 10, 3);
 
-        assertEquals(MeleeAttack.class, enemy.getAttackStrategy().getClass());
+        assertEquals(LineAttack.class, enemy.getAttackStrategy().getClass());
         assertEquals(AttackDirection.NONE, enemy.getAttackDirection());
 
         enemy.setAttackStrategy(strategy);

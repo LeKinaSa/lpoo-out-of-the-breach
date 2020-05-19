@@ -41,10 +41,10 @@ public class Application {
 
         List<Hero> allies = new ArrayList<>();
         List<AttackStrategy> strats = new ArrayList<>();
-        strats.add(new MeleeAttack(3, AttackDirection.NORTH));
-        strats.add(new MeleeAttack(3, AttackDirection.EAST ));
-        strats.add(new MeleeAttack(3, AttackDirection.SOUTH));
-        strats.add(new MeleeAttack(3, AttackDirection.WEST ));
+        strats.add(new LineAttack(3, 1, AttackDirection.NORTH));
+        strats.add(new LineAttack(3, 1, AttackDirection.EAST ));
+        strats.add(new LineAttack(3, 1, AttackDirection.SOUTH));
+        strats.add(new LineAttack(3, 1, AttackDirection.WEST ));
         allies.add(new Tank(new Position(0, 1), 2, 3, strats));
 
         List<Enemy> enemies = new ArrayList<>();

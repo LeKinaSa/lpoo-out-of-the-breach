@@ -12,7 +12,7 @@ import static out_of_the_breach.model.AttackDirection.*;
 public class Bug extends Enemy {
 
     public Bug(Position pos, int hp, int damage) {
-        super(pos, hp, new MeleeAttack(damage));
+        super(pos, hp, new LineAttack(damage, 1));
     }
 
     @Override

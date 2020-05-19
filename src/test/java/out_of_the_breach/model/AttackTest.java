@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class AttackTest {
     @Test
     public void directionTestNoneAndSet() {
-        AttackStrategy strategy = new MeleeAttack(2);
+        AttackStrategy strategy = new LineAttack(2, 1);
         assertEquals(AttackDirection.NONE, strategy.getDirection());
 
         strategy.setDirection(AttackDirection.NORTH);
@@ -28,11 +28,11 @@ public class AttackTest {
 
     @Test
     public void directionTestConstructors() {
-        AttackStrategy strategyNone  = new MeleeAttack(1, AttackDirection.NONE );
-        AttackStrategy strategyNorth = new MeleeAttack(1, AttackDirection.NORTH);
-        AttackStrategy strategySouth = new MeleeAttack(1, AttackDirection.SOUTH);
-        AttackStrategy strategyEast  = new MeleeAttack(1, AttackDirection.EAST );
-        AttackStrategy strategyWest  = new MeleeAttack(1, AttackDirection.WEST );
+        AttackStrategy strategyNone  = new LineAttack(1, 1, AttackDirection.NONE );
+        AttackStrategy strategyNorth = new LineAttack(1, 1, AttackDirection.NORTH);
+        AttackStrategy strategySouth = new LineAttack(1, 1, AttackDirection.SOUTH);
+        AttackStrategy strategyEast  = new LineAttack(1, 1, AttackDirection.EAST );
+        AttackStrategy strategyWest  = new LineAttack(1, 1, AttackDirection.WEST );
 
         assertEquals(AttackDirection.NONE ,  strategyNone.getDirection());
         assertEquals(AttackDirection.NORTH, strategyNorth.getDirection());
