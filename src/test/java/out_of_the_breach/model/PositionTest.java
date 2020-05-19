@@ -201,4 +201,10 @@ public class PositionTest {
         assertEquals(5,  west.getY());
 
     }
+
+    @Test
+    public void adjacentPosTest() {
+        //TODO
+        assertEquals(false, true);
+    }
 }
