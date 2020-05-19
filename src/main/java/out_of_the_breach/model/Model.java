@@ -82,20 +82,20 @@ public class Model {
     }
 
     public void removeEntity(Entity entity) {
-        if (entity.getClass().getSuperclass() == Hero.class) {
+        if (entity instanceof Hero) {
             this.allies.remove(entity);
             return;
         }
-        if (entity.getClass().getSuperclass() == Enemy.class) {
+        if (entity instanceof Enemy) {
             enemies.remove(entity);
             return;
         }
-        if (entity.getClass() == City.class) {
+        if (entity instanceof City) {
             cities.remove(entity);
             return;
         }
         return;
-    } // TODO : function very sensible to class (Enemy, Hero, City) creation
+    }
 
     public void inflictDamage(Position pos, int damage) {
         if (this.tileOccupied(pos)) {
