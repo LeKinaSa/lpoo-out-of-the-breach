@@ -2,7 +2,7 @@ package out_of_the_breach.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class PositionTest {
 
@@ -137,14 +137,17 @@ public class PositionTest {
         Position  east = pos.east ();
         Position  west = pos.west ();
 
-        assertEquals(null, north);
-        assertEquals(null,  west);
+        assertNull(north);
+        assertNull(west);
 
         assertEquals(0, south.getX());
         assertEquals(1, south.getY());
 
         assertEquals(1,  east.getX());
         assertEquals(0,  east.getY());
+
+        assertTrue(south.same(pos.adjacentPos(AttackDirection.SOUTH)));
+        assertTrue(east.same (pos.adjacentPos(AttackDirection.EAST )));
     }
 
     @Test
