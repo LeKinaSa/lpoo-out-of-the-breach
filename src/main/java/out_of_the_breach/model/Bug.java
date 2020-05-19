@@ -52,10 +52,10 @@ public class Bug extends Enemy {
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
-        Position north = targetedPosition.north();
-        Position south = targetedPosition.south();
-        Position east  = targetedPosition.east ();
-        Position west  = targetedPosition.west ();
+        Position north = targetedPosition.adjacentPos(NORTH);
+        Position south = targetedPosition.adjacentPos(SOUTH);
+        Position east  = targetedPosition.adjacentPos( EAST);
+        Position west  = targetedPosition.adjacentPos( WEST);
         AttackDirection direction = NONE;
 
         targetedPosition = null; // To make sure the enemy doesn't go to the tile of its target

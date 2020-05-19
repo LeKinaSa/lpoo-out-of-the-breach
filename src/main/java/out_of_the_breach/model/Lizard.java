@@ -3,6 +3,8 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static out_of_the_breach.model.AttackDirection.*;
+
 /*
     This enemy will look to damage the most possible heros or cities.
     Prioritizes cities.
@@ -37,10 +39,10 @@ public class Lizard extends Enemy {
         for (int index = 0; (index < targets.size()) && (smallerDistance != 0); index ++) {
             targetPosition = targets.get(index).getPosition();
 
-            Position north = targetPosition.north();
-            Position south = targetPosition.south();
-            Position east  = targetPosition.east ();
-            Position west  = targetPosition.west ();
+            Position north = targetPosition.adjacentPos(NORTH);
+            Position south = targetPosition.adjacentPos(SOUTH);
+            Position east  = targetPosition.adjacentPos( EAST);
+            Position west  = targetPosition.adjacentPos( WEST);
 
             if ((north != null) && (!grid.tileOccupied(north))) {
                 distance = pos.distanceTo(north);

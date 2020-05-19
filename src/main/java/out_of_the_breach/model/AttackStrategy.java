@@ -14,7 +14,6 @@ public abstract class AttackStrategy {
         this.direction = direction;
     }
 
-    public abstract Position getDamagedPosition(Position pos);
     public abstract DamageMatrix previewAttack(Position pos);
 
     public void attack(Model grid, Position pos) {

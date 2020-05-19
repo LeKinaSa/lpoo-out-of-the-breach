@@ -39,44 +39,31 @@ public class AOEAttack extends AttackStrategy {
     }
 
     @Override
-    public Position getDamagedPosition(Position pos) {
-        switch(super.getDirection()) {
-            case NORTH:
-                return pos.north();
-            case SOUTH:
-                return pos.south();
-            case EAST:
-                return pos.east();
-            case WEST:
-                return pos.west();
-            default:
-                return null;
-        }
-    }
-
-    @Override
     public DamageMatrix previewAttack(Position pos) {
         DamageMatrix damageMatrix = new DamageMatrix();
 
         if (super.getDirection() != NONE) {
-            pos = getDamagedPosition(pos);
+            pos = pos.adjacentPos(super.getDirection());
+            if (pos == null) {
+                return damageMatrix;
+            }
             damageMatrix.setDamage(pos, this.damage);
         }
 
         Position damagedPosition;
-        damagedPosition = pos.north();
+        damagedPosition = pos.adjacentPos(NORTH);
         if (damagedPosition != null) {
             damageMatrix.setDamage(damagedPosition, this.damage);
         }
-        damagedPosition = pos.south();
+        damagedPosition = pos.adjacentPos(SOUTH);
         if (damagedPosition != null) {
             damageMatrix.setDamage(damagedPosition, this.damage);
         }
-        damagedPosition = pos.east();
+        damagedPosition = pos.adjacentPos(EAST);
         if (damagedPosition != null) {
             damageMatrix.setDamage(damagedPosition, this.damage);
         }
-        damagedPosition = pos.west();
+        damagedPosition = pos.adjacentPos(WEST);
         if (damagedPosition != null) {
             damageMatrix.setDamage(damagedPosition, this.damage);
         }

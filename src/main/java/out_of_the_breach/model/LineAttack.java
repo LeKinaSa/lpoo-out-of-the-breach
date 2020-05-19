@@ -44,28 +44,12 @@ public class LineAttack extends AttackStrategy {
     }
 
     @Override
-    public Position getDamagedPosition(Position pos) {
-        switch(super.getDirection()) {
-            case NORTH:
-                return pos.north();
-            case SOUTH:
-                return pos.south();
-            case EAST:
-                return pos.east();
-            case WEST:
-                return pos.west();
-            default:
-                return null;
-        }
-    }
-
-    @Override
     public DamageMatrix previewAttack(Position pos) {
         DamageMatrix damageMatrix = new DamageMatrix();
 
         Position damagedPosition = pos;
         for (int i = 0; i < this.range; i ++) {
-            damagedPosition = this.getDamagedPosition(damagedPosition);
+            damagedPosition = damagedPosition.adjacentPos(super.getDirection());
             if (damagedPosition == null) {
                 return damageMatrix;
             }
