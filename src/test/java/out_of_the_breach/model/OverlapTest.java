@@ -105,7 +105,7 @@ public class OverlapTest {
 
         Model model = new Model(tiles, enemies, allies, cities);
 
-        MovementMatrix m =  tank.displayMove();
+        MovementMatrix m =  tank.displayMove(model);
 
         assertFalse(m.getMove(new Position(0, 0)));
         assertFalse(m.getMove(new Position(0, 2)));
