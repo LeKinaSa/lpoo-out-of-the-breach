@@ -82,4 +82,9 @@ public abstract class Hero extends Entity {
     public boolean getHasEndedTurn() {
         return this.hasEndedTurn;
     }
+
+    public void reset() {
+        hasMoved = false;
+        hasEndedTurn = false;
+    }
 }
