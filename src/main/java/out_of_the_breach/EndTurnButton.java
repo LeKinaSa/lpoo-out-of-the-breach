@@ -46,6 +46,7 @@ public class EndTurnButton extends ColorfulRectangle {
             case Enter:
                 model.executeAttack();
                 model.planAttack();
+                model.resetHeroes();
                 return true;
             case ArrowRight:
                 return false;

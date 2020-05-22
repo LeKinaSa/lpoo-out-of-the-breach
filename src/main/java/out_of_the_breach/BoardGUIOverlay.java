@@ -61,7 +61,7 @@ public class BoardGUIOverlay extends GUIcomponent {
     @Override
     public void draw(TextGraphics buffer) {
         if (mode == SelectorMode.MOVE) {
-            drawMovementMatrix(buffer, selectedHero.displayMove());
+            drawMovementMatrix(buffer, selectedHero.displayMove(model));
         }
         if (mode == SelectorMode.ATTACK) {
             drawDamageMatrix(buffer, selectedHero.getStrategies().get(selectedAttack).previewAttack(selectedHero.getPosition()));
@@ -188,7 +188,7 @@ public class BoardGUIOverlay extends GUIcomponent {
             entity = null; // This should never happen
         }
 
-        if (entity instanceof Hero) {
+        if (entity instanceof Hero && stroke.getKeyType() == KeyType.Character) {
             Hero hero = (Hero) entity;
             if (stroke.getCharacter() == 'm') {
                 selectedHero = hero;

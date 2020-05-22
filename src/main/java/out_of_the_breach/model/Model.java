@@ -150,4 +150,10 @@ public class Model {
             enemy.attack(this);
         }
     }
+
+    public void resetHeroes() {
+        for (Hero h : allies) {
+            h.reset();
+        }
+    }
 }
