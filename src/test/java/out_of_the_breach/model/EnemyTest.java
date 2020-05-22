@@ -1065,7 +1065,7 @@ public class EnemyTest {
 
     // ----- DRAGON -----//
     @Test
-    public void moveAndPlanAttack_Dragon_3CityCombo_NORTH_Test() {
+    public void moveAndPlanAttack_Dragon_3City_NORTH_Test() {
         Model grid = Mockito.mock(Model.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
@@ -1090,33 +1090,73 @@ public class EnemyTest {
     }
 
     @Test
-    public void moveAndPlanAttack_Dragon_2City1AllyCombo_WEST_Test() {
+    public void moveAndPlanAttack_Dragon_2City1Ally_EAST_Test() {
         //TODO
         assertEquals(false, true);
     }
 
     @Test
-    public void moveAndPlanAttack_Dragon_3AllyCombo_EAST_Test() {
+    public void moveAndPlanAttack_Dragon_2City1Ally_SOUTH_Test() {
         //TODO
         assertEquals(false, true);
     }
 
     @Test
-    public void moveAndPlanAttack_Dragon_2Ally1CityCombo_SOUTH_Test() {
+    public void moveAndPlanAttack_Dragon_1AllyAvoidsEnemy_WEST_SOUTH_Test() {
         //TODO
         assertEquals(false, true);
     }
 
     @Test
-    public void moveAndPlanAttack_Dragon_3CityOr3Ally_Test() {
+    public void moveAndPlanAttack_Dragon_2AllyAttackItself_Test() {
         //TODO
         assertEquals(false, true);
     }
 
     @Test
-    public void moveAndPlanAttack_Dragon_AttackEnemy_Test() {
-        //TODO
-        assertEquals(false, true);
+    public void moveAndPlanAttack_Dragon_EnemyCantMoveOrAttack_Test() {
+        Model grid = Mockito.mock(Model.class);
+        City city = Mockito.mock(City.class);
+        Hero ally = Mockito.mock(Hero.class);
+
+        List<Hero> allies = new ArrayList<>();
+        allies.add(ally);
+        List<City> cities = new ArrayList<>();
+        cities.add(city);
+
+        Mockito.when(grid.getAllies()).thenReturn(allies);
+        Mockito.when(grid.getCities()).thenReturn(cities);
+
+        Position p      = Mockito.mock(Position.class);
+        Position p_ally = Mockito.mock(Position.class);
+        Position p_city = Mockito.mock(Position.class);
+        Position p_c_n  = Mockito.mock(Position.class);
+        Position p_c_e  = Mockito.mock(Position.class);
+        Position p_a_n  = Mockito.mock(Position.class);
+        Position p_a_w  = Mockito.mock(Position.class);
+
+        Mockito.when(ally.getPosition()).thenReturn(p_ally);
+        Mockito.when(city.getPosition()).thenReturn(p_city);
+
+        Mockito.when(p_ally.adjacentPos(NORTH)).thenReturn(p_a_n);
+        Mockito.when(p_ally.adjacentPos(SOUTH)).thenReturn( null);
+        Mockito.when(p_ally.adjacentPos( EAST)).thenReturn( null);
+        Mockito.when(p_ally.adjacentPos( WEST)).thenReturn(p_a_w);
+        Mockito.when(p_city.adjacentPos(NORTH)).thenReturn(p_c_n);
+        Mockito.when(p_city.adjacentPos(SOUTH)).thenReturn( null);
+        Mockito.when(p_city.adjacentPos( EAST)).thenReturn(p_c_e);
+        Mockito.when(p_city.adjacentPos( WEST)).thenReturn( null);
+
+        Mockito.when(grid.tileOccupied(p_c_n)).thenReturn(true);
+        Mockito.when(grid.tileOccupied(p_c_e)).thenReturn(true);
+        Mockito.when(grid.tileOccupied(p_a_n)).thenReturn(true);
+        Mockito.when(grid.tileOccupied(p_a_w)).thenReturn(true);
+
+        Enemy enemy = new Dragon(p, 11, 3);
+        enemy.moveAndPlanAttack(grid);
+
+        assertEquals(NONE, enemy.getAttackDirection());
+        assertEquals(p, enemy.getPosition());
     }
 
     @Test
