@@ -1,6 +1,7 @@
 package out_of_the_breach.model;
 
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -8,6 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static out_of_the_breach.model.AttackDirection.*;
 
 public class AttackTest {
@@ -179,5 +182,18 @@ public class AttackTest {
         matrix.set(28, 2); matrix.set(20, 2); matrix.set(36, 2); matrix.set(27, 2); matrix.set(29, 2);
         damageMatrix = strategy2.previewAttack(p);
         assertEquals(matrix, damageMatrix.incomingDamage);
+    }
+
+    @Test
+    public void AttackTest() {
+        Position p = Mockito.mock(Position.class);
+        AttackStrategy strategy = new LineAttack(2, 1, WEST);
+
+        Model grid = Mockito.mock(Model.class);
+        ArgumentCaptor<Position> positions = ArgumentCaptor.forClass(Position.class);
+        ArgumentCaptor<Integer> damage = ArgumentCaptor.forClass(Integer.class);
+
+        strategy.attack(grid, p);
+        verify(grid, times(64)).inflictDamage(positions.capture(), damage.capture());
     }
 }
