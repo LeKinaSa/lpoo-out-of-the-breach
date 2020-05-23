@@ -8,11 +8,14 @@ public abstract class Hero extends Entity {
     private boolean hasEndedTurn;
     private List<AttackStrategy> strategies;
 
-    public Hero(Position pos, int hp, int movementRange, List<AttackStrategy> strategies) {
+    public Hero(Position pos, int hp, int movementRange) {
         super(pos, hp);
         this.movementRange = movementRange;
         this.hasMoved     = false;
         this.hasEndedTurn = false;
+    }
+
+    protected void setStrategies(List<AttackStrategy> strategies) {
         this.strategies = strategies;
     }
 

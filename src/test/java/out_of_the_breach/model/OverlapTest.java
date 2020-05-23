@@ -14,7 +14,7 @@ public class OverlapTest {
             terrain.add(TerrainTile.PLAIN);
         }
 
-        Hero  ally1  = new Hero(new Position(0, 0), 2, 3, new ArrayList<>()) {
+        Hero  ally1  = new Hero(new Position(0, 0), 2, 3) {
             @Override
             public boolean withinRange(Position pos) {
                 return false;
@@ -41,7 +41,7 @@ public class OverlapTest {
             terrain.add(TerrainTile.PLAIN);
         }
 
-        Hero  ally1  = new Hero(new Position(0, 0), 2, 3, new ArrayList<>()) {
+        Hero  ally1  = new Hero(new Position(0, 0), 2, 3) {
             @Override
             public boolean withinRange(Position pos) {
                 return true;
@@ -94,8 +94,7 @@ public class OverlapTest {
         cities.add(new City(new Position(0, 0), 2, 2));
 
         List<Hero> allies = new ArrayList<>();
-        List<AttackStrategy> strats = new ArrayList<>();
-        Hero tank = new Tank(new Position(0, 1), 2, 3, strats);
+        Hero tank = new Tank(new Position(0, 1), 2, 3, 1);
         allies.add(tank);
 
         List<Enemy> enemies = new ArrayList<>();

@@ -222,7 +222,7 @@ public class ModelTest {
     public void removingTest() {
         class HeroStub extends Hero {
             public HeroStub() {
-                super(null, 0, 0, null);
+                super(null, 0, 0);
             }
             @Override
             public boolean withinRange(Position pos) {
@@ -279,8 +279,8 @@ public class ModelTest {
     @Test
     public void inflictDamageTest() {
         class HeroStub extends Hero {
-            public HeroStub(Position pos, int hp, int movementRange, List<AttackStrategy> strategies) {
-                super(pos, hp, movementRange, strategies);
+            public HeroStub(Position pos, int hp, int movementRange) {
+                super(pos, hp, movementRange);
             }
             @Override
             public boolean withinRange(Position pos) {
@@ -315,7 +315,7 @@ public class ModelTest {
         Mockito.when(p3.same(p3)).thenReturn( true);
 
         Enemy enemy = new EnemyStub(p1, 12, null);
-        Hero  hero  = new HeroStub (p2, 11, 2, null);
+        Hero  hero  = new HeroStub (p2, 11, 2);
         City  city  = new City     (p3, 10, 2);
 
         List<Enemy> enemies = new ArrayList<>();

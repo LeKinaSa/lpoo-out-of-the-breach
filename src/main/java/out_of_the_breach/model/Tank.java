@@ -1,10 +1,17 @@
 package out_of_the_breach.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tank extends Hero {
-    public Tank(Position pos, int hp, int movementRange, List<AttackStrategy> strategies) {
-        super(pos, hp, movementRange, strategies);
+    public Tank(Position pos, int hp, int movementRange, int damage) {
+        super(pos, hp, movementRange);
+        List<AttackStrategy> strategies = new ArrayList<>();
+        strategies.add(new LineAttack(damage, 1, AttackDirection.NORTH));
+        strategies.add(new LineAttack(damage, 1, AttackDirection.SOUTH));
+        strategies.add(new LineAttack(damage, 1, AttackDirection.EAST ));
+        strategies.add(new LineAttack(damage, 1, AttackDirection.WEST ));
+        super.setStrategies(strategies);
     }
 
     @Override

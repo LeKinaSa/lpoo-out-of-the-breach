@@ -40,12 +40,7 @@ public class Application {
         cities.add(new City(new Position(0, 0), 2, 2));
 
         List<Hero> allies = new ArrayList<>();
-        List<AttackStrategy> strats = new ArrayList<>();
-        strats.add(new LineAttack(3, 1, AttackDirection.NORTH));
-        strats.add(new LineAttack(3, 1, AttackDirection.EAST ));
-        strats.add(new LineAttack(3, 1, AttackDirection.SOUTH));
-        strats.add(new LineAttack(3, 1, AttackDirection.WEST ));
-        allies.add(new Tank(new Position(0, 1), 2, 3, strats));
+        allies.add(new Tank(new Position(0, 1), 6, 3, 1));
 
         List<Enemy> enemies = new ArrayList<>();
         Bug mike = new Bug(new Position(0, 2), 2, 2);

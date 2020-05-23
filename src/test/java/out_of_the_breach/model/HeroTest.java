@@ -14,7 +14,7 @@ public class HeroTest {
         Position p1 = Mockito.mock(Position.class);
         Position p2 = Mockito.mock(Position.class);
         Mockito.when(p1.distanceTo(p2)).thenReturn(2);
-        Tank tank = new Tank(p1, -10, 0, new ArrayList<>());
+        Tank tank = new Tank(p1, -10, 0, 1);
         assertEquals(false, tank.withinRange(p2));
     }
 
@@ -23,7 +23,7 @@ public class HeroTest {
         Position p1 = Mockito.mock(Position.class);
         Position p2 = Mockito.mock(Position.class);
         Mockito.when(p1.distanceTo(p2)).thenReturn(1);
-        Tank tank = new Tank(p1, -10, 3, new ArrayList<>());
+        Tank tank = new Tank(p1, -10, 3, 1);
         assertEquals(true, tank.withinRange(p2));
     }
 
@@ -32,14 +32,14 @@ public class HeroTest {
         Position p1 = Mockito.mock(Position.class);
         Position p2 = Mockito.mock(Position.class);
         Mockito.when(p1.distanceTo(p2)).thenReturn(1);
-        Tank tank = new Tank(p1, -10, 1, new ArrayList<>());
+        Tank tank = new Tank(p1, -10, 1, 1);
         assertEquals(true, tank.withinRange(p2));
     }
 
     @Test
     public void rangeTest() {
-        Hero hero1 = new Tank(null, 10, 1, new ArrayList<>());
-        Hero hero2 = new Tank(null, 31, 9, new ArrayList<>());
+        Hero hero1 = new Tank(null, 10, 1, 1);
+        Hero hero2 = new Tank(null, 31, 9, 1);
         assertEquals(1, hero1.getMovementRange());
         assertEquals(9, hero2.getMovementRange());
         hero1.setMovementRange(4);
@@ -55,7 +55,7 @@ public class HeroTest {
         Mockito.when(p1.distanceTo(p2)).thenReturn(1);
         Mockito.when(p2.distanceTo(p1)).thenReturn(1);
 
-        Hero hero = new Tank(p1, 1, 3, new ArrayList<>());
+        Hero hero = new Tank(p1, 1, 3, 1);
         assertEquals(false, hero.getHasMoved());
         assertEquals(false, hero.getHasEndedTurn());
 
@@ -74,6 +74,7 @@ public class HeroTest {
 
     @Test
     public void attackTest() {
+        //TODO
         Position p = Mockito.mock(Position.class);
         AttackStrategy strategy1 = Mockito.mock(AttackStrategy.class);
         AttackStrategy strategy2 = Mockito.mock(AttackStrategy.class);
@@ -81,11 +82,7 @@ public class HeroTest {
         DamageMatrix dmgMatrix = Mockito.mock(DamageMatrix.class);
         Mockito.when(strategy1.previewAttack(p)).thenReturn(dmgMatrix);
 
-        List<AttackStrategy> strategies = new ArrayList<>();
-        strategies.add(strategy1);
-        strategies.add(strategy2);
-        Hero hero = new Tank(p, 1, 3, strategies);
-        assertEquals(strategies, hero.getStrategies());
+        Hero hero = new Tank(p, 1, 3, 1);
 
         // Exception Zone
         hero.attack(grid, 3);

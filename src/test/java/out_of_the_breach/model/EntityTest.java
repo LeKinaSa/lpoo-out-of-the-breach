@@ -21,7 +21,7 @@ public class EntityTest {
 
         Entity entity1 = new City(p, 2, 1);
         Entity entity2 = new Bug(p, 3,3);
-        Entity entity3 = new Tank(p, 10, 3, new ArrayList<>());
+        Entity entity3 = new Tank(p, 10, 3, 2);
 
         assertEquals(p, entity1.getPosition());
         assertEquals(p, entity2.getPosition());
@@ -38,7 +38,7 @@ public class EntityTest {
     public void hpTest() {
         Entity entity1 = new City(null, -10, 2);
         Entity entity2 = new  Bug(null, 0,3);
-        Entity entity3 = new Tank(null, 5, 3, new ArrayList<>());
+        Entity entity3 = new Tank(null, 5, 3, 2);
 
         assertEquals(0, entity1.getHp());
         assertEquals(0, entity2.getHp());
@@ -89,7 +89,7 @@ public class EntityTest {
 
     @Test
     public void heroTest() {
-        Entity entity = new Tank(null, 10, 2, new ArrayList<>());
+        Entity entity = new Tank(null, 10, 2, 2);
         assertEquals(null, entity.getPosition());
         assertEquals(10, entity.getHp());
         assertEquals(false, entity.isDead());
