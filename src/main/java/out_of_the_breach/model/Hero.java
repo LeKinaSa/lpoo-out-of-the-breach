@@ -60,8 +60,10 @@ public abstract class Hero extends Entity {
     }
 
     public void attack(Model grid, AttackStrategy strategy) {
-        strategy.attack(grid, super.getPosition());
-        hasEndedTurn = true;
+        if (!hasEndedTurn) {
+            strategy.attack(grid, super.getPosition());
+            hasEndedTurn = true;
+        }
     }
 
     public void attack(Model grid, int strategyIndex) {

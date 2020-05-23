@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class HeroTest {
     @Test
@@ -39,7 +41,7 @@ public class HeroTest {
     @Test
     public void rangeTest() {
         Hero hero1 = new Tank(null, 10, 1, 1);
-        Hero hero2 = new Tank(null, 31, 9, 1);
+        Hero hero2 = new Tank(null, 31, 1, 9);
         assertEquals(1, hero1.getMovementRange());
         assertEquals(9, hero2.getMovementRange());
         hero1.setMovementRange(4);
@@ -74,20 +76,33 @@ public class HeroTest {
 
     @Test
     public void attackTest() {
-        //TODO
         Position p = Mockito.mock(Position.class);
+        Hero ally = new Tank(p, 1, 1, 1);
+        List<AttackStrategy> strats = new ArrayList<>();
         AttackStrategy strategy1 = Mockito.mock(AttackStrategy.class);
         AttackStrategy strategy2 = Mockito.mock(AttackStrategy.class);
+        strats.add(strategy1);
+        strats.add(strategy2);
+        ally.setStrategies(strats);
+
         Model grid = Mockito.mock(Model.class);
-        DamageMatrix dmgMatrix = Mockito.mock(DamageMatrix.class);
-        Mockito.when(strategy1.previewAttack(p)).thenReturn(dmgMatrix);
 
-        Hero hero = new Tank(p, 1, 3, 1);
+        assertEquals(false, ally.getHasEndedTurn());
 
-        // Exception Zone
-        hero.attack(grid, 3);
-        hero.attack(grid, -1);
-        hero.attack(grid, 1);
+        ally.attack(grid, 3);
+        assertEquals(false, ally.getHasEndedTurn());
+
+        ally.attack(grid, -1);
+        assertEquals(false, ally.getHasEndedTurn());
+
+        ally.attack(grid, 1);
+        assertEquals(true, ally.getHasEndedTurn());
+        verify(strategy2, times(1)).attack(grid, p);
+
+        ally.attack(grid, 0);
+        assertEquals(true, ally.getHasEndedTurn());
+        verify(strategy1, times(0)).attack(grid, p);
+
 
         assertEquals(dmgMatrix, hero.previewAttack(strategy1));
     }
