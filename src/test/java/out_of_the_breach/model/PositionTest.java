@@ -204,7 +204,69 @@ public class PositionTest {
 
     @Test
     public void adjacentPosTest() {
-        //TODO
-        assertEquals(false, true);
+        Position p = null;
+        try {
+            p = new Position(3, 3);
+        }
+        catch (OutsideOfTheGrid o) {
+            assertEquals(false, true);
+        }
+
+        Position north = p.adjacentPos(AttackDirection.NORTH);
+        Position south = p.adjacentPos(AttackDirection.SOUTH);
+        Position east  = p.adjacentPos(AttackDirection.EAST);
+        Position west  = p.adjacentPos(AttackDirection.WEST);
+        Position l_ne  = p.adjacentPos(AttackDirection.L_NORTHEAST);
+        Position l_nw  = p.adjacentPos(AttackDirection.L_NORTHWEST);
+        Position l_se  = p.adjacentPos(AttackDirection.L_SOUTHEAST);
+        Position l_sw  = p.adjacentPos(AttackDirection.L_SOUTHWEST);
+        Position l_en  = p.adjacentPos(AttackDirection.L_EASTNORTH);
+        Position l_es  = p.adjacentPos(AttackDirection.L_EASTSOUTH);
+        Position l_wn  = p.adjacentPos(AttackDirection.L_WESTNORTH);
+        Position l_ws  = p.adjacentPos(AttackDirection.L_WESTSOUTH);
+        Position none  = p.adjacentPos(AttackDirection.NONE);
+
+
+        assertEquals(3, p.getX());
+        assertEquals(3, p.getY());
+
+        assertEquals(3, north.getX());
+        assertEquals(2, north.getY());
+
+        assertEquals(3, south.getX());
+        assertEquals(4, south.getY());
+
+        assertEquals(4, east.getX());
+        assertEquals(3, east.getY());
+
+        assertEquals(2, west.getX());
+        assertEquals(3, west.getY());
+
+        assertEquals(4, l_ne.getX());
+        assertEquals(1, l_ne.getY());
+
+        assertEquals(2, l_nw.getX());
+        assertEquals(1, l_nw.getY());
+
+        assertEquals(4, l_se.getX());
+        assertEquals(5, l_se.getY());
+
+        assertEquals(2, l_sw.getX());
+        assertEquals(5, l_sw.getY());
+
+        assertEquals(5, l_en.getX());
+        assertEquals(2, l_en.getY());
+
+        assertEquals(5, l_es.getX());
+        assertEquals(4, l_es.getY());
+
+        assertEquals(1, l_wn.getX());
+        assertEquals(2, l_wn.getY());
+
+        assertEquals(1, l_ws.getX());
+        assertEquals(4, l_ws.getY());
+
+        assertEquals(3, none.getX());
+        assertEquals(3, none.getY());
     }
 }
