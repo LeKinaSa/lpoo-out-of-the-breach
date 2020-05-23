@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tank extends Hero {
-    public Tank(Position pos, int hp, int movementRange, int damage) {
+    public Tank(Position pos, int hp, int damage, int movementRange) {
         super(pos, hp, movementRange);
         List<AttackStrategy> strategies = new ArrayList<>();
         strategies.add(new LineAttack(damage, 1, AttackDirection.NORTH));

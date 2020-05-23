@@ -12,7 +12,7 @@ import static out_of_the_breach.model.AttackDirection.*;
 
 public class AttackTest {
     @Test
-    public void LineAttackRange1Directions() {
+    public void LineAttackRange1DirectionsTest() {
         Position p1 = Mockito.mock(Position.class);
         Position north = Mockito.mock(Position.class);
         Position south = Mockito.mock(Position.class);
@@ -65,7 +65,7 @@ public class AttackTest {
     }
 
     @Test
-    public void LineAttackRange3Directions() {
+    public void LineAttackRange3DirectionsTest() {
         Position p1 = Mockito.mock(Position.class);
         Position n   = Mockito.mock(Position.class);
         Position nn  = Mockito.mock(Position.class);
@@ -134,6 +134,50 @@ public class AttackTest {
         assertEquals(AttackDirection.WEST, strategy.getDirection());
         matrix.set(19, 2); matrix.set(20, 2); matrix.set(21, 2);
         damageMatrix = strategy.previewAttack(p1);
+        assertEquals(matrix, damageMatrix.incomingDamage);
+    }
+
+    @Test
+    public void AOEAttackDirectionNoneAndNorthTest() {
+        Position p = Mockito.mock(Position.class);
+        Position north = Mockito.mock(Position.class);
+        Position south = Mockito.mock(Position.class);
+        Position east  = Mockito.mock(Position.class);
+        Position west  = Mockito.mock(Position.class);
+
+        Mockito.when(p.adjacentPos(NORTH)).thenReturn(north);
+        Mockito.when(p.adjacentPos(SOUTH)).thenReturn(south);
+        Mockito.when(p.adjacentPos( EAST)).thenReturn( east);
+        Mockito.when(p.adjacentPos( WEST)).thenReturn( west);
+        Mockito.when(    p.getLinearMatrixPosition()).thenReturn(36);
+        Mockito.when(north.getLinearMatrixPosition()).thenReturn(28);
+        Mockito.when(south.getLinearMatrixPosition()).thenReturn(44);
+        Mockito.when( east.getLinearMatrixPosition()).thenReturn(35);
+        Mockito.when( west.getLinearMatrixPosition()).thenReturn(37);
+
+        Position nn = Mockito.mock(Position.class);
+        Position ne = Mockito.mock(Position.class);
+        Position nw = Mockito.mock(Position.class);
+        Mockito.when(north.adjacentPos(NORTH)).thenReturn(nn);
+        Mockito.when(north.adjacentPos(SOUTH)).thenReturn(p);
+        Mockito.when(north.adjacentPos( EAST)).thenReturn(ne);
+        Mockito.when(north.adjacentPos( WEST)).thenReturn(nw);
+        Mockito.when(nn.getLinearMatrixPosition()).thenReturn(20);
+        Mockito.when(ne.getLinearMatrixPosition()).thenReturn(27);
+        Mockito.when(nw.getLinearMatrixPosition()).thenReturn(29);
+
+        AttackStrategy strategy1 = new AOEAttack(2);
+        assertEquals(AttackDirection.NONE, strategy1.getDirection());
+        List<Integer> matrix = new ArrayList<Integer>(Collections.nCopies(64, 0));
+        matrix.set(28, 2); matrix.set(44, 2); matrix.set(35, 2); matrix.set(37, 2);
+        DamageMatrix damageMatrix = strategy1.previewAttack(p);
+        assertEquals(matrix, damageMatrix.incomingDamage);
+
+        AttackStrategy strategy2 = new AOEAttack(2, NORTH);
+        assertEquals(AttackDirection.NORTH, strategy2.getDirection());
+        matrix = new ArrayList<Integer>(Collections.nCopies(64, 0));
+        matrix.set(28, 2); matrix.set(20, 2); matrix.set(36, 2); matrix.set(27, 2); matrix.set(29, 2);
+        damageMatrix = strategy2.previewAttack(p);
         assertEquals(matrix, damageMatrix.incomingDamage);
     }
 }
