@@ -21,7 +21,7 @@ public abstract class Hero extends Entity {
 
     public abstract boolean withinRange(Position pos);
 
-    public MovementMatrix displayMove(Model model) {
+    public MovementMatrix displayMove(Model grid) {
         MovementMatrix moveMatrix = new MovementMatrix();
         Position p;
         for (int x = 0; x < 8; x ++) {
@@ -32,7 +32,7 @@ public abstract class Hero extends Entity {
                 catch (OutsideOfTheGrid o) {
                     continue;
                 }
-                boolean canMove = !model.tileOccupied(p) && this.withinRange(p);
+                boolean canMove = !grid.tileOccupied(p) && this.withinRange(p);
 
                 moveMatrix.setMove(p, canMove);
             }

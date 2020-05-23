@@ -34,7 +34,7 @@ public class AttackTest {
 
         AttackStrategy strategy = new LineAttack(2, 1);
         assertEquals(AttackDirection.NONE, strategy.getDirection());
-        List<Integer> matrix = new ArrayList<Integer>(Collections.nCopies(64, 0));
+        List<Integer> matrix = new ArrayList<>(Collections.nCopies(64, 0));
         DamageMatrix damageMatrix = strategy.previewAttack(p1);
         assertEquals(matrix, damageMatrix.incomingDamage);
 
@@ -108,7 +108,7 @@ public class AttackTest {
 
         AttackStrategy strategy = new LineAttack(2, 3);
         assertEquals(AttackDirection.NONE, strategy.getDirection());
-        List<Integer> matrix = new ArrayList<Integer>(Collections.nCopies(64, 0));
+        List<Integer> matrix = new ArrayList<>(Collections.nCopies(64, 0));
         DamageMatrix damageMatrix = strategy.previewAttack(p1);
         assertEquals(matrix, damageMatrix.incomingDamage);
 
@@ -171,14 +171,14 @@ public class AttackTest {
 
         AttackStrategy strategy1 = new AOEAttack(2);
         assertEquals(AttackDirection.NONE, strategy1.getDirection());
-        List<Integer> matrix = new ArrayList<Integer>(Collections.nCopies(64, 0));
+        List<Integer> matrix = new ArrayList<>(Collections.nCopies(64, 0));
         matrix.set(28, 2); matrix.set(44, 2); matrix.set(35, 2); matrix.set(37, 2);
         DamageMatrix damageMatrix = strategy1.previewAttack(p);
         assertEquals(matrix, damageMatrix.incomingDamage);
 
         AttackStrategy strategy2 = new AOEAttack(2, NORTH);
         assertEquals(AttackDirection.NORTH, strategy2.getDirection());
-        matrix = new ArrayList<Integer>(Collections.nCopies(64, 0));
+        matrix = new ArrayList<>(Collections.nCopies(64, 0));
         matrix.set(28, 2); matrix.set(20, 2); matrix.set(36, 2); matrix.set(27, 2); matrix.set(29, 2);
         damageMatrix = strategy2.previewAttack(p);
         assertEquals(matrix, damageMatrix.incomingDamage);

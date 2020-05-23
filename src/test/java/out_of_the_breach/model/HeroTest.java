@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -102,8 +103,42 @@ public class HeroTest {
         ally.attack(grid, 0);
         assertEquals(true, ally.getHasEndedTurn());
         verify(strategy1, times(0)).attack(grid, p);
+    }
 
+    @Test
+    public void displayMoveTest() {
+        class ModelStub extends Model {
+            @Override
+            public boolean tileOccupied(Position p) {
+                return false;
+            }
+        }
+        Model grid = new ModelStub();
+        Position p = Mockito.mock(Position.class);
+        Hero ally1 = new Tank  (p, 1, 1, 3);
+        Hero ally2 = new Archer(p, 1, 1);
 
-        assertEquals(dmgMatrix, hero.previewAttack(strategy1));
+        Mockito.when(p.getX()).thenReturn(3);
+        Mockito.when(p.getY()).thenReturn(3);
+        Mockito.when(p.getLinearMatrixPosition()).thenReturn(27);
+
+        List<Boolean> matrix = new ArrayList<>(Collections.nCopies(64, false));
+        matrix.set( 3, true);
+        matrix.set(10, true); matrix.set(11, true); matrix.set(12, true);
+        matrix.set(17, true); matrix.set(18, true); matrix.set(19, true); matrix.set(20, true); matrix.set(21, true);
+        matrix.set(24, true); matrix.set(25, true); matrix.set(26, true); matrix.set(27, true); matrix.set(28, true); matrix.set(29, true); matrix.set(30, true);
+        matrix.set(33, true); matrix.set(34, true); matrix.set(35, true); matrix.set(36, true); matrix.set(37, true);
+        matrix.set(42, true); matrix.set(43, true); matrix.set(44, true);
+        matrix.set(51, true);
+        MovementMatrix mov1 = ally1.displayMove(grid);
+        MovementMatrix mov2 = ally2.displayMove(grid);
+
+        Position pos = Mockito.mock(Position.class);
+        Mockito.when(pos.getX()).thenReturn(8);
+        Mockito.when(pos.getY()).thenReturn(8);
+
+        //assertEquals(false, ally1.withinRange(pos));
+        assertEquals(matrix, mov1.possibleMoves);
+        assertEquals(new ArrayList<>(Collections.nCopies(64, true)), mov2.possibleMoves);
     }
 }
