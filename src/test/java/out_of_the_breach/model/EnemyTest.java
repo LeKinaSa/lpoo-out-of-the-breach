@@ -1066,24 +1066,216 @@ public class EnemyTest {
     // ----- DRAGON -----//
     @Test
     public void moveAndPlanAttack_Dragon_3City_NORTH_Test() {
+        /*
+        The best attack is 3 cities.
+        | | |E| | |A|A| |
+        | | |E|O| | | | |
+        |D| |E|C| | | | |
+        | | | |C|E|E|C| |
+        | |A|E|C| | |C| |
+        | |A| | | |A|A|A|
+        | |C|C| | |C| |E|
+        | | | | | | | | |
+        */
         Model grid = Mockito.mock(Model.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
         City city3 = Mockito.mock(City.class);
+        City city4 = Mockito.mock(City.class);
+        City city5 = Mockito.mock(City.class);
+        City city6 = Mockito.mock(City.class);
+        City city7 = Mockito.mock(City.class);
+        City city8 = Mockito.mock(City.class);
+        Hero ally1 = Mockito.mock(Hero.class);
+        Hero ally2 = Mockito.mock(Hero.class);
+        Hero ally3 = Mockito.mock(Hero.class);
+        Hero ally4 = Mockito.mock(Hero.class);
+        Hero ally5 = Mockito.mock(Hero.class);
+        Hero ally6 = Mockito.mock(Hero.class);
+        Hero ally7 = Mockito.mock(Hero.class);
 
         List<Hero> allies = new ArrayList<>();
+        allies.add(ally1);
+        allies.add(ally2);
+        allies.add(ally3);
+        allies.add(ally4);
+        allies.add(ally5);
+        allies.add(ally6);
+        allies.add(ally7);
         List<City> cities = new ArrayList<>();
         cities.add(city1);
         cities.add(city2);
         cities.add(city3);
+        cities.add(city4);
+        cities.add(city5);
+        cities.add(city6);
+        cities.add(city7);
+        cities.add(city8);
 
         Mockito.when(grid.getAllies()).thenReturn(allies);
         Mockito.when(grid.getCities()).thenReturn(cities);
 
-        Position p  = Mockito.mock(Position.class);
-        Position p1 = Mockito.mock(Position.class);
-        Position p2 = Mockito.mock(Position.class);
-        Position p3 = Mockito.mock(Position.class);
+        Position p   = Mockito.mock(Position.class);
+        Position p04 = Mockito.mock(Position.class);
+        Position p05 = Mockito.mock(Position.class);
+        Position p06 = Mockito.mock(Position.class);
+        Position p12 = Mockito.mock(Position.class);
+        Position p13 = Mockito.mock(Position.class);
+        Position p14 = Mockito.mock(Position.class);
+        Position p15 = Mockito.mock(Position.class);
+        Position p16 = Mockito.mock(Position.class);
+        Position p17 = Mockito.mock(Position.class);
+        Position p22 = Mockito.mock(Position.class);
+        Position p23 = Mockito.mock(Position.class);
+        Position p24 = Mockito.mock(Position.class);
+        Position p25 = Mockito.mock(Position.class);
+        Position p26 = Mockito.mock(Position.class);
+        Position p27 = Mockito.mock(Position.class);
+        Position p31 = Mockito.mock(Position.class);
+        Position p32 = Mockito.mock(Position.class);
+        Position p33 = Mockito.mock(Position.class);
+        Position p34 = Mockito.mock(Position.class);
+        Position p35 = Mockito.mock(Position.class);
+        Position p36 = Mockito.mock(Position.class);
+        Position p40 = Mockito.mock(Position.class);
+        Position p42 = Mockito.mock(Position.class);
+        Position p43 = Mockito.mock(Position.class);
+        Position p44 = Mockito.mock(Position.class);
+        Position p45 = Mockito.mock(Position.class);
+        Position p46 = Mockito.mock(Position.class);
+        Position p50 = Mockito.mock(Position.class);
+        Position p51 = Mockito.mock(Position.class);
+        Position p53 = Mockito.mock(Position.class);
+        Position p54 = Mockito.mock(Position.class);
+        Position p55 = Mockito.mock(Position.class);
+        Position p56 = Mockito.mock(Position.class);
+        Position p57 = Mockito.mock(Position.class);
+        Position p60 = Mockito.mock(Position.class);
+        Position p61 = Mockito.mock(Position.class);
+        Position p62 = Mockito.mock(Position.class);
+        Position p63 = Mockito.mock(Position.class);
+        Position p64 = Mockito.mock(Position.class);
+        Position p65 = Mockito.mock(Position.class);
+        Position p66 = Mockito.mock(Position.class);
+        Position p70 = Mockito.mock(Position.class);
+        Position p73 = Mockito.mock(Position.class);
+        Position p74 = Mockito.mock(Position.class);
+        Position p75 = Mockito.mock(Position.class);
+        Position p76 = Mockito.mock(Position.class);
+        Position p77 = Mockito.mock(Position.class);
+
+        Mockito.when(p14.adjacentPos(NORTH)).thenReturn(p13);
+        Mockito.when(p15.adjacentPos(NORTH)).thenReturn(p14);
+        Mockito.when(p16.adjacentPos(NORTH)).thenReturn(p15);
+        Mockito.when(p17.adjacentPos(NORTH)).thenReturn(p16);
+        Mockito.when(p25.adjacentPos(NORTH)).thenReturn(p24);
+        Mockito.when(p26.adjacentPos(NORTH)).thenReturn(p25);
+        Mockito.when(p27.adjacentPos(NORTH)).thenReturn(p26);
+        Mockito.when(p32.adjacentPos(NORTH)).thenReturn(p31);
+        Mockito.when(p33.adjacentPos(NORTH)).thenReturn(p32);
+        Mockito.when(p34.adjacentPos(NORTH)).thenReturn(p33);
+        Mockito.when(p35.adjacentPos(NORTH)).thenReturn(p34);
+        Mockito.when(p50.adjacentPos(NORTH)).thenReturn(null);
+        Mockito.when(p51.adjacentPos(NORTH)).thenReturn(p50);
+        Mockito.when(p55.adjacentPos(NORTH)).thenReturn(p54);
+        Mockito.when(p56.adjacentPos(NORTH)).thenReturn(p55);
+        Mockito.when(p57.adjacentPos(NORTH)).thenReturn(p56);
+        Mockito.when(p60.adjacentPos(NORTH)).thenReturn(null);
+        Mockito.when(p61.adjacentPos(NORTH)).thenReturn(p60);
+        Mockito.when(p63.adjacentPos(NORTH)).thenReturn(p62);
+        Mockito.when(p64.adjacentPos(NORTH)).thenReturn(p63);
+        Mockito.when(p65.adjacentPos(NORTH)).thenReturn(p64);
+        Mockito.when(p66.adjacentPos(NORTH)).thenReturn(p65);
+        Mockito.when(p75.adjacentPos(NORTH)).thenReturn(p74);
+        Mockito.when(p76.adjacentPos(NORTH)).thenReturn(p75);
+        Mockito.when(p77.adjacentPos(NORTH)).thenReturn(p76);
+
+
+        Mockito.when(p13.adjacentPos(SOUTH)).thenReturn(p14);
+        Mockito.when(p14.adjacentPos(SOUTH)).thenReturn(p15);
+        Mockito.when(p15.adjacentPos(SOUTH)).thenReturn(p16);
+        Mockito.when(p16.adjacentPos(SOUTH)).thenReturn(p17);
+        Mockito.when(p25.adjacentPos(SOUTH)).thenReturn(p26);
+        Mockito.when(p26.adjacentPos(SOUTH)).thenReturn(p27);
+        Mockito.when(p27.adjacentPos(SOUTH)).thenReturn(null);
+        Mockito.when(p31.adjacentPos(SOUTH)).thenReturn(p32);
+        Mockito.when(p32.adjacentPos(SOUTH)).thenReturn(p33);
+        Mockito.when(p33.adjacentPos(SOUTH)).thenReturn(p34);
+        Mockito.when(p34.adjacentPos(SOUTH)).thenReturn(p35);
+        Mockito.when(p50.adjacentPos(SOUTH)).thenReturn(p51);
+        Mockito.when(p54.adjacentPos(SOUTH)).thenReturn(p55);
+        Mockito.when(p55.adjacentPos(SOUTH)).thenReturn(p56);
+        Mockito.when(p56.adjacentPos(SOUTH)).thenReturn(p57);
+        Mockito.when(p60.adjacentPos(SOUTH)).thenReturn(p61);
+        Mockito.when(p62.adjacentPos(SOUTH)).thenReturn(p63);
+        Mockito.when(p63.adjacentPos(SOUTH)).thenReturn(p64);
+        Mockito.when(p64.adjacentPos(SOUTH)).thenReturn(p65);
+        Mockito.when(p65.adjacentPos(SOUTH)).thenReturn(p66);
+        Mockito.when(p74.adjacentPos(SOUTH)).thenReturn(p75);
+        Mockito.when(p75.adjacentPos(SOUTH)).thenReturn(p76);
+        Mockito.when(p76.adjacentPos(SOUTH)).thenReturn(p77);
+        
+        Mockito.when(p05.adjacentPos( EAST)).thenReturn(null);
+        Mockito.when(p14.adjacentPos( EAST)).thenReturn(p04);
+        Mockito.when(p15.adjacentPos( EAST)).thenReturn(p05);
+        Mockito.when(p16.adjacentPos( EAST)).thenReturn(p06);
+        Mockito.when(p22.adjacentPos( EAST)).thenReturn(p12);
+        Mockito.when(p24.adjacentPos( EAST)).thenReturn(p14);
+        Mockito.when(p25.adjacentPos( EAST)).thenReturn(p15);
+        Mockito.when(p26.adjacentPos( EAST)).thenReturn(p16);
+        Mockito.when(p32.adjacentPos( EAST)).thenReturn(p22);
+        Mockito.when(p33.adjacentPos( EAST)).thenReturn(p23);
+        Mockito.when(p34.adjacentPos( EAST)).thenReturn(p24);
+        Mockito.when(p36.adjacentPos( EAST)).thenReturn(p26);
+        Mockito.when(p42.adjacentPos( EAST)).thenReturn(p32);
+        Mockito.when(p44.adjacentPos( EAST)).thenReturn(p34);
+        Mockito.when(p46.adjacentPos( EAST)).thenReturn(p36);
+        Mockito.when(p50.adjacentPos( EAST)).thenReturn(p40);
+        Mockito.when(p53.adjacentPos( EAST)).thenReturn(p43);
+        Mockito.when(p54.adjacentPos( EAST)).thenReturn(p44);
+        Mockito.when(p55.adjacentPos( EAST)).thenReturn(p45);
+        Mockito.when(p56.adjacentPos( EAST)).thenReturn(p46);
+        Mockito.when(p60.adjacentPos( EAST)).thenReturn(p50);
+        Mockito.when(p63.adjacentPos( EAST)).thenReturn(p53);
+        Mockito.when(p64.adjacentPos( EAST)).thenReturn(p54);
+        Mockito.when(p65.adjacentPos( EAST)).thenReturn(p55);
+        Mockito.when(p66.adjacentPos( EAST)).thenReturn(p56);
+        Mockito.when(p70.adjacentPos( EAST)).thenReturn(p60);
+        Mockito.when(p73.adjacentPos( EAST)).thenReturn(p63);
+        Mockito.when(p74.adjacentPos( EAST)).thenReturn(p64);
+        Mockito.when(p75.adjacentPos( EAST)).thenReturn(p65);
+        Mockito.when(p76.adjacentPos( EAST)).thenReturn(p66);
+
+        Mockito.when(p04.adjacentPos( WEST)).thenReturn(p14);
+        Mockito.when(p05.adjacentPos( WEST)).thenReturn(p15);
+        Mockito.when(p06.adjacentPos( WEST)).thenReturn(p16);
+        Mockito.when(p14.adjacentPos( WEST)).thenReturn(p24);
+        Mockito.when(p15.adjacentPos( WEST)).thenReturn(p25);
+        Mockito.when(p16.adjacentPos( WEST)).thenReturn(p26);
+        Mockito.when(p23.adjacentPos( WEST)).thenReturn(p33);
+        Mockito.when(p24.adjacentPos( WEST)).thenReturn(p34);
+        Mockito.when(p25.adjacentPos( WEST)).thenReturn(p35);
+        Mockito.when(p26.adjacentPos( WEST)).thenReturn(p36);
+        Mockito.when(p32.adjacentPos( WEST)).thenReturn(p42);
+        Mockito.when(p33.adjacentPos( WEST)).thenReturn(p43);
+        Mockito.when(p34.adjacentPos( WEST)).thenReturn(p44);
+        Mockito.when(p40.adjacentPos( WEST)).thenReturn(p50);
+        Mockito.when(p43.adjacentPos( WEST)).thenReturn(p53);
+        Mockito.when(p45.adjacentPos( WEST)).thenReturn(p55);
+        Mockito.when(p46.adjacentPos( WEST)).thenReturn(p56);
+        Mockito.when(p50.adjacentPos( WEST)).thenReturn(p60);
+        Mockito.when(p54.adjacentPos( WEST)).thenReturn(p64);
+        Mockito.when(p55.adjacentPos( WEST)).thenReturn(p65);
+        Mockito.when(p56.adjacentPos( WEST)).thenReturn(p66);
+        Mockito.when(p60.adjacentPos( WEST)).thenReturn(p70);
+        Mockito.when(p63.adjacentPos( WEST)).thenReturn(p73);
+        Mockito.when(p64.adjacentPos( WEST)).thenReturn(p74);
+        Mockito.when(p65.adjacentPos( WEST)).thenReturn(p75);
+        Mockito.when(p66.adjacentPos( WEST)).thenReturn(p76);
+        Mockito.when(p74.adjacentPos( WEST)).thenReturn(null);
+        Mockito.when(p75.adjacentPos( WEST)).thenReturn(null);
+        Mockito.when(p76.adjacentPos( WEST)).thenReturn(null);
+
 
         //TODO
         assertEquals(false, true);
