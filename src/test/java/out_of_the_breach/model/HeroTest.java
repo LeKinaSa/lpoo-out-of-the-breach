@@ -13,30 +13,18 @@ import static org.mockito.Mockito.verify;
 
 public class HeroTest {
     @Test
-    public void tankRangeTest1() {
+    public void tankRangeTest() {
         Position p1 = Mockito.mock(Position.class);
         Position p2 = Mockito.mock(Position.class);
-        Mockito.when(p1.distanceTo(p2)).thenReturn(2);
-        Tank tank = new Tank(p1, -10, 0, 1);
-        assertEquals(false, tank.withinRange(p2));
-    }
-
-    @Test
-    public void tankRangeTest2() {
-        Position p1 = Mockito.mock(Position.class);
-        Position p2 = Mockito.mock(Position.class);
+        Position p3 = Mockito.mock(Position.class);
+        Position p4 = Mockito.mock(Position.class);
         Mockito.when(p1.distanceTo(p2)).thenReturn(1);
-        Tank tank = new Tank(p1, -10, 3, 1);
-        assertEquals(true, tank.withinRange(p2));
-    }
-
-    @Test
-    public void tankRangeTest3() {
-        Position p1 = Mockito.mock(Position.class);
-        Position p2 = Mockito.mock(Position.class);
-        Mockito.when(p1.distanceTo(p2)).thenReturn(1);
-        Tank tank = new Tank(p1, -10, 1, 1);
-        assertEquals(true, tank.withinRange(p2));
+        Mockito.when(p1.distanceTo(p3)).thenReturn(2);
+        Mockito.when(p1.distanceTo(p4)).thenReturn(3);
+        Tank tank = new Tank(p1, -10, 0, 2);
+        assertEquals( true, tank.withinRange(p2));
+        assertEquals( true, tank.withinRange(p3));
+        assertEquals(false, tank.withinRange(p4));
     }
 
     @Test
