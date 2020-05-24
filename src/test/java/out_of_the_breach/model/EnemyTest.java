@@ -1436,8 +1436,80 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Dragon_2City1Ally_SOUTH_Test() {
-        //TODO
-        assertEquals(false, true);
+        /*
+        It should prefer 2 cities to 1 city 1 ally or 2 allies.
+        | | | |A|C|E| | |
+        | | | |A|C| | | |
+        | | | | |O| | | |
+        | | | | | | | | |
+        | | | | | | | | |
+        | | | |D| | | | |
+        | | | | | | | | |
+        | | | | | | | | |
+        */
+        Model grid = Mockito.mock(Model.class);
+        City city1 = Mockito.mock(City.class);
+        City city2 = Mockito.mock(City.class);
+        Hero ally1 = Mockito.mock(Hero.class);
+        Hero ally2 = Mockito.mock(Hero.class);
+
+        List<Hero> allies = new ArrayList<>();
+        allies.add(ally1);
+        allies.add(ally2);
+        List<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+
+        Mockito.when(grid.getAllies()).thenReturn(allies);
+        Mockito.when(grid.getCities()).thenReturn(cities);
+
+        Position p05 = Mockito.mock(Position.class);
+        Position p20 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p20)).thenReturn(false);
+        Position p21 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p21)).thenReturn(false);
+        Position p30 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p30)).thenReturn(true); Mockito.when(grid.getEntityAt(p30)).thenReturn(ally1);
+        Position p31 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p31)).thenReturn(true); Mockito.when(grid.getEntityAt(p31)).thenReturn(ally2);
+        Position p32 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p32)).thenReturn(false);
+        Position p40 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p40)).thenReturn(true); Mockito.when(grid.getEntityAt(p40)).thenReturn(city1);
+        Position p41 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p41)).thenReturn(true); Mockito.when(grid.getEntityAt(p41)).thenReturn(city2);
+        Position p42 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p42)).thenReturn(false);
+        Position p50 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p50)).thenReturn(true); Mockito.when(grid.getEntityAt(p50)).thenReturn(Mockito.mock(Enemy.class));
+        Position p51 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p51)).thenReturn(false);
+
+        Mockito.when(p30.adjacentPos(NORTH)).thenReturn(null);
+        Mockito.when(p31.adjacentPos(NORTH)).thenReturn(p30);
+        Mockito.when(p32.adjacentPos(NORTH)).thenReturn(p31);
+        Mockito.when(p40.adjacentPos(NORTH)).thenReturn(null);
+        Mockito.when(p41.adjacentPos(NORTH)).thenReturn(p40);
+        Mockito.when(p42.adjacentPos(NORTH)).thenReturn(p41);
+
+        Mockito.when(p30.adjacentPos(SOUTH)).thenReturn(p31);
+        Mockito.when(p31.adjacentPos(SOUTH)).thenReturn(p32);
+        Mockito.when(p40.adjacentPos(SOUTH)).thenReturn(p41);
+        Mockito.when(p41.adjacentPos(SOUTH)).thenReturn(p42);
+
+        Mockito.when(p30.adjacentPos( EAST)).thenReturn(p20);
+        Mockito.when(p31.adjacentPos( EAST)).thenReturn(p21);
+        Mockito.when(p40.adjacentPos( EAST)).thenReturn(p30);
+        Mockito.when(p41.adjacentPos( EAST)).thenReturn(p31);
+        Mockito.when(p51.adjacentPos( EAST)).thenReturn(p41);
+
+        Mockito.when(p20.adjacentPos( WEST)).thenReturn(p30);
+        Mockito.when(p21.adjacentPos( WEST)).thenReturn(p31);
+        Mockito.when(p30.adjacentPos( WEST)).thenReturn(p40);
+        Mockito.when(p31.adjacentPos( WEST)).thenReturn(p41);
+        Mockito.when(p40.adjacentPos( WEST)).thenReturn(p50);
+        Mockito.when(p41.adjacentPos( WEST)).thenReturn(p51);
+
+        Mockito.when(ally1.getPosition()).thenReturn(p30);
+        Mockito.when(ally2.getPosition()).thenReturn(p31);
+        Mockito.when(city1.getPosition()).thenReturn(p40);
+        Mockito.when(city2.getPosition()).thenReturn(p41);
+
+        Enemy enemy = new Dragon(p05, 10, 2);
+        enemy.moveAndPlanAttack(grid);
+
+        assertEquals(AttackDirection.NORTH, enemy.getAttackDirection());
+        assertEquals(p42, enemy.getPosition());
     }
 
     @Test
