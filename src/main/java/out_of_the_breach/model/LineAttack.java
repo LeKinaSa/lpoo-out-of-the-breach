@@ -47,6 +47,10 @@ public class LineAttack extends AttackStrategy {
     public DamageMatrix previewAttack(Position pos) {
         DamageMatrix damageMatrix = new DamageMatrix();
 
+        if (super.getDirection() == NONE) {
+            return damageMatrix;
+        }
+
         Position damagedPosition = pos;
         for (int i = 0; i < this.range; i ++) {
             damagedPosition = damagedPosition.adjacentPos(super.getDirection());

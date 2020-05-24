@@ -26,6 +26,7 @@ public class AttackTest {
         Mockito.when(p1.adjacentPos(SOUTH)).thenReturn(south);
         Mockito.when(p1.adjacentPos( EAST)).thenReturn( east);
         Mockito.when(p1.adjacentPos( WEST)).thenReturn( west);
+        Mockito.when(p1.adjacentPos( NONE)).thenReturn(   p1);
         Mockito.when(   p1.getLinearMatrixPosition()).thenReturn(30);
         Mockito.when(north.getLinearMatrixPosition()).thenReturn(22);
         Mockito.when(south.getLinearMatrixPosition()).thenReturn(38);
