@@ -55,8 +55,11 @@ public class Dragon extends Enemy {
                 auxPos = north;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
-                        auxPos = auxPos.adjacentPos(SOUTH); // Check the positions in line of attack
-                    if ((auxPos != null) && (grid.tileOccupied(auxPos))) {
+                    auxPos = auxPos.adjacentPos(SOUTH); // Check the positions in line of attack
+                    if (auxPos == null) {
+                        break;
+                    }
+                    else if (grid.tileOccupied(auxPos)) {
                         entity = grid.getEntityAt(auxPos);
                         if (entity instanceof City) {
                             enemiesHit += 1.1;
@@ -82,7 +85,10 @@ public class Dragon extends Enemy {
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
                     auxPos = auxPos.adjacentPos(NORTH); // Check the positions in line of attack
-                    if ((auxPos != null) && (grid.tileOccupied(auxPos))) {
+                    if (auxPos == null) {
+                        break;
+                    }
+                    else if (grid.tileOccupied(auxPos)) {
                         entity = grid.getEntityAt(auxPos);
                         if (entity instanceof City) {
                             enemiesHit += 1.1;
@@ -108,7 +114,10 @@ public class Dragon extends Enemy {
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
                     auxPos = auxPos.adjacentPos(WEST); // Check the positions in line of attack
-                    if ((auxPos != null) && (grid.tileOccupied(auxPos))) {
+                    if (auxPos == null) {
+                        break;
+                    }
+                    else if (grid.tileOccupied(auxPos)) {
                         entity = grid.getEntityAt(auxPos);
                         if (entity instanceof City) {
                             enemiesHit += 1.1;
@@ -134,7 +143,10 @@ public class Dragon extends Enemy {
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
                     auxPos = auxPos.adjacentPos(EAST); // Check the positions in line of attack
-                    if ((auxPos != null) && (grid.tileOccupied(auxPos))) {
+                    if (auxPos == null) {
+                        break;
+                    }
+                    else if (grid.tileOccupied(auxPos)) {
                         entity = grid.getEntityAt(auxPos);
                         if (entity instanceof City) {
                             enemiesHit += 1.1;
@@ -148,6 +160,7 @@ public class Dragon extends Enemy {
                         }
                     }
                 }
+
                 if (enemiesHit > mostEnemiesHit) {
                     attackPosition = west;
                     mostEnemiesHit = enemiesHit;
