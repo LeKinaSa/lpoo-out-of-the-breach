@@ -63,13 +63,13 @@ public class Bug extends Enemy {
         int smallerDistance = 64;
         int distance;
 
-        if ((north != null) && (!grid.tileOccupied(north))) {
+        if ((north != null) && ((!grid.tileOccupied(north)) || (north.same(super.getPosition())))) {
             distance = pos.distanceTo(north);
             targetedPosition = north;
             smallerDistance = distance;
             direction = SOUTH;
         }
-        if ((south != null) && (!grid.tileOccupied(south))) {
+        if ((south != null) && ((!grid.tileOccupied(south)) || (south.same(super.getPosition())))) {
             distance = pos.distanceTo(south);
             if (distance < smallerDistance) {
                 targetedPosition = south;
@@ -77,7 +77,7 @@ public class Bug extends Enemy {
                 direction = NORTH;
             }
         }
-        if ((east != null) && (!grid.tileOccupied(east))) {
+        if ((east != null) && ((!grid.tileOccupied(east)) || (east.same(super.getPosition())))) {
             distance = pos.distanceTo(east);
             if (distance < smallerDistance) {
                 targetedPosition = east;
@@ -85,7 +85,7 @@ public class Bug extends Enemy {
                 direction = WEST;
             }
         }
-        if ((west != null) && (!grid.tileOccupied(west))) {
+        if ((west != null) && ((!grid.tileOccupied(west)) || (west.same(super.getPosition())))) {
             distance = pos.distanceTo(west);
             if (distance < smallerDistance) {
                 targetedPosition = west;

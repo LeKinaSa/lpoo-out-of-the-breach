@@ -51,7 +51,7 @@ public class Dragon extends Enemy {
             Position east  = targetPosition.adjacentPos( EAST);
             Position west  = targetPosition.adjacentPos( WEST);
 
-            if ((north != null) && (!grid.tileOccupied(north))) {
+            if ((north != null) && ((!grid.tileOccupied(north)) || (north.same(super.getPosition())))) {
                 auxPos = north;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -80,7 +80,7 @@ public class Dragon extends Enemy {
                     direction = SOUTH;
                 }
             }
-            if ((south != null) && (!grid.tileOccupied(south))) {
+            if ((south != null) && ((!grid.tileOccupied(south)) || (south.same(super.getPosition())))) {
                 auxPos = south;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -109,7 +109,7 @@ public class Dragon extends Enemy {
                     direction = NORTH;
                 }
             }
-            if ((east != null) && (!grid.tileOccupied(east))) {
+            if ((east != null) && ((!grid.tileOccupied(east)) || (east.same(super.getPosition())))) {
                 auxPos = east;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -138,7 +138,7 @@ public class Dragon extends Enemy {
                     direction = WEST;
                 }
             }
-            if ((west != null) && (!grid.tileOccupied(west))) {
+            if ((west != null) && ((!grid.tileOccupied(west)) || (west.same(super.getPosition())))) {
                 auxPos = west;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {

@@ -44,28 +44,28 @@ public class Lizard extends Enemy {
             Position east  = targetPosition.adjacentPos( EAST);
             Position west  = targetPosition.adjacentPos( WEST);
 
-            if ((north != null) && (!grid.tileOccupied(north))) {
+            if ((north != null) && ((!grid.tileOccupied(north)) || (north.same(super.getPosition())))) {
                 distance = pos.distanceTo(north);
                 if (distance < smallerDistance) {
                     closerPosition = north;
                     smallerDistance = distance;
                 }
             }
-            if ((south != null) && (!grid.tileOccupied(south))) {
+            if ((south != null) && ((!grid.tileOccupied(south)) || (south.same(super.getPosition())))) {
                 distance = pos.distanceTo(south);
                 if (distance < smallerDistance) {
                     closerPosition = south;
                     smallerDistance = distance;
                 }
             }
-            if ((east != null) && (!grid.tileOccupied(east))) {
+            if ((east != null) && ((!grid.tileOccupied(east)) || (east.same(super.getPosition())))) {
                 distance = pos.distanceTo(east);
                 if (distance < smallerDistance) {
                     closerPosition = east;
                     smallerDistance = distance;
                 }
             }
-            if ((west != null) && (!grid.tileOccupied(west))) {
+            if ((west != null) && ((!grid.tileOccupied(west)) || (west.same(super.getPosition())))) {
                 distance = pos.distanceTo(west);
                 if (distance < smallerDistance) {
                     closerPosition = west;
