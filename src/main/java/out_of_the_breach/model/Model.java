@@ -156,4 +156,14 @@ public class Model {
             h.reset();
         }
     }
+
+    public int getEnergy() {
+        int res = 0;
+
+        for (City i : cities) {
+            res += i.getHp();
+        }
+
+        return res;
+    }
 }

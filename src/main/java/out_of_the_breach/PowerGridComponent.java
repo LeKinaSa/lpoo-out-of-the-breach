@@ -5,12 +5,14 @@ import out_of_the_breach.GUI.ColorfulRectangle;
 import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import out_of_the_breach.model.Model;
 
 public class PowerGridComponent extends ColorfulRectangle {
     int powerGridLevel;
     int percentage;
+    Model model;
 
-    public PowerGridComponent() {
+    public PowerGridComponent(Model model) {
         super(
                 new TerminalSize(40, 2),
                 new AbsComponentPosition(0, 0, ScreenCorner.TopLeft),
@@ -19,6 +21,7 @@ public class PowerGridComponent extends ColorfulRectangle {
 
         powerGridLevel = 0;
         percentage     = 0;
+        this.model     = model;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class PowerGridComponent extends ColorfulRectangle {
     private void drawEnergyBar(TextGraphics buffer) {
         buffer.fillRectangle(
                 new TerminalPosition(7, 0),
-                new TerminalSize(powerGridLevel * 2, 2),
+                new TerminalSize(model.getEnergy() * 2, 2),
                 new TextCharacter('A', new TextColor.RGB(204, 204, 0), new TextColor.RGB(204, 204, 0))
         );
     }

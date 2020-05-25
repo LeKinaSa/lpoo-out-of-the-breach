@@ -60,7 +60,7 @@ public class Application {
         );
 
         root.addComponent(
-                new PowerGridComponent()
+                new PowerGridComponent(model)
         );
 
         root.addComponent(
