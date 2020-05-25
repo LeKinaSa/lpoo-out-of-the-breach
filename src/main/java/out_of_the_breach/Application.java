@@ -37,7 +37,7 @@ public class Application {
         tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
 
         List<City> cities = new ArrayList<>();
-        cities.add(new City(new Position(0, 0), 2, 2));
+        cities.add(new City(new Position(0, 0), 2));
 
         List<Hero> allies = new ArrayList<>();
         allies.add(new Tank(new Position(0, 1), 6, 3, 1));
