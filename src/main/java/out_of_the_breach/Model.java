@@ -47,4 +47,8 @@ public class Model {
     public void setInGame(boolean inGame) {
         this.inGame = inGame;
     }
+
+    public int getSelectedLevelNumber() {
+        return selectedLevel;
+    }
 }
