@@ -186,6 +186,16 @@ public class AttackTest {
     }
 
     @Test
+    public void AOEAttackOutsideOfGridTest() {
+        Position pos = Mockito.mock(Position.class);
+        Mockito.when(pos.adjacentPos(L_SOUTHEAST)).thenReturn(null);
+        AttackStrategy strategy = new AOEAttack(2, L_SOUTHEAST);
+        assertEquals(L_SOUTHEAST, strategy.getDirection());
+        DamageMatrix damageMatrix = strategy.previewAttack(pos);
+        assertEquals(new ArrayList<>(Collections.nCopies(64, 0)), damageMatrix.incomingDamage);
+    }
+
+    @Test
     public void AttackTest() {
         Position p = Mockito.mock(Position.class);
         AttackStrategy strategy = new LineAttack(2, 1, WEST);
