@@ -9,7 +9,6 @@ import out_of_the_breach.model.GameModel;
 
 public class PowerGridComponent extends ColorfulRectangle {
     int powerGridLevel;
-    int percentage;
     GameModel gameModel;
 
     public PowerGridComponent(GameModel gameModel) {
@@ -20,7 +19,6 @@ public class PowerGridComponent extends ColorfulRectangle {
         );
 
         powerGridLevel = 0;
-        percentage     = 0;
         this.gameModel = gameModel;
     }
 
@@ -34,10 +32,10 @@ public class PowerGridComponent extends ColorfulRectangle {
         buffer.putString(1, 0, "POWER");
         buffer.putString(1, 1, "GRID");
 
-        buffer.putString(28, 0, "RESIST");
-        buffer.putString(28, 1, "CHANCE");
+        buffer.putString(28, 0, " GRID");
+        buffer.putString(28, 1, "HEALTH");
 
-        buffer.putString(35, 1, new String(String.valueOf(percentage)) + "%");
+        buffer.putString(35, 1, new String(String.valueOf(gameModel.getEnergy())));
 
         drawEnergyBar(buffer);
     }
@@ -56,14 +54,6 @@ public class PowerGridComponent extends ColorfulRectangle {
 
     public void setPowerGridLevel(int powerGridLevel) {
         this.powerGridLevel = powerGridLevel;
-    }
-
-    public int getPercentage() {
-        return percentage;
-    }
-
-    public void setPercentage(int percentage) {
-        this.percentage = percentage;
     }
 
     public void setGameModel(GameModel gameModel) {
