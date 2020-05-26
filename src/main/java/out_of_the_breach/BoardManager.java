@@ -57,4 +57,10 @@ public class BoardManager extends GUIcomponent {
         }
     }
 
+    public void setModel(Model model) {
+        tiles.setModel(model);
+        overlay.setModel(model);
+        this.model = model;
+    }
+
 }

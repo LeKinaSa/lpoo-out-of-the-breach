@@ -292,4 +292,8 @@ public class BoardGUIOverlay extends GUIcomponent {
         terrainDescription.setEnabled(selected);
         super.setSelected(selected);
     }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }

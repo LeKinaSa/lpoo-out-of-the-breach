@@ -65,4 +65,8 @@ public class PowerGridComponent extends ColorfulRectangle {
     public void setPercentage(int percentage) {
         this.percentage = percentage;
     }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }

@@ -54,4 +54,8 @@ public class EndTurnButton extends ColorfulRectangle {
                 return true;
         }
     }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }

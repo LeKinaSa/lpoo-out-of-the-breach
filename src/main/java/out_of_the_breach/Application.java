@@ -51,36 +51,8 @@ public class Application {
         GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
         Model model        = new Model(tiles, enemies, allies, cities);
 
-        TooltipComponent tooltip = new TooltipComponent();
-        TerrainDescriptionComponent terrainDescription = new TerrainDescriptionComponent();
-        EntityInfoComponent eic = new EntityInfoComponent();
-
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model, tooltip, terrainDescription, eic), tooltip)
-        );
-
-        root.addComponent(
-                new PowerGridComponent(model)
-        );
-
-        root.addComponent(
-                new EndTurnButton(model, tooltip)
-        );
-
-        root.addComponent(
-                new EnemyRoutedComponent()
-        );
-
-        root.addComponent(
-                tooltip
-        );
-
-        root.addComponent(
-                terrainDescription
-        );
-
-        root.addComponent(
-                eic
+                new GameView(model)
         );
 
         while (true) {

@@ -88,4 +88,8 @@ public class BoardTilesComponent extends GUIcomponent {
             }
         }
     }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }
