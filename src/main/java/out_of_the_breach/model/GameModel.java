@@ -16,8 +16,8 @@ public class GameModel {
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
-        this.initialEnergy = this.getCurrentEnergy();
-        this.turns   = 4;
+        setInitialEnergy();
+        this.turns   = 10;
     }
 
     public GameModel(List<TerrainTile> tiles) {
@@ -25,7 +25,7 @@ public class GameModel {
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
-        this.initialEnergy = this.getCurrentEnergy();
+        setInitialEnergy();
     }
 
     public GameModel(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
@@ -33,7 +33,7 @@ public class GameModel {
         this.enemies = enemies;
         this.allies  = allies;
         this.cities  = cities;
-        this.initialEnergy = this.getCurrentEnergy();
+        setInitialEnergy();
     }
 
     protected void setInitialEnergy() {
