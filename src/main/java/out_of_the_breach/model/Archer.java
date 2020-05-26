@@ -19,6 +19,16 @@ public class Archer extends Hero {
     }
 
     @Override
+    public String getName() {
+        return "Archer";
+    }
+
+    @Override
+    public String getInitials() {
+        return "ARC";
+    }
+
+    @Override
     public boolean withinRange(Position pos) {
         return true;
     }

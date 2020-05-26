@@ -39,16 +39,8 @@ public class BoardTilesComponent extends GUIcomponent {
         );
     }
 
-    private void drawCity(TextGraphics buffer) {
-        buffer.putString(1, 1, "CTY");
-    }
-
-    private void drawAlly(TextGraphics buffer) {
-        buffer.putString(1, 1, "HRO");
-    }
-
-    private void drawEnemy(TextGraphics buffer) {
-        buffer.putString(1, 1, "BUG");
+    private void drawEntity(TextGraphics buffer, String initials) {
+        buffer.putString(1, 1, initials);
     }
 
     @Override
@@ -78,13 +70,7 @@ public class BoardTilesComponent extends GUIcomponent {
                 try {
                     if (gameModel.tileOccupied(new Position(x, y))) {
                         Entity entity = gameModel.getEntityAt(new Position(x, y));
-                        if (entity instanceof City) {
-                            drawCity(tileBox);
-                        } else if (entity instanceof Hero) {
-                            drawAlly(tileBox);
-                        } else if (entity instanceof Enemy) {
-                            drawEnemy(tileBox);
-                        }
+                        drawEntity(tileBox, entity.getInitials());
                     }
                 } catch (OutsideOfTheGrid e) {
 

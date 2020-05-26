@@ -17,6 +17,16 @@ public class Lizard extends Enemy {
     }
 
     @Override
+    public String getName() {
+        return "Lizard";
+    }
+
+    @Override
+    public String getInitials() {
+        return "LIZ";
+    }
+
+    @Override
     public void moveAndPlanAttack(GameModel grid) {
         // Find the Targets -> (Prioritize the attacks on cities)
         List<Entity> targets = new ArrayList<>();
