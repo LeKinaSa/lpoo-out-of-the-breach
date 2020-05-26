@@ -15,7 +15,7 @@ public abstract class Level extends GameModel {
         setAllies(getLevelAllies());
         setCities(getLevelCities());
         setEnemies(getLevelEnemies());
-        setInitialEnergy();
+        setTurns(4);
     }
 
     protected abstract List<TerrainTile> getLevelTiles();
