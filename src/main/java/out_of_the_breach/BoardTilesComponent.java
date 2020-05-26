@@ -8,14 +8,19 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import out_of_the_breach.GUI.iGUIcomponentPosition;
 import out_of_the_breach.model.*;
 
 public class BoardTilesComponent extends GUIcomponent {
     private GameModel gameModel;
 
-    public BoardTilesComponent(GameModel gameModel) {
-        super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft));
+    public BoardTilesComponent(GameModel gameModel, iGUIcomponentPosition pos) {
+        super(new TerminalSize(40, 24), pos);
         this.gameModel = gameModel;
+    }
+
+    public BoardTilesComponent(GameModel gameModel) {
+        this(gameModel, new AbsComponentPosition(0, 0, ScreenCorner.TopLeft));
     }
 
     private void drawPlain(TextGraphics buffer) {

@@ -88,6 +88,9 @@ public class GameView extends GUIparentNode {
     }
 
     public void setGameModel(GameModel gameModel) {
+        manager.setGameModel(gameModel);
+        power.setGameModel(gameModel);
+        endButton.setGameModel(gameModel);
         this.gameModel = gameModel;
     }
 
@@ -105,7 +108,7 @@ public class GameView extends GUIparentNode {
                 component.setSelected(true);
 
                 if (stopAtFirstSelectable) {
-                    return false;
+                    return true;
                 }
             } else {
                 continue;
@@ -119,6 +122,6 @@ public class GameView extends GUIparentNode {
             }
         }
         selectedComponent = 0;
-        return false;
+        return true;
     }
 }

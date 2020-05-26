@@ -4,6 +4,8 @@ import out_of_the_breach.GUI.*;
 import com.googlecode.lanterna.TextColor;
 import out_of_the_breach.levels.Level;
 import out_of_the_breach.levels.Level1;
+import out_of_the_breach.levels.Level2;
+import out_of_the_breach.levels.Level3;
 import out_of_the_breach.model.*;
 
 import java.io.IOException;
@@ -17,6 +19,8 @@ public class Application {
 
         List<Level> levelList = new ArrayList<>();
         levelList.add(new Level1());
+        levelList.add(new Level2());
+        levelList.add(new Level3());
         View view = new View(new Model(levelList));
 
         root.addComponent(
