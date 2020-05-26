@@ -28,6 +28,14 @@ public class HeroTest {
     }
 
     @Test
+    public void archerRangeTest() {
+        Hero ally = new Archer(null, -10, -1);
+        assertEquals(true, ally.withinRange(Mockito.mock(Position.class)));
+        assertEquals(0, ally.getHp());
+        assertEquals(8, ally.getStrategies().size());
+    }
+
+    @Test
     public void rangeTest() {
         Hero hero1 = new Tank(null, 10, 1, 1);
         Hero hero2 = new Tank(null, 31, 1, 9);
