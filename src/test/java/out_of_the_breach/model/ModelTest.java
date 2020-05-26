@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 public class ModelTest {
     @Test
     public void emptyTest() {
-        Model grid = new Model();
+        GameModel grid = new GameModel();
         assertEquals(0,   grid.getTiles().size());
         assertEquals(0, grid.getEnemies().size());
         assertEquals(0,  grid.getAllies().size());
@@ -22,7 +22,7 @@ public class ModelTest {
 
     @Test
     public void tilesTest() {
-        Model grid = new Model(new ArrayList<>());
+        GameModel grid = new GameModel(new ArrayList<>());
 
         assertEquals(0,   grid.getTiles().size());
         assertEquals(0, grid.getEnemies().size());
@@ -38,7 +38,7 @@ public class ModelTest {
         assertEquals(terrain, grid.getTiles());
         assertEquals(64, grid.getTiles().size());
 
-        Model grid2 = new Model(terrain);
+        GameModel grid2 = new GameModel(terrain);
         assertEquals(terrain, grid2.getTiles());
         assertEquals(64, grid.getTiles().size());
     }
@@ -66,7 +66,7 @@ public class ModelTest {
         List<City > cities  = new ArrayList<>();
         cities.add(city1);
 
-        Model grid = new Model(terrain, enemies, allies, cities);
+        GameModel grid = new GameModel(terrain, enemies, allies, cities);
         assertEquals(terrain,   grid.getTiles());
         assertEquals(enemies, grid.getEnemies());
         assertEquals( allies,  grid.getAllies());
@@ -122,7 +122,7 @@ public class ModelTest {
         List<City > cities  = new ArrayList<>();
         cities.add (city1 );
 
-        Model grid = new Model(new ArrayList<>(), enemies, allies, cities);
+        GameModel grid = new GameModel(new ArrayList<>(), enemies, allies, cities);
 
         boolean exception = false;
         try {
@@ -178,7 +178,7 @@ public class ModelTest {
         Mockito.when(p3.same(p2)).thenReturn(false);
         Mockito.when(p3.same(p3)).thenReturn( true);
 
-        Model grid = new Model();
+        GameModel grid = new GameModel();
 
         assertEquals(null, grid.getEntityAt(p1));
         assertEquals(false, grid.tileOccupied(p1));
@@ -235,14 +235,14 @@ public class ModelTest {
                 super(null, 0, null);
             }
             @Override
-            public void moveAndPlanAttack(Model grid) {
+            public void moveAndPlanAttack(GameModel grid) {
                 return;
             }
         }
 
         Enemy enemy = new EnemyStub();
         Hero  hero  = new  HeroStub();
-        City  city  = new  City(null, 0, 0);
+        City  city  = new  City(null, 0);
 
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(enemy);
@@ -251,7 +251,7 @@ public class ModelTest {
         List<City > cities  = new ArrayList<>();
         cities.add (city );
 
-        Model grid = new Model(new ArrayList<>(), enemies, allies, cities);
+        GameModel grid = new GameModel(new ArrayList<>(), enemies, allies, cities);
 
         assertEquals(1, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
@@ -293,7 +293,7 @@ public class ModelTest {
                 super(pos, hp, strategy);
             }
             @Override
-            public void moveAndPlanAttack(Model grid) {
+            public void moveAndPlanAttack(GameModel grid) {
                 return;
             }
         }
@@ -316,7 +316,7 @@ public class ModelTest {
 
         Enemy enemy = new EnemyStub(p1, 12, null);
         Hero  hero  = new HeroStub (p2, 11, 2);
-        City  city  = new City     (p3, 10, 2);
+        City  city  = new City     (p3, 10);
 
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(enemy);
@@ -325,7 +325,7 @@ public class ModelTest {
         List<City > cities  = new ArrayList<>();
         cities.add (city );
 
-        Model grid = new Model(null, enemies, allies, cities);
+        GameModel grid = new GameModel(null, enemies, allies, cities);
 
         assertEquals(1, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
@@ -362,7 +362,7 @@ public class ModelTest {
         enemies.add(enemy2);
         enemies.add(enemy3);
 
-        Model grid = new Model(new ArrayList<>(), enemies, new ArrayList<>(), new ArrayList<>());
+        GameModel grid = new GameModel(new ArrayList<>(), enemies, new ArrayList<>(), new ArrayList<>());
 
         verify(enemy1, times(0)).moveAndPlanAttack(grid);
         verify(enemy2, times(0)).moveAndPlanAttack(grid);
@@ -385,7 +385,7 @@ public class ModelTest {
         enemies.add(enemy2);
         enemies.add(enemy3);
 
-        Model grid = new Model(new ArrayList<>(), enemies, new ArrayList<>(), new ArrayList<>());
+        GameModel grid = new GameModel(new ArrayList<>(), enemies, new ArrayList<>(), new ArrayList<>());
 
         verify(enemy1, times(0)).attack(grid);
         verify(enemy2, times(0)).attack(grid);

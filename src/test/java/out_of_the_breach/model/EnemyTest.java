@@ -38,7 +38,7 @@ public class EnemyTest {
         enemy.setAttackStrategy(strategy);
         assertEquals(dmgMatrix, enemy.previewAttack());
 
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         enemy.attack(grid);
         verify(strategy, times(1)).attack(grid, p1);
     }
@@ -46,7 +46,7 @@ public class EnemyTest {
     // ----- BUG -----//
     @Test
     public void moveAndPlanAttack_Bug_CityIsWeaker_SOUTH_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -93,7 +93,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Bug_CityIsWeaker_EAST_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -140,7 +140,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Bug_AllyIsWeaker_WEST_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -193,7 +193,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Bug_AllyIsWeaker_NORTH_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -240,7 +240,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Bug_AllyAndCityAreAtSameHp_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -290,7 +290,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Bug_EnemyCantMoveOrAttack_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -340,15 +340,16 @@ public class EnemyTest {
     public void moveAndPlanAttack_Bug_NoAllyOrCityFound_Test() {
         Position initialPosition = Mockito.mock(Position.class);
 
-        Model modelGrid = Mockito.mock(Model.class);
-        Mockito.when(modelGrid.getCities()).thenReturn(new ArrayList<>());
-        Mockito.when(modelGrid.getAllies()).thenReturn(new ArrayList<>());
+        GameModel gameModelGrid = Mockito.mock(GameModel.class);
+        Mockito.when(gameModelGrid.getCities()).thenReturn(new ArrayList<>());
+        Mockito.when(gameModelGrid.getAllies()).thenReturn(new ArrayList<>());
 
         Enemy enemy = new Bug(initialPosition, 10,1);
+        
         enemy.setAttackDirection(SOUTH);
         assertEquals(SOUTH, enemy.getAttackDirection());
 
-        enemy.moveAndPlanAttack(modelGrid);
+        enemy.moveAndPlanAttack(gameModelGrid);
 
         assertEquals(NONE, enemy.getAttackDirection());
         assertEquals(initialPosition, enemy.getPosition());
@@ -357,7 +358,7 @@ public class EnemyTest {
     // ----- LIZARD -----//
     @Test
     public void moveAndPlanAttack_Lizard_CityIsCloser_SOUTH_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -473,7 +474,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Lizard_CityIsCloser_EAST_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -589,7 +590,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Lizard_AllyIsCloser_WEST_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -705,7 +706,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Lizard_AllyIsCloser_NORTH_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -821,7 +822,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Lizard_AllyAndCityAreAtSameDistance_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -937,7 +938,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Lizard_EnemyCantMoveOrAttack_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
@@ -1055,12 +1056,12 @@ public class EnemyTest {
     public void moveAndPlanAttack_Lizard_NoAllyOrCityFound_Test() {
         Position initialPosition = Mockito.mock(Position.class);
 
-        Model modelGrid = Mockito.mock(Model.class);
-        Mockito.when(modelGrid.getCities()).thenReturn(new ArrayList<>());
-        Mockito.when(modelGrid.getAllies()).thenReturn(new ArrayList<>());
+        GameModel gameModelGrid = Mockito.mock(GameModel.class);
+        Mockito.when(gameModelGrid.getCities()).thenReturn(new ArrayList<>());
+        Mockito.when(gameModelGrid.getAllies()).thenReturn(new ArrayList<>());
 
         Enemy enemy = new Lizard(initialPosition, 10,1);
-        enemy.moveAndPlanAttack(modelGrid);
+        enemy.moveAndPlanAttack(gameModelGrid);
 
         assertEquals(AttackDirection.NONE, enemy.getAttackDirection());
         assertEquals(initialPosition, enemy.getPosition());
@@ -1080,7 +1081,7 @@ public class EnemyTest {
         | |C|C| | |C| |E|
         | | | | | | | | |
         */
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
         City city3 = Mockito.mock(City.class);
@@ -1315,7 +1316,7 @@ public class EnemyTest {
         | | | | | | | | |
         | | | | | | | | |
         */
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
         City city3 = Mockito.mock(City.class);
@@ -1450,7 +1451,7 @@ public class EnemyTest {
         | | | | | | | | |
         | | | | | | | | |
         */
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
         Hero ally1 = Mockito.mock(Hero.class);
@@ -1528,7 +1529,7 @@ public class EnemyTest {
         | | | | |E|E| | |
         | | | | | | | | |
         */
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
         Hero ally1 = Mockito.mock(Hero.class);
@@ -1608,7 +1609,7 @@ public class EnemyTest {
         | |E| | | | | |C|
         | | | | | | | | |
         */
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         City city1 = Mockito.mock(City.class);
         Hero ally1 = Mockito.mock(Hero.class);
         Hero ally2 = Mockito.mock(Hero.class);
@@ -1715,7 +1716,7 @@ public class EnemyTest {
 
     @Test
     public void moveAndPlanAttack_Dragon_EnemyCantMoveOrAttack_Test() {
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         City city = Mockito.mock(City.class);
         Hero ally = Mockito.mock(Hero.class);
 
@@ -1763,15 +1764,16 @@ public class EnemyTest {
     public void moveAndPlanAttack_Dragon_NoAllyOrCityFound_Test() {
         Position initialPosition = Mockito.mock(Position.class);
 
-        Model modelGrid = Mockito.mock(Model.class);
-        Mockito.when(modelGrid.getCities()).thenReturn(new ArrayList<>());
-        Mockito.when(modelGrid.getAllies()).thenReturn(new ArrayList<>());
+        GameModel gameModelGrid = Mockito.mock(GameModel.class);
+        Mockito.when(gameModelGrid.getCities()).thenReturn(new ArrayList<>());
+        Mockito.when(gameModelGrid.getAllies()).thenReturn(new ArrayList<>());
 
         Enemy enemy = new Dragon(initialPosition, 10,1);
+        
         enemy.setAttackDirection(NORTH);
         assertEquals(NORTH, enemy.getAttackDirection());
-
-        enemy.moveAndPlanAttack(modelGrid);
+        
+        enemy.moveAndPlanAttack(gameModelGrid);
 
         assertEquals(initialPosition, enemy.getPosition());
         assertEquals(NONE, enemy.getAttackDirection());

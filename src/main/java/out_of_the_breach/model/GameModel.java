@@ -3,27 +3,27 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model {
+public class GameModel {
     private List<TerrainTile> tiles;
     private List<Enemy> enemies;
     private List<Hero> allies;
     private List<City> cities;
 
-    public Model() {
+    public GameModel() {
         this.tiles   = new ArrayList<>(64);
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
     }
 
-    public Model(List<TerrainTile> tiles) {
+    public GameModel(List<TerrainTile> tiles) {
         this.tiles   = tiles;
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
     }
 
-    public Model(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
+    public GameModel(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
         this.tiles   = tiles;
         this.enemies = enemies;
         this.allies  = allies;
@@ -155,5 +155,15 @@ public class Model {
         for (Hero h : allies) {
             h.reset();
         }
+    }
+
+    public int getEnergy() {
+        int res = 0;
+
+        for (City i : cities) {
+            res += i.getHp();
+        }
+
+        return res;
     }
 }

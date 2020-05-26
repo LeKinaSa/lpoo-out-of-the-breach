@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GUIparentNode extends GUIcomponent {
-    private List<GUIcomponent> components;
-    private int selectedComponent;
+    protected List<GUIcomponent> components;
+    protected int selectedComponent;
 
     public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
         super(componentSize, position, selectable);

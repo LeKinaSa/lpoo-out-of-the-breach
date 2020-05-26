@@ -8,13 +8,13 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import out_of_the_breach.model.Model;
+import out_of_the_breach.model.GameModel;
 
 public class EndTurnButton extends ColorfulRectangle {
     private TooltipComponent tooltip;
-    private Model model;
+    private GameModel gameModel;
 
-    public EndTurnButton(Model model, TooltipComponent tooltip) {
+    public EndTurnButton(GameModel gameModel, TooltipComponent tooltip) {
         super(
                 new TerminalSize(15, 3),
                 new AbsComponentPosition(0, 3, ScreenCorner.TopLeft),
@@ -22,7 +22,7 @@ public class EndTurnButton extends ColorfulRectangle {
                 true
         );
         this.tooltip = tooltip;
-        this.model = model;
+        this.gameModel = gameModel;
     }
 
     @Override
@@ -44,14 +44,18 @@ public class EndTurnButton extends ColorfulRectangle {
     public boolean processKeystroke(KeyStroke stroke) {
         switch (stroke.getKeyType()) {
             case Enter:
-                model.executeAttack();
-                model.planAttack();
-                model.resetHeroes();
+                gameModel.executeAttack();
+                gameModel.planAttack();
+                gameModel.resetHeroes();
                 return true;
             case ArrowRight:
                 return false;
             default:
                 return true;
         }
+    }
+
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 }

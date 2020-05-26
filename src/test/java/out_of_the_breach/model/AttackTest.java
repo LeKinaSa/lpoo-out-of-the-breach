@@ -200,7 +200,7 @@ public class AttackTest {
         Position p = Mockito.mock(Position.class);
         AttackStrategy strategy = new LineAttack(2, 1, WEST);
 
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         ArgumentCaptor<Position> positions = ArgumentCaptor.forClass(Position.class);
         ArgumentCaptor<Integer> damage = ArgumentCaptor.forClass(Integer.class);
 

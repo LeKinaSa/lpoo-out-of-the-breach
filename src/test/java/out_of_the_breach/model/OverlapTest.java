@@ -29,7 +29,7 @@ public class OverlapTest {
         List<City > cities  = new ArrayList<>();
         cities.add(city1);
 
-        Model grid = new Model(terrain, enemies, allies, cities);
+        GameModel grid = new GameModel(terrain, enemies, allies, cities);
 
         fail(); // The city and the hero occupy the same tile, (this should be impossible)
     }
@@ -56,7 +56,7 @@ public class OverlapTest {
         List<City > cities  = new ArrayList<>();
         cities.add(city1);
 
-        Model grid = new Model(terrain, enemies, allies, cities);
+        GameModel grid = new GameModel(terrain, enemies, allies, cities);
 
         assertFalse(ally1.moveTo(new Position(1, 1)));
         // Perhaps this only should be done via the Model object
@@ -102,9 +102,9 @@ public class OverlapTest {
         mike.setAttackDirection(AttackDirection.NORTH);
         enemies.add(mike);
 
-        Model model = new Model(tiles, enemies, allies, cities);
+        GameModel gameModel = new GameModel(tiles, enemies, allies, cities);
 
-        MovementMatrix m =  tank.displayMove(model);
+        MovementMatrix m =  tank.displayMove(gameModel);
 
         assertFalse(m.getMove(new Position(0, 0)));
         assertFalse(m.getMove(new Position(0, 2)));

@@ -11,11 +11,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import out_of_the_breach.model.*;
 
 public class BoardTilesComponent extends GUIcomponent {
-    private Model model;
+    private GameModel gameModel;
 
-    public BoardTilesComponent(Model model) {
+    public BoardTilesComponent(GameModel gameModel) {
         super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft));
-        this.model = model;
+        this.gameModel = gameModel;
     }
 
     private void drawPlain(TextGraphics buffer) {
@@ -61,7 +61,7 @@ public class BoardTilesComponent extends GUIcomponent {
 
                 //TODO: Refactor this
                 //Should the tiles know how to draw themselves?
-                switch (model.getTiles().get(linearOffset)) {
+                switch (gameModel.getTiles().get(linearOffset)) {
                     case PLAIN:
                         drawPlain(tileBox);
                         break;
@@ -71,8 +71,8 @@ public class BoardTilesComponent extends GUIcomponent {
                 }
 
                 try {
-                    if (model.tileOccupied(new Position(x, y))) {
-                        Entity entity = model.getEntityAt(new Position(x, y));
+                    if (gameModel.tileOccupied(new Position(x, y))) {
+                        Entity entity = gameModel.getEntityAt(new Position(x, y));
                         if (entity instanceof City) {
                             drawCity(tileBox);
                         } else if (entity instanceof Hero) {
@@ -87,5 +87,9 @@ public class BoardTilesComponent extends GUIcomponent {
 
             }
         }
+    }
+
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 }
