@@ -42,4 +42,6 @@ public abstract class Entity {
     public boolean isDead() {
         return this.hp == 0;
     }
+
+    public abstract String getName();
 }
