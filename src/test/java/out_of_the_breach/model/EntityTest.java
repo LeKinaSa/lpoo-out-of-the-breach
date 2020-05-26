@@ -19,7 +19,7 @@ public class EntityTest {
             assertEquals(false, true);
         }
 
-        Entity entity1 = new City(p, 2, 1);
+        Entity entity1 = new City(p, 2);
         Entity entity2 = new Bug(p, 3,3);
         Entity entity3 = new Tank(p, 10, 3, 2);
 
@@ -36,7 +36,7 @@ public class EntityTest {
 
     @Test
     public void hpTest() {
-        Entity entity1 = new City(null, -10, 2);
+        Entity entity1 = new City(null, -10);
         Entity entity2 = new  Bug(null, 0,3);
         Entity entity3 = new Tank(null, 5, 3, 2);
 
@@ -47,7 +47,7 @@ public class EntityTest {
 
     @Test
     public void cityTest() {
-        Entity entity = new City(null, 10, 3);
+        Entity entity = new City(null, 10);
         assertEquals(10, entity.getHp());
         assertEquals(false, entity.isDead());
 

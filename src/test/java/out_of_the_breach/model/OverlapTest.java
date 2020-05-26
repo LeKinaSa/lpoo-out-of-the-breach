@@ -20,7 +20,7 @@ public class OverlapTest {
                 return false;
             }
         };
-        City city1 = new City(new Position(0, 0), 2, 2);
+        City city1 = new City(new Position(0, 0), 2);
 
         List<Enemy> enemies = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class OverlapTest {
                 return true;
             }
         };
-        City city1 = new City(new Position(1, 1), 2, 2);
+        City city1 = new City(new Position(1, 1), 2);
 
         List<Enemy> enemies = new ArrayList<>();
 
@@ -91,7 +91,7 @@ public class OverlapTest {
         tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
 
         List<City> cities = new ArrayList<>();
-        cities.add(new City(new Position(0, 0), 2, 2));
+        cities.add(new City(new Position(0, 0), 2));
 
         List<Hero> allies = new ArrayList<>();
         Hero tank = new Tank(new Position(0, 1), 2, 3, 1);
