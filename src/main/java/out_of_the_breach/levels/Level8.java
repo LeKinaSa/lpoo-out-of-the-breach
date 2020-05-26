@@ -11,7 +11,13 @@ import static out_of_the_breach.model.TerrainTile.*;
 public class Level8 extends Level {
     @Override
     protected List<TerrainTile> getLevelTiles() {
-        return new ArrayList<>(Collections.nCopies(64, PLAIN));
+        List<TerrainTile> tiles = new ArrayList<>(Collections.nCopies(64, PLAIN));
+        tiles.set( 0, MOUNTAIN);
+        tiles.set(27, MOUNTAIN);
+        tiles.set(28, MOUNTAIN);
+        tiles.set(35, MOUNTAIN);
+        tiles.set(36, MOUNTAIN);
+        return tiles;
     }
 
     @Override
