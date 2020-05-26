@@ -88,6 +88,7 @@ public class GameView extends GUIparentNode {
     }
 
     public void setGameModel(GameModel gameModel) {
+        gameOver.setEnabled(gameModel.getGameStatus() != GameStatus.GAME_IN_PROGRESS);
         manager.setGameModel(gameModel);
         power.setGameModel(gameModel);
         endButton.setGameModel(gameModel);
