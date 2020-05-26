@@ -8,11 +8,16 @@ import java.io.IOException;
 
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException, OutsideOfTheGrid {
-        LanternaTerminal t = new LanternaTerminal(110, 40);
-        GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
+        LanternaTerminal t  = new LanternaTerminal(110, 40);
+        GUIRoot root        = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
         GameModel gameModel = new Level1();
+        GameView gameView   = new GameView(gameModel);
+
+        // You can change the level with this function call
+        gameView.setGameModel(gameModel);
+
         root.addComponent(
-                new GameView(gameModel)
+                gameView
         );
 
         while (true) {
