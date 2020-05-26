@@ -15,27 +15,20 @@ import static out_of_the_breach.model.AttackDirection.*;
 
 public class AOEAttack extends AttackStrategy {
     private int damage;
-    private List<AttackDirection> possibleDirections;
 
     public AOEAttack(int damage) {
         super(NONE);
         this.damage = damage;
-        this.possibleDirections = new ArrayList<>();
-        this.possibleDirections.add( NONE);
     }
 
     public AOEAttack(int damage, AttackDirection direction) {
         super(direction);
         this.damage = damage;
-        this.possibleDirections = new ArrayList<>();
-        this.possibleDirections.add(direction);
     }
 
     @Override
     public void setDirection(AttackDirection direction) {
-        if (this.possibleDirections.contains(direction)) {
-            super.setDirection(direction);
-        }
+        return;
     }
 
     @Override
