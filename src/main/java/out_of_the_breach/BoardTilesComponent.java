@@ -49,16 +49,24 @@ public class BoardTilesComponent extends GUIcomponent {
             for (int x = 0; x < 8; x++) {
                 int offsetX = x * 5;
                 int offsetY = y * 3;
-                int linearOffset = y*8 + x;
 
                 TerminalPosition offset = new TerminalPosition(offsetX, offsetY);
                 TerminalSize size = new TerminalSize(5, 3);
 
                 TextGraphics tileBox = buffer.newTextGraphics(offset, size);
 
+                Position pos;
+                try {
+                    pos = new Position(x, y);
+                }
+                catch (OutsideOfTheGrid o) {
+                    // Impossible to reach
+                    continue;
+                }
+
                 //TODO: Refactor this
                 //Should the tiles know how to draw themselves?
-                switch (gameModel.getTiles().get(linearOffset)) {
+                switch (gameModel.getTiles().get(pos.getLinearMatrixPosition())) {
                     case PLAIN:
                         drawPlain(tileBox);
                         break;
@@ -66,16 +74,10 @@ public class BoardTilesComponent extends GUIcomponent {
                         drawMountain(tileBox);
                         break;
                 }
-
-                try {
-                    if (gameModel.tileOccupied(new Position(x, y))) {
-                        Entity entity = gameModel.getEntityAt(new Position(x, y));
-                        drawEntity(tileBox, entity.getInitials());
-                    }
-                } catch (OutsideOfTheGrid e) {
-
+                if (gameModel.tileOccupied(pos)) {
+                    Entity entity = gameModel.getEntityAt(pos);
+                    drawEntity(tileBox, entity.getInitials());
                 }
-
             }
         }
     }
