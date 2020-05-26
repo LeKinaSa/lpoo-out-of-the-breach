@@ -25,6 +25,11 @@ public class Dragon extends Enemy {
     }
 
     @Override
+    public String getInitials() {
+        return "DRG";
+    }
+
+    @Override
     public void moveAndPlanAttack(GameModel grid) {
         // Find the Targets -> (Prioritize the attacks on cities)
         List<Entity> targets = new ArrayList<>();

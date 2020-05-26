@@ -20,6 +20,11 @@ public class Tank extends Hero {
     }
 
     @Override
+    public String getInitials() {
+        return "TNK";
+    }
+
+    @Override
     public boolean withinRange(Position pos) {
         int range = super.getMovementRange();
         int distance = super.getPosition().distanceTo(pos);

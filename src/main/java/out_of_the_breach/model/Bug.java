@@ -21,6 +21,11 @@ public class Bug extends Enemy {
     }
 
     @Override
+    public String getInitials() {
+        return "BUG";
+    }
+
+    @Override
     public void moveAndPlanAttack(GameModel grid) {
         this.getAttackStrategy().setDirection(NONE);
         Position targetedPosition = null;

@@ -9,4 +9,9 @@ public class City extends Entity {
     public String getName() {
         return "City";
     }
+
+    @Override
+    public String getInitials() {
+        return "CTY";
+    }
 }
