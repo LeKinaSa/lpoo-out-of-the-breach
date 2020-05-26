@@ -242,7 +242,7 @@ public class ModelTest {
 
         Enemy enemy = new EnemyStub();
         Hero  hero  = new  HeroStub();
-        City  city  = new  City(null, 0, 0);
+        City  city  = new  City(null, 0);
 
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(enemy);
@@ -316,7 +316,7 @@ public class ModelTest {
 
         Enemy enemy = new EnemyStub(p1, 12, null);
         Hero  hero  = new HeroStub (p2, 11, 2);
-        City  city  = new City     (p3, 10, 2);
+        City  city  = new City     (p3, 10);
 
         List<Enemy> enemies = new ArrayList<>();
         enemies.add(enemy);
