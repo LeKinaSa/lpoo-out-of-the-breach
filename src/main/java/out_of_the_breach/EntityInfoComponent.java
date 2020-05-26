@@ -29,13 +29,6 @@ public class EntityInfoComponent extends ColorfulRectangle {
         buffer.enableModifiers(SGR.BOLD);
 
         String name = selectedEntity.getName();
-        if (selectedEntity instanceof City) {
-            name = "City";
-        } else if (selectedEntity instanceof Enemy) {
-            name = "Bug";
-        } else if (selectedEntity instanceof Hero) {
-            name = "Hero";
-        }
 
         buffer.putString(3, 1, name);
         buffer.putString(3, 2, "HP: " + new String(String.valueOf(selectedEntity.getHp())));
