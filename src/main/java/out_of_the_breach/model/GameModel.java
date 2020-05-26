@@ -10,12 +10,14 @@ public class GameModel {
     private List<Enemy> enemies;
     private List<Hero> allies;
     private List<City> cities;
+    private int initialEnergy;
 
     public GameModel() {
         this.tiles   = new ArrayList<>(64);
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
+        this.initialEnergy = this.getCurrentEnergy();
     }
 
     public GameModel(List<TerrainTile> tiles) {
@@ -23,6 +25,7 @@ public class GameModel {
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
+        this.initialEnergy = this.getCurrentEnergy();
     }
 
     public GameModel(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
@@ -30,6 +33,11 @@ public class GameModel {
         this.enemies = enemies;
         this.allies  = allies;
         this.cities  = cities;
+        this.initialEnergy = this.getCurrentEnergy();
+    }
+
+    protected void setInitialEnergy() {
+        this.initialEnergy = getCurrentEnergy();
     }
 
     public boolean tileOccupied(Position pos) {
@@ -163,7 +171,7 @@ public class GameModel {
         }
     }
 
-    public int getEnergy() {
+    public int getCurrentEnergy() {
         int res = 0;
 
         for (City i : cities) {
@@ -171,6 +179,13 @@ public class GameModel {
         }
 
         return res;
+    }
+
+    public int getEnergy() {
+        if (initialEnergy != 0) {
+            return (int) ((getCurrentEnergy() * 1.0 / initialEnergy) * 10);
+        }
+        return getCurrentEnergy();
     }
 
     public GameStatus getGameStatus() {
