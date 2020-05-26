@@ -39,5 +39,8 @@ public class DamageMatrixTest {
                 assertEquals(Integer.valueOf(0), dmgMatrix.incomingDamage.get(index)); // p3 + others
             }
         }
+
+        dmgMatrix.setDamage(p2, 0);
+        assertEquals(0, dmgMatrix.getDamage(p2));
     }
 }

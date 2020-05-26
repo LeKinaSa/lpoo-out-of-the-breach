@@ -17,5 +17,8 @@ public class CityTest {
         assertEquals(0, city.getPower());
         city = new City(null, 2, -1);
         assertEquals(0, city.getPower());
+
+        City alternateCity = new City(null, 10, -1);
+        assertEquals(0, city.getPower());
     }
 }

@@ -196,5 +196,8 @@ public class AttackTest {
 
         strategy.attack(grid, p);
         verify(grid, times(64)).inflictDamage(positions.capture(), damage.capture());
+        for (Position pos : positions.getAllValues()) {
+            assertEquals(true, (pos.getLinearMatrixPosition() >= 0) && (pos.getLinearMatrixPosition() < 64));
+        }
     }
 }

@@ -345,6 +345,9 @@ public class EnemyTest {
         Mockito.when(modelGrid.getAllies()).thenReturn(new ArrayList<>());
 
         Enemy enemy = new Bug(initialPosition, 10,1);
+        enemy.setAttackDirection(SOUTH);
+        assertEquals(SOUTH, enemy.getAttackDirection());
+
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(NONE, enemy.getAttackDirection());
@@ -1705,7 +1708,7 @@ public class EnemyTest {
 
         enemy.moveAndPlanAttack(grid);
 
-        //TODO : consert this test
+        //TODO : verify if the enemy is itself
         //assertEquals(AttackDirection.EAST, enemy.getAttackDirection());
         //assertEquals(p63, enemy.getPosition());
     }
@@ -1765,9 +1768,12 @@ public class EnemyTest {
         Mockito.when(modelGrid.getAllies()).thenReturn(new ArrayList<>());
 
         Enemy enemy = new Dragon(initialPosition, 10,1);
+        enemy.setAttackDirection(NORTH);
+        assertEquals(NORTH, enemy.getAttackDirection());
+
         enemy.moveAndPlanAttack(modelGrid);
 
         assertEquals(initialPosition, enemy.getPosition());
-        assertEquals(AttackDirection.NONE, enemy.getAttackDirection());
+        assertEquals(NONE, enemy.getAttackDirection());
     }
 }
