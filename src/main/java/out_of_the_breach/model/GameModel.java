@@ -187,4 +187,8 @@ public class GameModel {
     public int getTurns() {
         return turns;
     }
+
+    public void setTurns(int turns) {
+        this.turns = turns;
+    }
 }

@@ -36,6 +36,7 @@ public class View extends GUIparentNode {
     public boolean processKeystroke(KeyStroke stroke) {
         if (model.isInGame()) {
             if (!gameView.processKeystroke(stroke)) {
+                model.getSelectedLevel().start();//Reset the level
                 model.setInGame(false);
                 gameView.setEnabled(false);
                 board.setEnabled(true);
