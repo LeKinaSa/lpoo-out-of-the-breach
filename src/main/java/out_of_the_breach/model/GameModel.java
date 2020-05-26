@@ -3,14 +3,13 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
-;
-
 public class GameModel {
     private List<TerrainTile> tiles;
     private List<Enemy> enemies;
     private List<Hero> allies;
     private List<City> cities;
     private int initialEnergy;
+    int turns;
 
     public GameModel() {
         this.tiles   = new ArrayList<>(64);
@@ -18,6 +17,7 @@ public class GameModel {
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
         this.initialEnergy = this.getCurrentEnergy();
+        this.turns   = 4;
     }
 
     public GameModel(List<TerrainTile> tiles) {
@@ -163,6 +163,7 @@ public class GameModel {
         for (Enemy enemy : this.enemies) {
             enemy.attack(this);
         }
+        turns--;
     }
 
     public void resetHeroes() {
@@ -189,12 +190,16 @@ public class GameModel {
     }
 
     public GameStatus getGameStatus() {
-        if (enemies.size() == 0) {
+        if (enemies.size() == 0 || turns == 0) {
             return GameStatus.PLAYER_WINS;
         } else if (allies.size() == 0 || getEnergy() == 0) {
             return GameStatus.PLAYER_LOSES;
         } else {
             return GameStatus.GAME_IN_PROGRESS;
         }
+    }
+
+    public int getTurns() {
+        return turns;
     }
 }

@@ -8,6 +8,7 @@ import out_of_the_breach.model.GameModel;
 import out_of_the_breach.model.GameStatus;
 
 public class GameView extends GUIparentNode {
+    private EnemyRoutedComponent enemyRoutedComponent;
     private GameModel gameModel;
     private BoardManager manager;
     private PowerGridComponent power;
@@ -38,6 +39,8 @@ public class GameView extends GUIparentNode {
         gameOver.setEnabled(false);
         gameOver.setText("GAME OVER");
 
+        enemyRoutedComponent = new EnemyRoutedComponent();
+
         addComponent(
                 manager
         );
@@ -51,7 +54,7 @@ public class GameView extends GUIparentNode {
         );
 
         addComponent(
-                new EnemyRoutedComponent()
+                enemyRoutedComponent
         );
 
         addComponent(
@@ -74,6 +77,7 @@ public class GameView extends GUIparentNode {
     // We don't want to "sandbox" this component
     // That's why we override bondedDraw
     public void bondedDraw(TextGraphics buffer) {
+        enemyRoutedComponent.setnTurns(gameModel.getTurns());
         if (gameModel.getGameStatus() == GameStatus.PLAYER_LOSES) {
             gameOver.setEnabled(true);
             gameOver.setText("GAME OVER");
