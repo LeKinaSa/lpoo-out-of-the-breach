@@ -54,6 +54,20 @@ public class BoardGUIOverlay extends GUIcomponent {
         );
     }
 
+    private void drawDamageHighlighter(TextGraphics buffer, int x, int y, int damage) {
+        int offsetX = x * 5;
+        int offsetY = y * 3;
+        buffer.drawRectangle(
+                new TerminalPosition(offsetX, offsetY),
+                new TerminalSize(5, 3),
+                new TextCharacter(
+                        (char)(damage + '0'),
+                        new TextColor.RGB(255, 255, 255),
+                        new TextColor.RGB(255, 0, 0)
+                )
+        );
+    }
+
     private void drawSelector(TextGraphics buffer) {
         drawTileHighlighter(buffer, new TextColor.RGB(255, 255, 255), x, y);
     }
@@ -119,7 +133,7 @@ public class BoardGUIOverlay extends GUIcomponent {
                 }
 
                 if (matrix.getDamage(p) > 0) {
-                    drawTileHighlighter(buffer, new TextColor.RGB(255, 0, 0), x, y);
+                    drawDamageHighlighter(buffer, x, y, matrix.getDamage(p));
                 }
             }
         }
