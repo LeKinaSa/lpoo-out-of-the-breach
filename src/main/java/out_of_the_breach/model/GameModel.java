@@ -3,6 +3,12 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
+enum GameStatus {
+    PLAYER_WINS,
+    PLAYER_LOSES,
+    GAME_IN_PROGRESS
+};
+
 public class GameModel {
     private List<TerrainTile> tiles;
     private List<Enemy> enemies;
@@ -165,5 +171,15 @@ public class GameModel {
         }
 
         return res;
+    }
+
+    public GameStatus getGameStatus() {
+        if (enemies.size() == 0) {
+            return GameStatus.PLAYER_WINS;
+        } else if (allies.size() == 0) {
+            return GameStatus.PLAYER_LOSES;
+        } else {
+            return GameStatus.GAME_IN_PROGRESS;
+        }
     }
 }
