@@ -8,7 +8,7 @@ import java.util.List;
 
 import static out_of_the_breach.model.TerrainTile.*;
 
-public class Level0 extends Level {
+public class Level4 extends Level {
     @Override
     protected List<TerrainTile> getLevelTiles() {
         return new ArrayList<>(Collections.nCopies(64, PLAIN));
@@ -19,7 +19,13 @@ public class Level0 extends Level {
         List<City> cities = new ArrayList<>();
 
         try {
-            cities.add(new City(new Position(2, 1), 2));
+            cities.add(new City(new Position(5, 1), 5));
+        } catch (OutsideOfTheGrid outsideOfTheGrid) {
+            //Impossible to get here
+            outsideOfTheGrid.printStackTrace();
+        }
+        try {
+            cities.add(new City(new Position(6, 7), 3));
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
             //Impossible to get here
             outsideOfTheGrid.printStackTrace();
@@ -33,7 +39,19 @@ public class Level0 extends Level {
         List<Hero> allies = new ArrayList<>();
 
         try {
-            allies.add(new Tank(new Position(6, 6), 3, 2, 3));
+            allies.add(new Tank(new Position(1, 2), 4, 2, 3));
+        } catch (OutsideOfTheGrid outsideOfTheGrid) {
+            //Impossible to get here
+            outsideOfTheGrid.printStackTrace();
+        }
+        try {
+            allies.add(new Tank(new Position(2, 5), 6, 1, 3));
+        } catch (OutsideOfTheGrid outsideOfTheGrid) {
+            //Impossible to get here
+            outsideOfTheGrid.printStackTrace();
+        }
+        try {
+            allies.add(new Tank(new Position(4, 7), 7, 1, 3));
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
             //Impossible to get here
             outsideOfTheGrid.printStackTrace();
@@ -47,7 +65,13 @@ public class Level0 extends Level {
         List<Enemy> enemies = new ArrayList<>();
 
         try {
-            enemies.add(new Bug(new Position(1, 5), 2, 1));
+            enemies.add(new Bug(new Position(0, 7), 2, 5));
+        } catch (OutsideOfTheGrid outsideOfTheGrid) {
+            //Impossible to get here
+            outsideOfTheGrid.printStackTrace();
+        }
+        try {
+            enemies.add(new Lizard(new Position(6, 4), 8, 1));
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
             //Impossible to get here
             outsideOfTheGrid.printStackTrace();

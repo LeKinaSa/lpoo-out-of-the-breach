@@ -8,7 +8,7 @@ import java.util.List;
 
 import static out_of_the_breach.model.TerrainTile.*;
 
-public class Level0 extends Level {
+public class Level5 extends Level {
     @Override
     protected List<TerrainTile> getLevelTiles() {
         return new ArrayList<>(Collections.nCopies(64, PLAIN));
@@ -19,7 +19,7 @@ public class Level0 extends Level {
         List<City> cities = new ArrayList<>();
 
         try {
-            cities.add(new City(new Position(2, 1), 2));
+            cities.add(new City(new Position(2, 0), 2));
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
             //Impossible to get here
             outsideOfTheGrid.printStackTrace();
@@ -33,7 +33,13 @@ public class Level0 extends Level {
         List<Hero> allies = new ArrayList<>();
 
         try {
-            allies.add(new Tank(new Position(6, 6), 3, 2, 3));
+            allies.add(new Tank(new Position(1, 5), 4, 1, 3));
+        } catch (OutsideOfTheGrid outsideOfTheGrid) {
+            //Impossible to get here
+            outsideOfTheGrid.printStackTrace();
+        }
+        try {
+            allies.add(new Archer(new Position(0, 2), 1, 3));
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
             //Impossible to get here
             outsideOfTheGrid.printStackTrace();
@@ -47,7 +53,7 @@ public class Level0 extends Level {
         List<Enemy> enemies = new ArrayList<>();
 
         try {
-            enemies.add(new Bug(new Position(1, 5), 2, 1));
+            enemies.add(new Lizard(new Position(1, 7), 4, 2));
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
             //Impossible to get here
             outsideOfTheGrid.printStackTrace();
