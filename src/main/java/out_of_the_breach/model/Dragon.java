@@ -6,8 +6,7 @@ import java.util.List;
 import static out_of_the_breach.model.AttackDirection.*;
 
 /*
-    It will target the closest units.
-    If the target is inaccessible, it will try the next nearest entity.
+    This enemy will look to damage the most heros or cities.
     Prioritizes cities.
     Avoids hitting enemies.
  */
@@ -51,7 +50,7 @@ public class Dragon extends Enemy {
             Position east  = targetPosition.adjacentPos( EAST);
             Position west  = targetPosition.adjacentPos( WEST);
 
-            if ((north != null) && ((!grid.tileOccupied(north)) || (north.same(super.getPosition())))) {
+            if (canMove(grid, north)) {
                 auxPos = north;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -80,7 +79,7 @@ public class Dragon extends Enemy {
                     direction = SOUTH;
                 }
             }
-            if ((south != null) && ((!grid.tileOccupied(south)) || (south.same(super.getPosition())))) {
+            if (canMove(grid, south)) {
                 auxPos = south;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -109,7 +108,7 @@ public class Dragon extends Enemy {
                     direction = NORTH;
                 }
             }
-            if ((east != null) && ((!grid.tileOccupied(east)) || (east.same(super.getPosition())))) {
+            if (canMove(grid, east)) {
                 auxPos = east;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -138,7 +137,7 @@ public class Dragon extends Enemy {
                     direction = WEST;
                 }
             }
-            if ((west != null) && ((!grid.tileOccupied(west)) || (west.same(super.getPosition())))) {
+            if (canMove(grid, west)) {
                 auxPos = west;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {

@@ -32,7 +32,7 @@ public abstract class Hero extends Entity {
                 catch (OutsideOfTheGrid o) {
                     continue;
                 }
-                boolean canMove = !grid.tileOccupied(p) && this.withinRange(p);
+                boolean canMove = !grid.tileOccupied(p) && !grid.tileIntransitable(p) && this.withinRange(p);
 
                 moveMatrix.setMove(p, canMove);
             }

@@ -6,7 +6,8 @@ import java.util.List;
 import static out_of_the_breach.model.AttackDirection.*;
 
 /*
-    This enemy will look to damage the most possible heros or cities.
+    It will target the closest units.
+    If the target is inaccessible, it will try the next nearest entity.
     Prioritizes cities.
  */
 
@@ -44,28 +45,28 @@ public class Lizard extends Enemy {
             Position east  = targetPosition.adjacentPos( EAST);
             Position west  = targetPosition.adjacentPos( WEST);
 
-            if ((north != null) && ((!grid.tileOccupied(north)) || (north.same(super.getPosition())))) {
+            if (canMove(grid, north)) {
                 distance = pos.distanceTo(north);
                 if (distance < smallerDistance) {
                     closerPosition = north;
                     smallerDistance = distance;
                 }
             }
-            if ((south != null) && ((!grid.tileOccupied(south)) || (south.same(super.getPosition())))) {
+            if (canMove(grid, south)) {
                 distance = pos.distanceTo(south);
                 if (distance < smallerDistance) {
                     closerPosition = south;
                     smallerDistance = distance;
                 }
             }
-            if ((east != null) && ((!grid.tileOccupied(east)) || (east.same(super.getPosition())))) {
+            if (canMove(grid, east)) {
                 distance = pos.distanceTo(east);
                 if (distance < smallerDistance) {
                     closerPosition = east;
                     smallerDistance = distance;
                 }
             }
-            if ((west != null) && ((!grid.tileOccupied(west)) || (west.same(super.getPosition())))) {
+            if (canMove(grid, west)) {
                 distance = pos.distanceTo(west);
                 if (distance < smallerDistance) {
                     closerPosition = west;

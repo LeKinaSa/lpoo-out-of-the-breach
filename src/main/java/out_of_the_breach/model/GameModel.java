@@ -36,6 +36,10 @@ public class GameModel {
         return getEntityAt(pos) != null;
     }
 
+    public boolean tileIntransitable(Position pos) {
+        return this.tiles.get(pos.getLinearMatrixPosition()) == TerrainTile.MOUNTAIN;
+    }
+
     public Entity getEntityAt(Position pos) {
         for (Enemy enemy : this.enemies) {
             if (enemy.getPosition().same(pos)) {

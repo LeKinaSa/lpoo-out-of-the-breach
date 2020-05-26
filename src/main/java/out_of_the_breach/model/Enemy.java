@@ -26,6 +26,10 @@ public abstract class Enemy extends Entity {
 
     public abstract void moveAndPlanAttack(GameModel grid);
 
+    protected boolean canMove(GameModel grid, Position pos) {
+        return ((pos != null) && ((!grid.tileOccupied(pos)) || (pos.same(super.getPosition()))) && (!grid.tileIntransitable(pos)));
+    }
+
     public DamageMatrix previewAttack() {
         return this.strategy.previewAttack(super.getPosition());
     }
