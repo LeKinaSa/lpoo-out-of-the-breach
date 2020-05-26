@@ -16,7 +16,7 @@ public class Bug extends Enemy {
     }
 
     @Override
-    public void moveAndPlanAttack(Model grid) {
+    public void moveAndPlanAttack(GameModel grid) {
         this.getAttackStrategy().setDirection(NONE);
         Position targetedPosition = null;
         int lowerHp = -1;

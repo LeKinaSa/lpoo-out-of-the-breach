@@ -24,13 +24,13 @@ public abstract class Enemy extends Entity {
         this.strategy.setDirection(direction);
     }
 
-    public abstract void moveAndPlanAttack(Model grid);
+    public abstract void moveAndPlanAttack(GameModel grid);
 
     public DamageMatrix previewAttack() {
         return this.strategy.previewAttack(super.getPosition());
     }
 
-    public void attack(Model grid) {
+    public void attack(GameModel grid) {
         this.strategy.attack(grid, super.getPosition());
     }
 }

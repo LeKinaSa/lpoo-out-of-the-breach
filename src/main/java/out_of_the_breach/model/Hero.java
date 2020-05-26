@@ -21,7 +21,7 @@ public abstract class Hero extends Entity {
 
     public abstract boolean withinRange(Position pos);
 
-    public MovementMatrix displayMove(Model grid) {
+    public MovementMatrix displayMove(GameModel grid) {
         MovementMatrix moveMatrix = new MovementMatrix();
         Position p;
         for (int x = 0; x < 8; x ++) {
@@ -59,14 +59,14 @@ public abstract class Hero extends Entity {
         return strategy.previewAttack(super.getPosition());
     }
 
-    public void attack(Model grid, AttackStrategy strategy) {
+    public void attack(GameModel grid, AttackStrategy strategy) {
         if (!hasEndedTurn) {
             strategy.attack(grid, super.getPosition());
             hasEndedTurn = true;
         }
     }
 
-    public void attack(Model grid, int strategyIndex) {
+    public void attack(GameModel grid, int strategyIndex) {
         if ((strategyIndex >= 0) && (strategyIndex < this.strategies.size())) {
             attack(grid, this.strategies.get(strategyIndex));
         }

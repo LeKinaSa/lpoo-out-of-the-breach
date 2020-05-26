@@ -1,36 +1,34 @@
 package out_of_the_breach;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import out_of_the_breach.GUI.GUIcomponent;
 import out_of_the_breach.GUI.GUIparentNode;
-import out_of_the_breach.model.Model;
+import out_of_the_breach.model.GameModel;
 
 public class GameView extends GUIparentNode {
-    private Model model;
+    private GameModel gameModel;
     private BoardManager manager;
     private PowerGridComponent power;
     private EndTurnButton endButton;
 
-    public GameView(Model model) {
+    public GameView(GameModel gameModel) {
         super(null, null, true);
 
-        this.model = model;
+        this.gameModel = gameModel;
 
         TooltipComponent tooltip = new TooltipComponent();
         TerrainDescriptionComponent terrainDescription = new TerrainDescriptionComponent();
         EntityInfoComponent eic = new EntityInfoComponent();
 
         manager = new BoardManager(
-                new BoardTilesComponent(model),
-                model,
-                new BoardGUIOverlay(model, tooltip, terrainDescription, eic),
+                new BoardTilesComponent(gameModel),
+                gameModel,
+                new BoardGUIOverlay(gameModel, tooltip, terrainDescription, eic),
                 tooltip
         );
 
-        power = new PowerGridComponent(model);
+        power = new PowerGridComponent(gameModel);
 
-        endButton = new EndTurnButton(model, tooltip);
+        endButton = new EndTurnButton(gameModel, tooltip);
 
         addComponent(
                 manager
@@ -69,7 +67,7 @@ public class GameView extends GUIparentNode {
         }
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 }

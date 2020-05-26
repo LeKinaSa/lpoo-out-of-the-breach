@@ -5,7 +5,7 @@ import out_of_the_breach.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level1 extends Model {
+public class Level1 extends GameModel {
     private List<TerrainTile> getLevelTiles() {
         List<TerrainTile> tiles = new ArrayList<>();
         tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);

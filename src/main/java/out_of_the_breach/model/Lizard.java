@@ -16,7 +16,7 @@ public class Lizard extends Enemy {
     }
 
     @Override
-    public void moveAndPlanAttack(Model grid) {
+    public void moveAndPlanAttack(GameModel grid) {
         // Find the Targets -> (Prioritize the attacks on cities)
         List<Entity> targets = new ArrayList<>();
 

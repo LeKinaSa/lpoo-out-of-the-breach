@@ -58,7 +58,7 @@ public class HeroTest {
         assertEquals(false, hero.getHasEndedTurn());
 
         AttackStrategy strategy = Mockito.mock(AttackStrategy.class);
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
         hero.attack(grid, strategy);
         assertEquals(true, hero.getHasEndedTurn());
     }
@@ -74,7 +74,7 @@ public class HeroTest {
         strats.add(strategy2);
         ally.setStrategies(strats);
 
-        Model grid = Mockito.mock(Model.class);
+        GameModel grid = Mockito.mock(GameModel.class);
 
         assertEquals(false, ally.getHasEndedTurn());
 
@@ -95,13 +95,13 @@ public class HeroTest {
 
     @Test
     public void displayMoveTest() {
-        class ModelStub extends Model {
+        class GameModelStub extends GameModel {
             @Override
             public boolean tileOccupied(Position p) {
                 return false;
             }
         }
-        Model grid = new ModelStub();
+        GameModel grid = new GameModelStub();
         Position p = Mockito.mock(Position.class);
         Hero ally1 = new Tank  (p, 1, 1, 3);
         Hero ally2 = new Archer(p, 1, 1);

@@ -7,18 +7,18 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import out_of_the_breach.model.Model;
+import out_of_the_breach.model.GameModel;
 
 public class BoardManager extends GUIcomponent {
     BoardTilesComponent tiles;
     BoardGUIOverlay overlay;
-    Model model;
+    GameModel gameModel;
     TooltipComponent tooltip;
 
-    public BoardManager(BoardTilesComponent tiles, Model model, BoardGUIOverlay overlay, TooltipComponent tooltip) {
+    public BoardManager(BoardTilesComponent tiles, GameModel gameModel, BoardGUIOverlay overlay, TooltipComponent tooltip) {
         super(new TerminalSize(40, 24), new CenteredComponentPosition(), true);
         this.tiles = tiles;
-        this.model = model;
+        this.gameModel = gameModel;
         this.overlay = overlay;
         this.tooltip = tooltip;
     }
@@ -57,10 +57,10 @@ public class BoardManager extends GUIcomponent {
         }
     }
 
-    public void setModel(Model model) {
-        tiles.setModel(model);
-        overlay.setModel(model);
-        this.model = model;
+    public void setGameModel(GameModel gameModel) {
+        tiles.setGameModel(gameModel);
+        overlay.setGameModel(gameModel);
+        this.gameModel = gameModel;
     }
 
 }
