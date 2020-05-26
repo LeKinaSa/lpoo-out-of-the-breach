@@ -2,23 +2,25 @@ package out_of_the_breach;
 
 import out_of_the_breach.GUI.*;
 import com.googlecode.lanterna.TextColor;
+import out_of_the_breach.levels.Level;
 import out_of_the_breach.levels.Level1;
 import out_of_the_breach.model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException, OutsideOfTheGrid {
         LanternaTerminal t  = new LanternaTerminal(110, 40);
         GUIRoot root        = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
-        GameModel gameModel = new Level1();
-        GameView gameView   = new GameView(gameModel);
 
-        // You can change the level with this function call
-        gameView.setGameModel(gameModel);
+        List<Level> levelList = new ArrayList<>();
+        levelList.add(new Level1());
+        View view = new View(new Model(levelList));
 
         root.addComponent(
-                gameView
+                view
         );
 
         while (true) {
