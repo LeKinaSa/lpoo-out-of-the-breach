@@ -35,7 +35,7 @@ public class PowerGridComponent extends ColorfulRectangle {
         buffer.putString(28, 0, " GRID");
         buffer.putString(28, 1, "HEALTH");
 
-        buffer.putString(35, 1, new String(String.valueOf(gameModel.getEnergy())));
+        buffer.putString(35, 1, new String(String.valueOf(gameModel.getEnergy() * 10) + "%"));
 
         drawEnergyBar(buffer);
     }
