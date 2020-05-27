@@ -228,6 +228,14 @@ public class ModelTest {
             public boolean withinRange(Position pos) {
                 return true;
             }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
+            }
         }
 
         class EnemyStub extends Enemy {
@@ -237,6 +245,14 @@ public class ModelTest {
             @Override
             public void moveAndPlanAttack(GameModel grid) {
                 return;
+            }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
             }
         }
 
@@ -286,6 +302,14 @@ public class ModelTest {
             public boolean withinRange(Position pos) {
                 return true;
             }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
+            }
         }
 
         class EnemyStub extends Enemy {
@@ -295,6 +319,14 @@ public class ModelTest {
             @Override
             public void moveAndPlanAttack(GameModel grid) {
                 return;
+            }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
             }
         }
 
