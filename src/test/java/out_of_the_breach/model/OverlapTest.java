@@ -19,6 +19,14 @@ public class OverlapTest {
             public boolean withinRange(Position pos) {
                 return false;
             }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
+            }
         };
         City city1 = new City(new Position(0, 0), 2);
 
@@ -45,6 +53,14 @@ public class OverlapTest {
             @Override
             public boolean withinRange(Position pos) {
                 return true;
+            }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
             }
         };
         City city1 = new City(new Position(1, 1), 2);
