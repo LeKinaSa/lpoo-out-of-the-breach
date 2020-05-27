@@ -147,6 +147,7 @@ public class GameModel {
 
     public void setCities(List<City> cities) {
         this.cities = cities;
+        setInitialEnergy();
     }
 
     protected void setInitialEnergy() {
