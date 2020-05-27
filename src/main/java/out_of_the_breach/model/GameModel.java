@@ -63,34 +63,6 @@ public class GameModel {
         return null;
     }
 
-    public void addEnemy(Enemy enemy) throws OccupiedTile {
-        if (!this.tileOccupied(enemy.getPosition())) {
-            this.enemies.add(enemy);
-        }
-        else {
-            throw new OccupiedTile();
-        }
-    }
-
-    public void addAlly(Hero ally) throws OccupiedTile {
-        if (!this.tileOccupied(ally.getPosition())) {
-            this.allies.add(ally);
-        }
-        else {
-            throw new OccupiedTile();
-        }
-
-    }
-
-    public void addCity(City city) throws OccupiedTile {
-        if (!this.tileOccupied(city.getPosition())) {
-            this.cities.add(city);
-        }
-        else {
-            throw new OccupiedTile();
-        }
-    }
-
     public void removeEntity(Entity entity) {
         if (entity instanceof Hero) {
             this.allies.remove(entity);
