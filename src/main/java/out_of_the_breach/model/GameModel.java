@@ -20,22 +20,6 @@ public class GameModel {
         this.turns   = 4;
     }
 
-    public GameModel(List<TerrainTile> tiles) {
-        this.tiles   = tiles;
-        this.enemies = new ArrayList<>();
-        this.allies  = new ArrayList<>();
-        this.cities  = new ArrayList<>();
-        setInitialEnergy();
-    }
-
-    public GameModel(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
-        this.tiles   = tiles;
-        this.enemies = enemies;
-        this.allies  = allies;
-        this.cities  = cities;
-        setInitialEnergy();
-    }
-
     public boolean tileIntransitable(Position pos) {
         return this.tiles.get(pos.getLinearMatrixPosition()) == TerrainTile.MOUNTAIN;
     }
