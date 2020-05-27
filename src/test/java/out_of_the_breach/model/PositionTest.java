@@ -269,4 +269,50 @@ public class PositionTest {
         assertEquals(3, none.getX());
         assertEquals(3, none.getY());
     }
+
+    @Test
+    public void adjacentPosOutsideOfGridTest() {
+        Position p1 = null, p2 = null;
+        try {
+            p1 = new Position(7, 7);
+            p2 = new Position(0, 0);
+        }
+        catch (OutsideOfTheGrid o) {
+            assertEquals(false, true);
+        }
+
+        Position l_se = null, l_sw = null, l_wn = null, l_ws = null;
+        Position l_ne = null, l_nw = null, l_en = null, l_es = null;
+
+        try {
+            l_se  = p1.adjacentPos(AttackDirection.L_SOUTHEAST);
+            l_sw  = p1.adjacentPos(AttackDirection.L_SOUTHWEST);
+            l_wn  = p1.adjacentPos(AttackDirection.L_WESTNORTH);
+            l_ws  = p1.adjacentPos(AttackDirection.L_WESTSOUTH);
+
+            l_ne  = p2.adjacentPos(AttackDirection.L_NORTHEAST);
+            l_nw  = p2.adjacentPos(AttackDirection.L_NORTHWEST);
+            l_en  = p2.adjacentPos(AttackDirection.L_EASTNORTH);
+            l_es  = p2.adjacentPos(AttackDirection.L_EASTSOUTH);
+        }
+        catch (NullPointerException n) {
+            assertEquals(false, true);
+        }
+
+        assertEquals(7, p1.getX());
+        assertEquals(7, p1.getY());
+
+        assertEquals(0, p2.getX());
+        assertEquals(0, p2.getY());
+
+        assertEquals(null, l_se);
+        assertEquals(null, l_sw);
+        assertEquals(null, l_wn);
+        assertEquals(null, l_ws);
+
+        assertEquals(null, l_ne);
+        assertEquals(null, l_nw);
+        assertEquals(null, l_en);
+        assertEquals(null, l_es);
+    }
 }

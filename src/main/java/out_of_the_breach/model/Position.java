@@ -78,22 +78,61 @@ public class Position {
                 return this.west();
 
             case L_NORTHEAST:
-                return this.north().north().east();
+                try {
+                    return this.north().north().east();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_NORTHWEST:
-                return this.north().north().west();
+                try {
+                    return this.north().north().west();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_SOUTHEAST:
-                return this.south().south().east();
+                try {
+                    return this.south().south().east();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_SOUTHWEST:
-                return this.south().south().west();
+                try {
+                    return this.south().south().west();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_EASTNORTH:
-                return this.east().east().north();
+                try {
+                    return this.east().east().north();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_EASTSOUTH:
-                return this.east().east().south();
+                try {
+                    return this.east().east().south();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_WESTNORTH:
-                return this.west().west().north();
+                try {
+                    return this.west().west().north();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             case L_WESTSOUTH:
-                return this.west().west().south();
-
+                try {
+                    return this.west().west().south();
+                }
+                catch (NullPointerException n) {
+                    return null;
+                }
             default:
                 return this;
         }
