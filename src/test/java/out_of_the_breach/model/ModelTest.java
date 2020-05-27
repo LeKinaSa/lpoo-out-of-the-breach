@@ -190,7 +190,7 @@ public class ModelTest {
         enemies.add(enemy3);
 
         GameModel grid = new GameModel();
-        grid.setEnemies(enemies); grid.setAllies(allies); grid.setCities(cities);
+        grid.setEnemies(enemies);
 
         verify(enemy1, times(0)).moveAndPlanAttack(grid);
         verify(enemy2, times(0)).moveAndPlanAttack(grid);
