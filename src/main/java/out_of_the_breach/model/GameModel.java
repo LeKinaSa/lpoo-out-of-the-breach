@@ -17,7 +17,7 @@ public class GameModel {
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
         setInitialEnergy();
-        this.turns   = 10;
+        this.turns   = 4;
     }
 
     public GameModel(List<TerrainTile> tiles) {
@@ -36,16 +36,12 @@ public class GameModel {
         setInitialEnergy();
     }
 
-    protected void setInitialEnergy() {
-        this.initialEnergy = getCurrentEnergy();
+    public boolean tileIntransitable(Position pos) {
+        return this.tiles.get(pos.getLinearMatrixPosition()) == TerrainTile.MOUNTAIN;
     }
 
     public boolean tileOccupied(Position pos) {
         return getEntityAt(pos) != null;
-    }
-
-    public boolean tileIntransitable(Position pos) {
-        return this.tiles.get(pos.getLinearMatrixPosition()) == TerrainTile.MOUNTAIN;
     }
 
     public Entity getEntityAt(Position pos) {
@@ -153,23 +149,8 @@ public class GameModel {
         this.cities = cities;
     }
 
-    public void planAttack() {
-        for (Enemy enemy : this.enemies) {
-            enemy.moveAndPlanAttack(this);
-        }
-    }
-
-    public void executeAttack() {
-        for (Enemy enemy : this.enemies) {
-            enemy.attack(this);
-        }
-        turns--;
-    }
-
-    public void resetHeroes() {
-        for (Hero h : allies) {
-            h.reset();
-        }
+    protected void setInitialEnergy() {
+        this.initialEnergy = getCurrentEnergy();
     }
 
     public int getCurrentEnergy() {
@@ -189,6 +170,14 @@ public class GameModel {
         return getCurrentEnergy();
     }
 
+    public int getTurns() {
+        return turns;
+    }
+
+    public void setTurns(int turns) {
+        this.turns = turns;
+    }
+
     public GameStatus getGameStatus() {
         if (enemies.size() == 0 || turns == 0) {
             return GameStatus.PLAYER_WINS;
@@ -199,11 +188,23 @@ public class GameModel {
         }
     }
 
-    public int getTurns() {
-        return turns;
+    public void planAttack() {
+        for (Enemy enemy : this.enemies) {
+            enemy.moveAndPlanAttack(this);
+        }
     }
 
-    public void setTurns(int turns) {
-        this.turns = turns;
+    public void executeAttack() {
+        for (Enemy enemy : this.enemies) {
+            enemy.attack(this);
+        }
+        turns--;
     }
+
+    public void resetHeroes() {
+        for (Hero h : allies) {
+            h.reset();
+        }
+    }
+
 }
