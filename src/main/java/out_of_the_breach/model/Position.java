@@ -1,5 +1,9 @@
 package out_of_the_breach.model;
 
+/*
+    Represents the position of the entity in the grid.
+ */
+
 public class Position {
     private int x;
     private int y;
@@ -22,6 +26,9 @@ public class Position {
         return this.y;
     }
 
+    /*
+        Get the index for accessing a linear matrix with the position.
+     */
     public int getLinearMatrixPosition() {
         return this.x + this.y * 8;
     }
@@ -31,14 +38,23 @@ public class Position {
         this.y = pos.y;
     }
 
+    /*
+        Determine whether two positions are located in the same tile in the grid.
+     */
     public boolean same(Position pos) {
         return ((this.x == pos.x) && (this.y == pos.y));
     }
 
+    /*
+        Obtain the distance between two positions.
+     */
     public int distanceTo(Position pos) {
         return Math.abs(pos.getX() - this.x) + Math.abs(pos.getY() - this.y);
     }
 
+    /*
+        Obtain the position from the current one using offsets on x and y.
+     */
     public Position adjacentPos(int offsetX, int offsetY) {
         Position p;
         try {
@@ -50,22 +66,37 @@ public class Position {
         return p;
     }
 
+    /*
+        Obtain the position north from the current one.
+     */
     public Position north() {
         return this.adjacentPos(0, -1);
     }
 
+    /*
+        Obtain the position south from the current one.
+     */
     public Position south() {
         return this.adjacentPos(0, 1);
     }
 
+    /*
+        Obtain the position east from the current one.
+     */
     public Position east() {
         return this.adjacentPos(1, 0);
     }
 
+    /*
+        Obtain the position west from the current one.
+     */
     public Position west() {
         return this.adjacentPos(-1, 0);
     }
 
+    /*
+        Obtain the position in the chosen direction from the current one.
+     */
     public Position adjacentPos(AttackDirection d) {
         switch (d) {
             case NORTH:
@@ -137,5 +168,4 @@ public class Position {
                 return this;
         }
     }
-
 }

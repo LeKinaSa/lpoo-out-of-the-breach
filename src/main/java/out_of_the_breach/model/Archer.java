@@ -3,6 +3,13 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    This hero represents an highly mobile hero.
+    It will use the AOEAttack and can attack in 8 different directions, all with a L form.
+    It can move to any tile on the grid.
+    However, it can't move if the tile is already occupied by another entity or there is a mountain on that tile.
+ */
+
 public class Archer extends Hero {
     public Archer(Position pos, int hp, int damage) {
         super(pos, hp, 0);

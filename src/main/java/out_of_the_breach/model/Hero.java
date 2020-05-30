@@ -2,6 +2,10 @@ package out_of_the_breach.model;
 
 import java.util.List;
 
+/*
+    The player can move and attack with the hero.
+ */
+
 public abstract class Hero extends Entity {
     private int movementRange;
     private boolean hasMoved;
@@ -19,8 +23,42 @@ public abstract class Hero extends Entity {
         this.strategies = strategies;
     }
 
+    public List<AttackStrategy> getStrategies() {
+        return this.strategies;
+    }
+
+    public void setMovementRange(int movementRange) {
+        this.movementRange = movementRange;
+    }
+
+    public int getMovementRange() {
+        return this.movementRange;
+    }
+
+    public boolean getHasMoved() {
+        return this.hasMoved;
+    }
+
+    public boolean getHasEndedTurn() {
+        return this.hasEndedTurn;
+    }
+
+    /*
+        Starts a new turn for the hero.
+     */
+    public void reset() {
+        hasMoved = false;
+        hasEndedTurn = false;
+    }
+
+    /*
+        Determines if the position is within the range of the hero.
+     */
     public abstract boolean withinRange(Position pos);
 
+    /*
+        Obtain the matrix of possible movements for the hero.
+     */
     public MovementMatrix displayMove(GameModel grid) {
         MovementMatrix moveMatrix = new MovementMatrix();
         Position p;
@@ -41,6 +79,10 @@ public abstract class Hero extends Entity {
         return moveMatrix;
     }
 
+    /*
+        Moves the hero to the desired position, if possible.
+        Returns whether or not was possible to move the hero.
+     */
     public boolean moveTo(Position pos) {
         if (this.hasMoved || this.hasEndedTurn || (!this.withinRange(pos))) {
             return false;
@@ -52,14 +94,16 @@ public abstract class Hero extends Entity {
         }
     }
 
-    public List<AttackStrategy> getStrategies() {
-        return this.strategies;
-    }
-
+    /*
+        Obtain the matrix of attack for a certain hero's strategy.
+     */
     public DamageMatrix previewAttack(AttackStrategy strategy) {
         return strategy.previewAttack(super.getPosition());
     }
 
+    /*
+        Attack with the chosen hero's strategy.
+     */
     public void attack(GameModel grid, AttackStrategy strategy) {
         if (!hasEndedTurn) {
             strategy.attack(grid, super.getPosition());
@@ -67,30 +111,12 @@ public abstract class Hero extends Entity {
         }
     }
 
+    /*
+        Attack using the strategy on the chosen index.
+     */
     public void attack(GameModel grid, int strategyIndex) {
         if ((strategyIndex >= 0) && (strategyIndex < this.strategies.size())) {
             attack(grid, this.strategies.get(strategyIndex));
         }
-    }
-
-    public int getMovementRange() {
-        return this.movementRange;
-    }
-  
-    public void setMovementRange(int movementRange) {
-        this.movementRange = movementRange;
-    }
-
-    public boolean getHasMoved() {
-        return this.hasMoved;
-    }
-
-    public boolean getHasEndedTurn() {
-        return this.hasEndedTurn;
-    }
-
-    public void reset() {
-        hasMoved = false;
-        hasEndedTurn = false;
     }
 }

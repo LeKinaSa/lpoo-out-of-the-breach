@@ -1,5 +1,11 @@
 package out_of_the_breach.model;
 
+/*
+    Strategies for the Attacks.
+    Both heros and enemies can use this attack strategies.
+    The strategy chosen will impact which tiles will or won't take damage.
+ */
+
 public abstract class AttackStrategy {
     private AttackDirection direction;
 
@@ -7,15 +13,22 @@ public abstract class AttackStrategy {
         this.direction = direction;
     }
 
-    public AttackDirection getDirection() {
-        return this.direction;
-    }
     protected void setDirection(AttackDirection direction) {
         this.direction = direction;
     }
 
+    public AttackDirection getDirection() {
+        return this.direction;
+    }
+
+    /*
+        Obtain the damage to be inflicted on the tiles on the attack.
+     */
     public abstract DamageMatrix previewAttack(Position pos);
 
+    /*
+        Attack and inflict damage to the targeted tiles.
+     */
     public void attack(GameModel grid, Position pos) {
         DamageMatrix damageMatrix = this.previewAttack(pos);
         Position p;

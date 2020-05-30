@@ -1,5 +1,9 @@
 package out_of_the_breach.model;
 
+/*
+    Possible Directions for the Attacks
+ */
+
 public enum AttackDirection {
     NORTH,
     SOUTH,
