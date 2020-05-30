@@ -119,17 +119,17 @@ public class GameModel {
      */
     public Entity getEntityAt(Position pos) {
         for (Enemy enemy : this.enemies) {
-            if (enemy.getPosition().same(pos)) {
+            if (pos.same(enemy.getPosition())) {
                 return enemy;
             }
         }
         for (Hero ally : this.allies) {
-            if (ally.getPosition().same(pos)) {
+            if (pos.same(ally.getPosition())) {
                 return ally;
             }
         }
         for (City city : this.cities) {
-            if (city.getPosition().same(pos)) {
+            if (pos.same(city.getPosition())) {
                 return city;
             }
         }
