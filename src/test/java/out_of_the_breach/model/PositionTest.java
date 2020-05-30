@@ -287,13 +287,14 @@ public class PositionTest {
         try {
             l_se  = p1.adjacentPos(AttackDirection.L_SOUTHEAST);
             l_sw  = p1.adjacentPos(AttackDirection.L_SOUTHWEST);
-            l_wn  = p1.adjacentPos(AttackDirection.L_WESTNORTH);
-            l_ws  = p1.adjacentPos(AttackDirection.L_WESTSOUTH);
+            l_en  = p1.adjacentPos(AttackDirection.L_EASTNORTH);
+            l_es  = p1.adjacentPos(AttackDirection.L_EASTSOUTH);
 
             l_ne  = p2.adjacentPos(AttackDirection.L_NORTHEAST);
             l_nw  = p2.adjacentPos(AttackDirection.L_NORTHWEST);
-            l_en  = p2.adjacentPos(AttackDirection.L_EASTNORTH);
-            l_es  = p2.adjacentPos(AttackDirection.L_EASTSOUTH);
+            l_wn  = p2.adjacentPos(AttackDirection.L_WESTNORTH);
+            l_ws  = p2.adjacentPos(AttackDirection.L_WESTSOUTH);
+
         }
         catch (NullPointerException n) {
             assertEquals(false, true);
