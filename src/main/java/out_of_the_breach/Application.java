@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) throws IOException, InterruptedException, OutsideOfTheGrid {
+    public static void main(String[] args) throws IOException, InterruptedException {
         LanternaTerminal t  = new LanternaTerminal(110, 40);
         GUIRoot root        = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
 

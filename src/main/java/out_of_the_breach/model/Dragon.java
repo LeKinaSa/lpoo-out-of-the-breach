@@ -33,16 +33,15 @@ public class Dragon extends Enemy {
     public void moveAndPlanAttack(GameModel grid) {
         // Find the Targets -> (Prioritize the attacks on cities)
         List<Entity> targets = new ArrayList<>();
-
         for (City city : grid.getCities()) {
             targets.add(city);
         }
-
         for (Hero ally : grid.getAllies()) {
             targets.add(ally);
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
+        Position initialPos = super.getPosition(); // Dragon Position will be temporarily null so it doesn't attack itself
         Position attackPosition = null;
         Position targetPosition;
         double mostEnemiesHit = 0;
@@ -61,6 +60,9 @@ public class Dragon extends Enemy {
             Position west  = targetPosition.adjacentPos( WEST);
 
             if (canMove(grid, north)) {
+                // Dragon Temporary Position is null
+                super.setPosition(null);
+
                 auxPos = north;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -88,8 +90,14 @@ public class Dragon extends Enemy {
                     mostEnemiesHit = enemiesHit;
                     direction = SOUTH;
                 }
+
+                // Reset Dragon Position
+                super.setPosition(initialPos);
             }
             if (canMove(grid, south)) {
+                // Dragon Temporary Position is null
+                super.setPosition(null);
+
                 auxPos = south;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -117,8 +125,14 @@ public class Dragon extends Enemy {
                     mostEnemiesHit = enemiesHit;
                     direction = NORTH;
                 }
+
+                // Reset Dragon Position
+                super.setPosition(initialPos);
             }
             if (canMove(grid, east)) {
+                // Dragon Temporary Position is null
+                super.setPosition(null);
+
                 auxPos = east;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -146,8 +160,14 @@ public class Dragon extends Enemy {
                     mostEnemiesHit = enemiesHit;
                     direction = WEST;
                 }
+
+                // Reset Dragon Position
+                super.setPosition(initialPos);
             }
             if (canMove(grid, west)) {
+                // Dragon Temporary Position is null
+                super.setPosition(null);
+
                 auxPos = west;
                 enemiesHit = 0;
                 for (int i = 0; i < this.range; i ++) {
@@ -175,6 +195,9 @@ public class Dragon extends Enemy {
                     mostEnemiesHit = enemiesHit;
                     direction = EAST;
                 }
+
+                // Reset Dragon Position
+                super.setPosition(initialPos);
             }
         }
 

@@ -19,6 +19,14 @@ public class OverlapTest {
             public boolean withinRange(Position pos) {
                 return false;
             }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
+            }
         };
         City city1 = new City(new Position(0, 0), 2);
 
@@ -29,7 +37,8 @@ public class OverlapTest {
         List<City > cities  = new ArrayList<>();
         cities.add(city1);
 
-        GameModel grid = new GameModel(terrain, enemies, allies, cities);
+        GameModel grid = new GameModel();
+        grid.setTiles(terrain); grid.setEnemies(enemies); grid.setAllies(allies); grid.setCities(cities);
 
         fail(); // The city and the hero occupy the same tile, (this should be impossible)
     }
@@ -46,6 +55,14 @@ public class OverlapTest {
             public boolean withinRange(Position pos) {
                 return true;
             }
+            @Override
+            public String getName() {
+                return null;
+            }
+            @Override
+            public String getInitials() {
+                return null;
+            }
         };
         City city1 = new City(new Position(1, 1), 2);
 
@@ -56,7 +73,8 @@ public class OverlapTest {
         List<City > cities  = new ArrayList<>();
         cities.add(city1);
 
-        GameModel grid = new GameModel(terrain, enemies, allies, cities);
+        GameModel grid = new GameModel();
+        grid.setTiles(terrain); grid.setEnemies(enemies); grid.setAllies(allies); grid.setCities(cities);
 
         assertFalse(ally1.moveTo(new Position(1, 1)));
         // Perhaps this only should be done via the Model object
@@ -102,9 +120,10 @@ public class OverlapTest {
         mike.setAttackDirection(AttackDirection.NORTH);
         enemies.add(mike);
 
-        GameModel gameModel = new GameModel(tiles, enemies, allies, cities);
+        GameModel grid = new GameModel();
+        grid.setTiles(tiles); grid.setEnemies(enemies); grid.setAllies(allies); grid.setCities(cities);
 
-        MovementMatrix m =  tank.displayMove(gameModel);
+        MovementMatrix m =  tank.displayMove(grid);
 
         assertFalse(m.getMove(new Position(0, 0)));
         assertFalse(m.getMove(new Position(0, 2)));

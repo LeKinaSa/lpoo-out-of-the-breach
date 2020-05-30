@@ -18,9 +18,9 @@ public class HeroTest {
         Position p2 = Mockito.mock(Position.class);
         Position p3 = Mockito.mock(Position.class);
         Position p4 = Mockito.mock(Position.class);
-        Mockito.when(p1.distanceTo(p2)).thenReturn(1);
-        Mockito.when(p1.distanceTo(p3)).thenReturn(2);
-        Mockito.when(p1.distanceTo(p4)).thenReturn(3);
+        Mockito.when(p2.distanceTo(p1)).thenReturn(1);
+        Mockito.when(p3.distanceTo(p1)).thenReturn(2);
+        Mockito.when(p4.distanceTo(p1)).thenReturn(3);
         Tank tank = new Tank(p1, -10, 0, 2);
         assertEquals( true, tank.withinRange(p2));
         assertEquals( true, tank.withinRange(p3));
@@ -50,9 +50,9 @@ public class HeroTest {
         Position p1 = Mockito.mock(Position.class);
         Position p2 = Mockito.mock(Position.class);
         Position p3 = Mockito.mock(Position.class);
-        Mockito.when(p1.distanceTo(p3)).thenReturn(7);
-        Mockito.when(p1.distanceTo(p2)).thenReturn(1);
+        Mockito.when(p3.distanceTo(p1)).thenReturn(7);
         Mockito.when(p2.distanceTo(p1)).thenReturn(1);
+        Mockito.when(p1.distanceTo(p2)).thenReturn(1);
 
         Hero hero = new Tank(p1, 1, 3, 1);
         assertEquals(false, hero.getHasMoved());
@@ -116,6 +116,10 @@ public class HeroTest {
             public boolean tileOccupied(Position p) {
                 return false;
             }
+            @Override
+            public boolean tileIntransitable(Position p) {
+                return false;
+            }
         }
         GameModel grid = new GameModelStub();
         Position p = Mockito.mock(Position.class);
@@ -137,13 +141,7 @@ public class HeroTest {
         MovementMatrix mov1 = ally1.displayMove(grid);
         MovementMatrix mov2 = ally2.displayMove(grid);
 
-        Position pos = Mockito.mock(Position.class);
-        Mockito.when(pos.getX()).thenReturn(8);
-        Mockito.when(pos.getY()).thenReturn(8);
-
-        //assertEquals(false, ally1.withinRange(pos));
-        // TODO : what is happening here ?????
-        //assertEquals(matrix, mov1.possibleMoves);
-        //assertEquals(new ArrayList<>(Collections.nCopies(64, true)), mov2.possibleMoves);
+        assertEquals(matrix, mov1.possibleMoves);
+        assertEquals(new ArrayList<>(Collections.nCopies(64, true)), mov2.possibleMoves);
     }
 }

@@ -3,6 +3,13 @@ package out_of_the_breach.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    Class Representing the 8x8 grid.
+    Contains all tiles, enemies, heros and cities in the grid at the moment.
+    Can calculate the energy left and the game status.
+    Allows the heros to start new turns and the enemies to both prepare attacks and execute them.
+ */
+
 public class GameModel {
     private List<TerrainTile> tiles;
     private List<Enemy> enemies;
@@ -16,160 +23,45 @@ public class GameModel {
         this.enemies = new ArrayList<>();
         this.allies  = new ArrayList<>();
         this.cities  = new ArrayList<>();
-        this.initialEnergy = this.getCurrentEnergy();
+        setInitialEnergy();
         this.turns   = 4;
-    }
-
-    public GameModel(List<TerrainTile> tiles) {
-        this.tiles   = tiles;
-        this.enemies = new ArrayList<>();
-        this.allies  = new ArrayList<>();
-        this.cities  = new ArrayList<>();
-        this.initialEnergy = this.getCurrentEnergy();
-    }
-
-    public GameModel(List<TerrainTile> tiles, List<Enemy> enemies, List<Hero> allies, List<City> cities) {
-        this.tiles   = tiles;
-        this.enemies = enemies;
-        this.allies  = allies;
-        this.cities  = cities;
-        this.initialEnergy = this.getCurrentEnergy();
-    }
-
-    protected void setInitialEnergy() {
-        this.initialEnergy = getCurrentEnergy();
-    }
-
-    public boolean tileOccupied(Position pos) {
-        return getEntityAt(pos) != null;
-    }
-
-    public boolean tileIntransitable(Position pos) {
-        return this.tiles.get(pos.getLinearMatrixPosition()) == TerrainTile.MOUNTAIN;
-    }
-
-    public Entity getEntityAt(Position pos) {
-        for (Enemy enemy : this.enemies) {
-            if (enemy.getPosition().same(pos)) {
-                return enemy;
-            }
-        }
-        for (Hero ally : this.allies) {
-            if (ally.getPosition().same(pos)) {
-                return ally;
-            }
-        }
-        for (City city : this.cities) {
-            if (city.getPosition().same(pos)) {
-                return city;
-            }
-        }
-        return null;
-    }
-
-    public void addEnemy(Enemy enemy) throws OccupiedTile {
-        if (!this.tileOccupied(enemy.getPosition())) {
-            this.enemies.add(enemy);
-        }
-        else {
-            throw new OccupiedTile();
-        }
-    }
-
-    public void addAlly(Hero ally) throws OccupiedTile {
-        if (!this.tileOccupied(ally.getPosition())) {
-            this.allies.add(ally);
-        }
-        else {
-            throw new OccupiedTile();
-        }
-
-    }
-
-    public void addCity(City city) throws OccupiedTile {
-        if (!this.tileOccupied(city.getPosition())) {
-            this.cities.add(city);
-        }
-        else {
-            throw new OccupiedTile();
-        }
-    }
-
-    public void removeEntity(Entity entity) {
-        if (entity instanceof Hero) {
-            this.allies.remove(entity);
-            return;
-        }
-        if (entity instanceof Enemy) {
-            enemies.remove(entity);
-            return;
-        }
-        if (entity instanceof City) {
-            cities.remove(entity);
-            return;
-        }
-        return;
-    }
-
-    public void inflictDamage(Position pos, int damage) {
-        if (this.tileOccupied(pos)) {
-            Entity entity = this.getEntityAt(pos);
-            entity.takeDamage(damage);
-            if (entity.isDead()) {
-                this.removeEntity(entity);
-            }
-        }
-    }
-
-    public List<TerrainTile> getTiles() {
-        return this.tiles;
     }
 
     public void setTiles(List<TerrainTile> tiles) {
         this.tiles = tiles;
     }
 
-    public List<Enemy> getEnemies() {
-        return this.enemies;
+    public List<TerrainTile> getTiles() {
+        return this.tiles;
     }
 
     public void setEnemies(List<Enemy> enemies) {
         this.enemies = enemies;
     }
 
-    public List<Hero> getAllies() {
-        return this.allies;
+    public List<Enemy> getEnemies() {
+        return this.enemies;
     }
 
     public void setAllies(List<Hero> allies) {
         this.allies = allies;
     }
 
-    public List<City> getCities() {
-        return this.cities;
+    public List<Hero> getAllies() {
+        return this.allies;
     }
 
     public void setCities(List<City> cities) {
         this.cities = cities;
+        setInitialEnergy();
     }
 
-    public void planAttack() {
-        for (Enemy enemy : this.enemies) {
-            enemy.moveAndPlanAttack(this);
-        }
+    public List<City> getCities() {
+        return this.cities;
     }
 
-    public void executeAttack() {
-        for (Enemy enemy : this.enemies) {
-            enemy.attack(this);
-        }
-        turns--;
-    }
-
-    public void resetHeroes() {
-        for (Hero h : allies) {
-            h.reset();
-        }
+    protected void setInitialEnergy() {
+        this.initialEnergy = getCurrentEnergy();
     }
 
     public int getCurrentEnergy() {
@@ -189,6 +81,14 @@ public class GameModel {
         return getCurrentEnergy();
     }
 
+    public void setTurns(int turns) {
+        this.turns = turns;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
     public GameStatus getGameStatus() {
         if (enemies.size() == 0 || turns == 0) {
             return GameStatus.PLAYER_WINS;
@@ -199,11 +99,102 @@ public class GameModel {
         }
     }
 
-    public int getTurns() {
-        return turns;
+
+    /*
+        Determines if an entity can move to that tile.
+     */
+    public boolean tileIntransitable(Position pos) {
+        return this.tiles.get(pos.getLinearMatrixPosition()) == TerrainTile.MOUNTAIN;
     }
 
-    public void setTurns(int turns) {
-        this.turns = turns;
+    /*
+        Determines if the tile has an entity on it.
+     */
+    public boolean tileOccupied(Position pos) {
+        return getEntityAt(pos) != null;
+    }
+
+    /*
+        Obatins the entity standing on the tile.
+     */
+    public Entity getEntityAt(Position pos) {
+        for (Enemy enemy : this.enemies) {
+            if (pos.same(enemy.getPosition())) {
+                return enemy;
+            }
+        }
+        for (Hero ally : this.allies) {
+            if (pos.same(ally.getPosition())) {
+                return ally;
+            }
+        }
+        for (City city : this.cities) {
+            if (pos.same(city.getPosition())) {
+                return city;
+            }
+        }
+        return null;
+    }
+
+    /*
+        Removes a dead entity.
+     */
+    public void removeEntity(Entity entity) {
+        if (!entity.isDead()) {
+            return;
+        }
+
+        if      (entity instanceof Hero) {
+            this.allies.remove(entity);
+        }
+        else if (entity instanceof Enemy) {
+            enemies.remove(entity);
+        }
+        else if (entity instanceof City) {
+            cities.remove(entity);
+        }
+        return;
+    }
+
+    /*
+        Inflicts damage in a tile inside the grid.
+        If the entities dies, remove it.
+     */
+    public void inflictDamage(Position pos, int damage) {
+        if (this.tileOccupied(pos)) {
+            Entity entity = this.getEntityAt(pos);
+            entity.takeDamage(damage);
+            if (entity.isDead()) {
+                this.removeEntity(entity);
+            }
+        }
+    }
+
+    /*
+        Starts new turn for all the heros.
+     */
+    public void resetHeroes() {
+        for (Hero h : allies) {
+            h.reset();
+        }
+    }
+
+    /*
+        All the enemies move and prepare its attacks.
+     */
+    public void planAttack() {
+        for (Enemy enemy : this.enemies) {
+            enemy.moveAndPlanAttack(this);
+        }
+    }
+
+    /*
+        All the enemies will attack.
+     */
+    public void executeAttack() {
+        for (Enemy enemy : this.enemies) {
+            enemy.attack(this);
+        }
+        turns--;
     }
 }

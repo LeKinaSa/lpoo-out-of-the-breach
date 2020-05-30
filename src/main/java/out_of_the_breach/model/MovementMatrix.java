@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/*
+    Stores a matrix that determines where the heros can move.
+ */
+
 public class MovementMatrix {
     List<Boolean> possibleMoves;
 
