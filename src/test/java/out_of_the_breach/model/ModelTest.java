@@ -32,8 +32,8 @@ public class ModelTest {
         }
 
         class EnemyStub extends Enemy {
-            public EnemyStub() {
-                super(null, 0, null);
+            public EnemyStub(int hp) {
+                super(null, hp, null);
             }
             @Override
             public void moveAndPlanAttack(GameModel grid) {
@@ -49,12 +49,14 @@ public class ModelTest {
             }
         }
 
-        Enemy enemy = new EnemyStub();
-        Hero  hero  = new  HeroStub();
-        City  city  = new  City(null, 0);
+        Enemy enemy1 = new EnemyStub(0);
+        Enemy enemy2 = new EnemyStub(1);
+        Hero  hero   = new  HeroStub();
+        City  city   = new  City(null, 0);
 
         List<Enemy> enemies = new ArrayList<>();
-        enemies.add(enemy);
+        enemies.add(enemy1);
+        enemies.add(enemy2);
         List<Hero > allies  = new ArrayList<>();
         allies.add (hero );
         List<City > cities  = new ArrayList<>();
@@ -63,25 +65,31 @@ public class ModelTest {
         GameModel grid = new GameModel();
         grid.setEnemies(enemies); grid.setAllies(allies); grid.setCities(cities);
 
-        assertEquals(1, grid.getEnemies().size());
+        assertEquals(2, grid.getEnemies().size());
+        assertEquals(1,  grid.getAllies().size());
+        assertEquals(1,  grid.getCities().size());
+
+        grid.removeEntity(enemy2);
+
+        assertEquals(2, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
         assertEquals(1,  grid.getCities().size());
 
         grid.removeEntity(city);
 
-        assertEquals(1, grid.getEnemies().size());
+        assertEquals(2, grid.getEnemies().size());
         assertEquals(1,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());
 
         grid.removeEntity(hero);
 
-        assertEquals(1, grid.getEnemies().size());
+        assertEquals(2, grid.getEnemies().size());
         assertEquals(0,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());
 
-        grid.removeEntity(enemy);
+        grid.removeEntity(enemy1);
 
-        assertEquals(0, grid.getEnemies().size());
+        assertEquals(1, grid.getEnemies().size());
         assertEquals(0,  grid.getAllies().size());
         assertEquals(0,  grid.getCities().size());
     }
