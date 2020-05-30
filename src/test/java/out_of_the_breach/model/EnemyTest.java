@@ -137,23 +137,16 @@ public class EnemyTest {
     @Test
     public void moveAndPlanAttack_Bug_CityIsWeaker_EAST_Test() {
         GameModel grid = Mockito.mock(GameModel.class);
-        Hero ally1 = Mockito.mock(Hero.class);
-        Hero ally2 = Mockito.mock(Hero.class);
         City city1 = Mockito.mock(City.class);
         City city2 = Mockito.mock(City.class);
 
-        List<Hero> allies = new ArrayList<>();
-        allies.add(ally1);
-        allies.add(ally2);
         List<City> cities = new ArrayList<>();
         cities.add(city1);
         cities.add(city2);
 
-        Mockito.when(grid.getAllies()).thenReturn(allies);
+        Mockito.when(grid.getAllies()).thenReturn(new ArrayList<>());
         Mockito.when(grid.getCities()).thenReturn(cities);
 
-        Mockito.when(ally1.getHp()).thenReturn(5);
-        Mockito.when(ally2.getHp()).thenReturn(7);
         Mockito.when(city1.getHp()).thenReturn(3); // Weaker Entity
         Mockito.when(city2.getHp()).thenReturn(4);
 
@@ -162,7 +155,6 @@ public class EnemyTest {
         Position east  = Mockito.mock(Position.class);
         Position west  = Mockito.mock(Position.class);
 
-        Mockito.when(ally1.getPosition()).thenReturn(Mockito.mock(Position.class));
         Mockito.when(city1.getPosition()).thenReturn(p);
         Mockito.when(p.adjacentPos(NORTH)).thenReturn(null);
         Mockito.when(p.adjacentPos(SOUTH)).thenReturn(null);
