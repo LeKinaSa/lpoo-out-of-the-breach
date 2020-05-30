@@ -62,12 +62,15 @@ public abstract class GUIcomponent {
 
     public void setSelectable(boolean selectable) {
         this.selectable = selectable;
+        if (!selectable) {
+            selected = false;
+        }
     }
 
     /**
      *
      * @param stroke
-     * @return Whether or not this component whishes to be selected
+     * @return Whether or not this component wishes to be selected
      */
     public boolean processKeystroke(KeyStroke stroke) {
         return false;
@@ -89,5 +92,8 @@ public abstract class GUIcomponent {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+        if (!enabled) {
+            selected = false;
+        }
     }
 }

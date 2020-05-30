@@ -97,4 +97,36 @@ public class ColorfulRectangleTest {
         assertEquals(buffer.getCharacter(0, 0).getBackgroundColor(), black);
         assertEquals(buffer.getCharacter(3, 3).getBackgroundColor(), black);
     }
+
+    @Test
+    public void testGettersAndSetters() {
+        TextColor red = new TextColor.RGB(0, 255, 0);
+
+        ColorfulRectangle r = new ColorfulRectangle(
+                new TerminalSize(4, 4),
+                new CenteredComponentPosition(),
+                red
+        );
+
+        assertFalse(r.isSelectable());
+
+        r.setSelectable(true);
+
+        assertTrue(r.isEnabled());
+        assertFalse(r.isSelected());
+
+        r.setSelected(true);
+        assertTrue(r.isSelected());
+
+        r.setEnabled(false);
+        assertFalse(r.isSelected());
+        assertFalse(r.isSelectable());
+
+        r.setEnabled(true);
+        r.setSelectable(false);
+        assertFalse(r.isSelected());
+
+        assertEquals(r.getComponentSize(), new TerminalSize(4, 4));
+        assertTrue(r.getPosition() instanceof CenteredComponentPosition);
+    }
 }
