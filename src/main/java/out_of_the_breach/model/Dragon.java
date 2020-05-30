@@ -206,7 +206,6 @@ public class Dragon extends Enemy {
             this.getAttackStrategy().setDirection(direction);
         }
         else {
-            this.setPosition(initialPos);
             this.getAttackStrategy().setDirection(NONE);
         }
     }

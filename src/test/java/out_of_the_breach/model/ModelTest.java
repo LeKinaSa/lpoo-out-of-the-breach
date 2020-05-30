@@ -109,6 +109,28 @@ public class ModelTest {
     }
 
     @Test
+    public void energyTest() {
+        City  city1  = Mockito.mock( City.class); Mockito.when(city1.getHp()).thenReturn(3);
+        City  city2  = Mockito.mock( City.class); Mockito.when(city2.getHp()).thenReturn(5);
+
+        List<City> cities = new ArrayList<>();
+        cities.add(city1);
+        cities.add(city2);
+
+        GameModel grid = new GameModel();
+        grid.setCities(cities);
+
+        assertEquals( 8, grid.getCurrentEnergy());
+        assertEquals(10, grid.getEnergy());
+
+        Mockito.when(city1.getHp()).thenReturn(2);
+        Mockito.when(city2.getHp()).thenReturn(2);
+
+        assertEquals(4, grid.getCurrentEnergy());
+        assertEquals(5, grid.getEnergy());
+    }
+
+    @Test
     public void removingTest() {
         class HeroStub extends Hero {
             public HeroStub() {
@@ -343,16 +365,21 @@ public class ModelTest {
         enemies.add(enemy3);
 
         GameModel grid = new GameModel();
+        assertEquals(4, grid.getTurns());
+
         grid.setEnemies(enemies);
+        grid.setTurns(3);
 
         verify(enemy1, times(0)).attack(grid);
         verify(enemy2, times(0)).attack(grid);
         verify(enemy3, times(0)).attack(grid);
+        assertEquals(3, grid.getTurns());
 
         grid.executeAttack();
 
         verify(enemy1, times(1)).attack(grid);
         verify(enemy2, times(1)).attack(grid);
         verify(enemy3, times(1)).attack(grid);
+        assertEquals(2, grid.getTurns());
     }
 }
