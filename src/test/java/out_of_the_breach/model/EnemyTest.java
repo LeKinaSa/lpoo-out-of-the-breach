@@ -43,6 +43,42 @@ public class EnemyTest {
         verify(strategy, times(1)).attack(grid, p1);
     }
 
+    @Test
+    public void canMoveTest() {
+        GameModel grid = Mockito.mock(GameModel.class);
+
+        Position p  = Mockito.mock(Position.class);
+        Position p1 = Mockito.mock(Position.class);
+        Position p2 = Mockito.mock(Position.class);
+        Position p3 = Mockito.mock(Position.class);
+        Position p4 = Mockito.mock(Position.class);
+
+        Mockito.when(grid.tileIntransitable(p1)).thenReturn( true);
+        Mockito.when(grid.tileOccupied     (p1)).thenReturn(false);
+        Mockito.when(  p1.same             (p )).thenReturn(false);
+
+        Mockito.when(grid.tileIntransitable(p2)).thenReturn(false);
+        Mockito.when(grid.tileOccupied     (p2)).thenReturn( true);
+        Mockito.when(  p2.same             (p )).thenReturn(false);
+
+        Mockito.when(grid.tileIntransitable(p3)).thenReturn(false);
+        Mockito.when(grid.tileOccupied     (p3)).thenReturn( true);
+        Mockito.when(  p3.same             (p )).thenReturn( true);
+
+        Mockito.when(grid.tileIntransitable(p4)).thenReturn(false);
+        Mockito.when(grid.tileOccupied     (p4)).thenReturn(false);
+        Mockito.when(  p4.same             (p )).thenReturn(false);
+
+
+        Enemy enemy = new Dragon(p, 10, 10);
+
+        assertEquals(false, enemy.canMove(grid, null));
+        assertEquals(false, enemy.canMove(grid,   p1));
+        assertEquals(false, enemy.canMove(grid,   p2));
+        assertEquals( true, enemy.canMove(grid,   p3));
+        assertEquals( true, enemy.canMove(grid,   p4));
+    }
+
     // ----- BUG -----//
     @Test
     public void moveAndPlanAttack_Bug_CityIsWeaker_SOUTH_Test() {

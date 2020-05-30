@@ -32,7 +32,7 @@ public abstract class Enemy extends Entity {
         Determines if the enemy can move to the desired position.
      */
     protected boolean canMove(GameModel grid, Position pos) {
-        return ((pos != null) && ((!grid.tileOccupied(pos)) || (pos.same(super.getPosition()))) && (!grid.tileIntransitable(pos)));
+        return ((pos != null) && (!grid.tileIntransitable(pos)) && ((!grid.tileOccupied(pos)) || (pos.same(super.getPosition()))));
     }
 
     /*
