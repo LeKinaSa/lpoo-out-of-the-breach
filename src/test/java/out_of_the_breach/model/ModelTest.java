@@ -118,6 +118,9 @@ public class ModelTest {
         cities.add(city2);
 
         GameModel grid = new GameModel();
+
+        assertEquals(0, grid.getEnergy());
+
         grid.setCities(cities);
 
         assertEquals( 8, grid.getCurrentEnergy());
