@@ -28,8 +28,9 @@ public abstract class Hero extends Entity {
             for (int y = 0; y < 8; y ++) {
                 try {
                     p = new Position(x, y);
-                }
-                catch (OutsideOfTheGrid o) {
+                } catch (OutsideOfTheGrid o) {
+                    // Impossible to get here
+                    o.printStackTrace();
                     continue;
                 }
                 boolean canMove = !grid.tileOccupied(p) && !grid.tileIntransitable(p) && this.withinRange(p);

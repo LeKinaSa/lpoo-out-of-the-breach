@@ -27,7 +27,7 @@ public class Tank extends Hero {
     @Override
     public boolean withinRange(Position pos) {
         int range = super.getMovementRange();
-        int distance = super.getPosition().distanceTo(pos);
+        int distance = pos.distanceTo(super.getPosition());
         return distance <= range;
     }
 }

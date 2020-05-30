@@ -36,7 +36,7 @@ public class Position {
     }
 
     public int distanceTo(Position pos) {
-        return Math.abs(pos.x - this.x) + Math.abs(pos.y - this.y);
+        return Math.abs(pos.getX() - this.x) + Math.abs(pos.getY() - this.y);
     }
 
     public Position adjacentPos(int offsetX, int offsetY) {
