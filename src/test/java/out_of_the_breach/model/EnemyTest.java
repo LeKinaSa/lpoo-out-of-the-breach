@@ -73,10 +73,10 @@ public class EnemyTest {
         Enemy enemy = new Dragon(p, 10, 10);
 
         assertEquals(false, enemy.canMove(grid, null));
-        assertEquals(false, enemy.canMove(grid,   p1));
-        assertEquals(false, enemy.canMove(grid,   p2));
-        assertEquals( true, enemy.canMove(grid,   p3));
-        assertEquals( true, enemy.canMove(grid,   p4));
+        assertEquals(false, enemy.canMove(grid, p1));
+        assertEquals(false, enemy.canMove(grid, p2));
+        assertEquals( true, enemy.canMove(grid, p3));
+        assertEquals( true, enemy.canMove(grid, p4));
     }
 
     // ----- BUG -----//
@@ -1951,8 +1951,8 @@ public class EnemyTest {
         Position p43 = Mockito.mock(Position.class);
         Enemy enemy = new Dragon(p43, 2, 2);
         Mockito.when(p43.same(p43)).thenReturn(true);
-        Mockito.when(grid.tileOccupied(p43)).thenReturn(true);
-        Mockito.when(grid.getEntityAt(p43)).thenReturn(enemy);
+        Mockito.when(grid.tileOccupied(p43)).thenReturn(false);
+        Mockito.when(grid.tileIntransitable(p43)).thenReturn(false);
 
         Position p13 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p13)).thenReturn(false); Mockito.when(p13.same(p43)).thenReturn(false); Mockito.when(grid.tileIntransitable(p13)).thenReturn(false);
         Position p20 = Mockito.mock(Position.class); Mockito.when(grid.tileOccupied(p20)).thenReturn(false); Mockito.when(p20.same(p43)).thenReturn(false); Mockito.when(grid.tileIntransitable(p20)).thenReturn(false);
@@ -2013,16 +2013,16 @@ public class EnemyTest {
         Mockito.when(p63.adjacentPos( EAST)).thenReturn(p53);
         Mockito.when(p76.adjacentPos( EAST)).thenReturn(p66);
 
-        Mockito.when(p30.adjacentPos( EAST)).thenReturn(p40);
-        Mockito.when(p40.adjacentPos( EAST)).thenReturn(p50);
-        Mockito.when(p50.adjacentPos( EAST)).thenReturn(p60);
-        Mockito.when(p23.adjacentPos( EAST)).thenReturn(p33);
-        Mockito.when(p33.adjacentPos( EAST)).thenReturn(p43);
-        Mockito.when(p43.adjacentPos( EAST)).thenReturn(p53);
-        Mockito.when(p53.adjacentPos( EAST)).thenReturn(p63);
-        Mockito.when(p63.adjacentPos( EAST)).thenReturn(p73);
-        Mockito.when(p66.adjacentPos( EAST)).thenReturn(p76);
-        Mockito.when(p76.adjacentPos( EAST)).thenReturn(null);
+        Mockito.when(p30.adjacentPos( WEST)).thenReturn(p40);
+        Mockito.when(p40.adjacentPos( WEST)).thenReturn(p50);
+        Mockito.when(p50.adjacentPos( WEST)).thenReturn(p60);
+        Mockito.when(p23.adjacentPos( WEST)).thenReturn(p33);
+        Mockito.when(p33.adjacentPos( WEST)).thenReturn(p43);
+        Mockito.when(p43.adjacentPos( WEST)).thenReturn(p53);
+        Mockito.when(p53.adjacentPos( WEST)).thenReturn(p63);
+        Mockito.when(p63.adjacentPos( WEST)).thenReturn(p73);
+        Mockito.when(p66.adjacentPos( WEST)).thenReturn(p76);
+        Mockito.when(p76.adjacentPos( WEST)).thenReturn(null);
 
         Mockito.when(ally1.getPosition()).thenReturn(p40);
         Mockito.when(ally2.getPosition()).thenReturn(p53);
@@ -2031,9 +2031,8 @@ public class EnemyTest {
 
         enemy.moveAndPlanAttack(grid);
 
-        //TODO : verify if the enemy is itself
-        //assertEquals(AttackDirection.EAST, enemy.getAttackDirection());
-        //assertEquals(p63, enemy.getPosition());
+        assertEquals(AttackDirection.EAST, enemy.getAttackDirection());
+        assertEquals(p63, enemy.getPosition());
     }
 
     @Test
