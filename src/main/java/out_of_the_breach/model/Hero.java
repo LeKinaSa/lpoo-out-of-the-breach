@@ -97,8 +97,8 @@ public abstract class Hero extends Entity {
     /*
         Obtain the matrix of attack for a certain hero's strategy.
      */
-    public DamageMatrix previewAttack(AttackStrategy strategy) {
-        return strategy.previewAttack(super.getPosition());
+    public DamageMatrix previewAttack(int strategyIndex) {
+        return strategies.get(strategyIndex).previewAttack(super.getPosition());
     }
 
     /*

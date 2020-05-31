@@ -78,7 +78,7 @@ public class BoardGUIOverlay extends GUIcomponent {
             drawMovementMatrix(buffer, selectedHero.displayMove(gameModel));
         }
         if (mode == SelectorMode.ATTACK) {
-            drawDamageMatrix(buffer, selectedHero.getStrategies().get(selectedAttack).previewAttack(selectedHero.getPosition()));
+            drawDamageMatrix(buffer, selectedHero.previewAttack(selectedAttack));
         }
         drawSelector(buffer);
 
