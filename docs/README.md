@@ -63,9 +63,8 @@ These classes can be found in the following files:
 Now implementing a new centering strategy is as easy as implementing a new class.
 
 ### **Composite pattern** 
-The composite pattern is the core foundation of our GUI system.
+The composite pattern is the core foundation of our GUI system. By using this pattern, we can internally implement the GUI as a tree-like structure. These components also act as controllers that handle user keyboard input.
 ![Composite Pattern](composite_gui.png)
-
 
 ### **MVC pattern** 
 We managed to extract all the game logic to the model package (https://github.com/FEUP-LPOO/lpoo-2020-g21/tree/master/src/main/java/out_of_the_breach/model). However, the view and the controler are unified into the `GUIComponent`. This is more akin to the hierarquic MVC pattern.
