@@ -5,13 +5,21 @@ import java.util.List;
 
 import static out_of_the_breach.model.AttackDirection.*;
 
-public class MeleeAttack extends AttackStrategy {
+/*
+    This class represents a line attack.
+    This attack will affect <range> squares in the chosen direction.
+    The possible directions are NONE, NORTH, SOUTH, EAST and WEST.
+ */
+
+public class LineAttack extends AttackStrategy {
     private int damage;
+    private int range;
     private List<AttackDirection> possibleDirections;
 
-    public MeleeAttack(int damage) {
+    public LineAttack(int damage, int range) {
         super(NONE);
         this.damage = damage;
+        this.range = range;
         this.possibleDirections = new ArrayList<>();
         this.possibleDirections.add( NONE);
         this.possibleDirections.add(NORTH);
@@ -20,9 +28,10 @@ public class MeleeAttack extends AttackStrategy {
         this.possibleDirections.add( WEST);
     }
 
-    public MeleeAttack(int damage, AttackDirection direction) {
+    public LineAttack(int damage, int range, AttackDirection direction) {
         super(direction);
         this.damage = damage;
+        this.range = range;
         this.possibleDirections = new ArrayList<>();
         this.possibleDirections.add(direction);
     }
@@ -35,30 +44,22 @@ public class MeleeAttack extends AttackStrategy {
     }
 
     @Override
-    public Position getDamagedPosition(Position pos) {
-        switch(super.getDirection()) {
-            case NORTH:
-                return pos.north();
-            case SOUTH:
-                return pos.south();
-            case EAST:
-                return pos.east();
-            case WEST:
-                return pos.west();
-            default:
-                return null;
-        }
-    }
-
-    @Override
     public DamageMatrix previewAttack(Position pos) {
         DamageMatrix damageMatrix = new DamageMatrix();
-        Position damagedPosition = this.getDamagedPosition(pos);
-        if (damagedPosition == null) {
+
+        if (super.getDirection() == NONE) {
             return damageMatrix;
         }
-        damageMatrix.setDamage(damagedPosition, this.damage);
+
+        Position damagedPosition = pos;
+        for (int i = 0; i < this.range; i ++) {
+            damagedPosition = damagedPosition.adjacentPos(super.getDirection());
+            if (damagedPosition == null) {
+                return damageMatrix;
+            }
+            damageMatrix.setDamage(damagedPosition, this.damage);
+        }
+
         return damageMatrix;
     }
 }
-

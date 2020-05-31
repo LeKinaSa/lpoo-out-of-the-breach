@@ -2,9 +2,8 @@ package out_of_the_breach.model;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class EntityTest {
     @Test
@@ -16,12 +15,12 @@ public class EntityTest {
             pos = new Position(3, 4);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
 
-        Entity entity1 = new City(p, 2, 1);
+        Entity entity1 = new City(p, 2);
         Entity entity2 = new Bug(p, 3,3);
-        Entity entity3 = new Tank(p, 10, 3, new ArrayList<>());
+        Entity entity3 = new Tank(p, 10, 3, 2);
 
         assertEquals(p, entity1.getPosition());
         assertEquals(p, entity2.getPosition());
@@ -36,9 +35,9 @@ public class EntityTest {
 
     @Test
     public void hpTest() {
-        Entity entity1 = new City(null, -10, 2);
+        Entity entity1 = new City(null, -10);
         Entity entity2 = new  Bug(null, 0,3);
-        Entity entity3 = new Tank(null, 5, 3, new ArrayList<>());
+        Entity entity3 = new Tank(null, 5, 3, 2);
 
         assertEquals(0, entity1.getHp());
         assertEquals(0, entity2.getHp());
@@ -47,7 +46,7 @@ public class EntityTest {
 
     @Test
     public void cityTest() {
-        Entity entity = new City(null, 10, 3);
+        Entity entity = new City(null, 10);
         assertEquals(10, entity.getHp());
         assertEquals(false, entity.isDead());
 
@@ -59,7 +58,7 @@ public class EntityTest {
         assertEquals(0, entity.getHp());
         assertEquals(true, entity.isDead());
 
-        entity.setHp(20);
+        entity = new City(null, 20);
         assertEquals(20, entity.getHp());
 
         entity.takeDamage(21);
@@ -72,11 +71,11 @@ public class EntityTest {
         Entity entity = new Bug(null, 0, 2);
         assertEquals(0, entity.getHp());
 
-        entity.setHp(-10);
+        entity = new Bug(null, -10, 2);
         assertEquals(0, entity.getHp());
         assertEquals(true, entity.isDead());
 
-        entity.setHp(20);
+        entity = new Bug(null, 20, 2);
         assertEquals(20, entity.getHp());
 
         entity.takeDamage(-10);
@@ -89,7 +88,7 @@ public class EntityTest {
 
     @Test
     public void heroTest() {
-        Entity entity = new Tank(null, 10, 2, new ArrayList<>());
+        Entity entity = new Tank(null, 10, 2, 2);
         assertEquals(null, entity.getPosition());
         assertEquals(10, entity.getHp());
         assertEquals(false, entity.isDead());

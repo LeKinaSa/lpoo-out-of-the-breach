@@ -1,6 +1,6 @@
 package out_of_the_breach;
 
-import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.ColorfulRectangle;
 import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.SGR;
@@ -28,14 +28,7 @@ public class EntityInfoComponent extends ColorfulRectangle {
         buffer.setBackgroundColor(new TextColor.RGB(0,59,92));
         buffer.enableModifiers(SGR.BOLD);
 
-        String name = null;
-        if (selectedEntity instanceof City) {
-            name = "City";
-        } else if (selectedEntity instanceof Enemy) {
-            name = "Bug";
-        } else if (selectedEntity instanceof Hero) {
-            name = "Hero";
-        }
+        String name = selectedEntity.getName();
 
         buffer.putString(3, 1, name);
         buffer.putString(3, 2, "HP: " + new String(String.valueOf(selectedEntity.getHp())));

@@ -1,4 +1,4 @@
-package gui;
+package out_of_the_breach.GUI;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -7,7 +7,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.virtual.DefaultVirtualTerminal;
 import org.junit.Before;
 import org.junit.Test;
-import out_of_the_breach.GUI.CenteredComponentPosition;
+import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
 import out_of_the_breach.GUI.ColorfulRectangle;
 import out_of_the_breach.GUI.GUIRoot;
 import out_of_the_breach.GUI.LanternaTerminal;
@@ -96,5 +96,37 @@ public class ColorfulRectangleTest {
 
         assertEquals(buffer.getCharacter(0, 0).getBackgroundColor(), black);
         assertEquals(buffer.getCharacter(3, 3).getBackgroundColor(), black);
+    }
+
+    @Test
+    public void testGettersAndSetters() {
+        TextColor red = new TextColor.RGB(0, 255, 0);
+
+        ColorfulRectangle r = new ColorfulRectangle(
+                new TerminalSize(4, 4),
+                new CenteredComponentPosition(),
+                red
+        );
+
+        assertFalse(r.isSelectable());
+
+        r.setSelectable(true);
+
+        assertTrue(r.isEnabled());
+        assertFalse(r.isSelected());
+
+        r.setSelected(true);
+        assertTrue(r.isSelected());
+
+        r.setEnabled(false);
+        assertFalse(r.isSelected());
+        assertFalse(r.isSelectable());
+
+        r.setEnabled(true);
+        r.setSelectable(false);
+        assertFalse(r.isSelected());
+
+        assertEquals(r.getComponentSize(), new TerminalSize(4, 4));
+        assertTrue(r.getPosition() instanceof CenteredComponentPosition);
     }
 }

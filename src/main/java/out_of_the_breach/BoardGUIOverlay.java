@@ -1,6 +1,6 @@
 package out_of_the_breach;
 
-import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.GUIcomponent;
 import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.TerminalPosition;
@@ -21,7 +21,7 @@ public class BoardGUIOverlay extends GUIcomponent {
 
     int x;
     int y;
-    Model model;
+    GameModel gameModel;
     TooltipComponent tooltip;
     TerrainDescriptionComponent terrainDescription;
     EntityInfoComponent eic;
@@ -30,9 +30,9 @@ public class BoardGUIOverlay extends GUIcomponent {
     SelectorMode mode;
     int selectedAttack;
 
-    public BoardGUIOverlay(Model model, TooltipComponent tooltip, TerrainDescriptionComponent terrainDescription, EntityInfoComponent eic) {
+    public BoardGUIOverlay(GameModel gameModel, TooltipComponent tooltip, TerrainDescriptionComponent terrainDescription, EntityInfoComponent eic) {
         super(new TerminalSize(40, 24), new AbsComponentPosition(0, 0, ScreenCorner.TopLeft), true);
-        this.model = model;
+        this.gameModel = gameModel;
         this.tooltip = tooltip;
         this.terrainDescription = terrainDescription;
         this.eic = eic;
@@ -54,6 +54,20 @@ public class BoardGUIOverlay extends GUIcomponent {
         );
     }
 
+    private void drawDamageHighlighter(TextGraphics buffer, int x, int y, int damage) {
+        int offsetX = x * 5;
+        int offsetY = y * 3;
+        buffer.drawRectangle(
+                new TerminalPosition(offsetX, offsetY),
+                new TerminalSize(5, 3),
+                new TextCharacter(
+                        (char)(damage + '0'),
+                        new TextColor.RGB(255, 255, 255),
+                        new TextColor.RGB(255, 0, 0)
+                )
+        );
+    }
+
     private void drawSelector(TextGraphics buffer) {
         drawTileHighlighter(buffer, new TextColor.RGB(255, 255, 255), x, y);
     }
@@ -61,10 +75,10 @@ public class BoardGUIOverlay extends GUIcomponent {
     @Override
     public void draw(TextGraphics buffer) {
         if (mode == SelectorMode.MOVE) {
-            drawMovementMatrix(buffer, selectedHero.displayMove());
+            drawMovementMatrix(buffer, selectedHero.displayMove(gameModel));
         }
         if (mode == SelectorMode.ATTACK) {
-            drawDamageMatrix(buffer, selectedHero.getStrategies().get(selectedAttack).previewAttack(selectedHero.getPosition()));
+            drawDamageMatrix(buffer, selectedHero.previewAttack(selectedAttack));
         }
         drawSelector(buffer);
 
@@ -72,7 +86,7 @@ public class BoardGUIOverlay extends GUIcomponent {
 
         Entity entity;
         try {
-            entity = model.getEntityAt(new Position(x, y));
+            entity = gameModel.getEntityAt(new Position(x, y));
         } catch (OutsideOfTheGrid e) {
             entity = null; // This should never happen
         }
@@ -119,7 +133,7 @@ public class BoardGUIOverlay extends GUIcomponent {
                 }
 
                 if (matrix.getDamage(p) > 0) {
-                    drawTileHighlighter(buffer, new TextColor.RGB(255, 0, 0), x, y);
+                    drawDamageHighlighter(buffer, x, y, matrix.getDamage(p));
                 }
             }
         }
@@ -165,12 +179,12 @@ public class BoardGUIOverlay extends GUIcomponent {
         if (processArrowKeys(stroke)) {
             Entity entity;
             try {
-                entity = model.getEntityAt(new Position(x, y));
+                entity = gameModel.getEntityAt(new Position(x, y));
             } catch (OutsideOfTheGrid e) {
                 entity = null; // This should never happen
             }
 
-            terrainDescription.updateDescription(model.getTiles().get(y * 8 + x));
+            terrainDescription.updateDescription(gameModel.getTiles().get(y * 8 + x));
 
             if (entity == null) {
                 eic.setEnabled(false);
@@ -183,12 +197,12 @@ public class BoardGUIOverlay extends GUIcomponent {
 
         Entity entity;
         try {
-            entity = model.getEntityAt(new Position(x, y));
+            entity = gameModel.getEntityAt(new Position(x, y));
         } catch (OutsideOfTheGrid e) {
             entity = null; // This should never happen
         }
 
-        if (entity instanceof Hero) {
+        if (entity instanceof Hero && stroke.getKeyType() == KeyType.Character) {
             Hero hero = (Hero) entity;
             if (stroke.getCharacter() == 'm') {
                 selectedHero = hero;
@@ -206,12 +220,12 @@ public class BoardGUIOverlay extends GUIcomponent {
         if (processArrowKeys(stroke)) {
             Entity entity;
             try {
-                entity = model.getEntityAt(new Position(x, y));
+                entity = gameModel.getEntityAt(new Position(x, y));
             } catch (OutsideOfTheGrid e) {
                 entity = null; // This should never happen
             }
 
-            terrainDescription.updateDescription(model.getTiles().get(y * 8 + x));
+            terrainDescription.updateDescription(gameModel.getTiles().get(y * 8 + x));
 
             if (entity == null) {
                 eic.setEnabled(false);
@@ -258,7 +272,7 @@ public class BoardGUIOverlay extends GUIcomponent {
                 selectedAttack = (selectedAttack + 1) % size;
                 return true;
             case Enter:
-                selectedHero.attack(model, selectedAttack);
+                selectedHero.attack(gameModel, selectedAttack);
                 selectedHero = null;
                 selectedAttack = 0;
                 mode = SelectorMode.NORMAL;
@@ -291,5 +305,9 @@ public class BoardGUIOverlay extends GUIcomponent {
     public void setSelected(boolean selected) {
         terrainDescription.setEnabled(selected);
         super.setSelected(selected);
+    }
+
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 }

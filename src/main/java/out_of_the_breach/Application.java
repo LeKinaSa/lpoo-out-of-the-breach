@@ -1,91 +1,37 @@
 package out_of_the_breach;
 
 import out_of_the_breach.GUI.*;
-import com.googlecode.lanterna.TextColor;
+import out_of_the_breach.levels.*;
 import out_of_the_breach.model.*;
+
+import com.googlecode.lanterna.TextColor;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) throws IOException, InterruptedException, OutsideOfTheGrid {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        LanternaTerminal t  = new LanternaTerminal(110, 40);
+        GUIRoot root        = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
 
-        List<TerrainTile> tiles = new ArrayList<>();
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.MOUNTAIN); tiles.add(TerrainTile.MOUNTAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.MOUNTAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-        tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN); tiles.add(TerrainTile.PLAIN);
-
-        List<City> cities = new ArrayList<>();
-        cities.add(new City(new Position(0, 0), 2, 2));
-
-        List<Hero> allies = new ArrayList<>();
-        List<AttackStrategy> strats = new ArrayList<>();
-        strats.add(new MeleeAttack(3, AttackDirection.NORTH));
-        strats.add(new MeleeAttack(3, AttackDirection.EAST ));
-        strats.add(new MeleeAttack(3, AttackDirection.SOUTH));
-        strats.add(new MeleeAttack(3, AttackDirection.WEST ));
-        allies.add(new Tank(new Position(0, 1), 2, 3, strats));
-
-        List<Enemy> enemies = new ArrayList<>();
-        Bug mike = new Bug(new Position(0, 2), 2, 2);
-        mike.setAttackDirection(AttackDirection.NORTH);
-        enemies.add(mike);
-
-        LanternaTerminal t = new LanternaTerminal(110, 40);
-        GUIRoot root       = new GUIRoot(t, new TextColor.RGB(40, 40, 40));
-        Model model        = new Model(tiles, enemies, allies, cities);
-
-        TooltipComponent tooltip = new TooltipComponent();
-        TerrainDescriptionComponent terrainDescription = new TerrainDescriptionComponent();
-        EntityInfoComponent eic = new EntityInfoComponent();
+        List<Level> levelList = new ArrayList<>();
+        levelList.add(new Level0());
+        levelList.add(new Level1());
+        levelList.add(new Level2());
+        levelList.add(new Level3());
+        levelList.add(new Level4());
+        levelList.add(new Level5());
+        levelList.add(new Level6());
+        levelList.add(new Level7());
+        levelList.add(new Level8());
+        levelList.add(new Level9());
+        levelList.add(new Level10());
+        levelList.add(new Level11());
+        View view = new View(new Model(levelList));
 
         root.addComponent(
-                new BoardManager(new BoardTilesComponent(model), model, new BoardGUIOverlay(model, tooltip, terrainDescription, eic), tooltip)
-        );
-
-        root.addComponent(
-                new PowerGridComponent()
-        );
-
-        root.addComponent(
-                new EndTurnButton(model, tooltip)
-        );
-
-        root.addComponent(
-                new EnemyRoutedComponent()
-        );
-
-        root.addComponent(
-                tooltip
-        );
-
-        root.addComponent(
-                terrainDescription
-        );
-
-        root.addComponent(
-                eic
+                view
         );
 
         while (true) {

@@ -1,6 +1,6 @@
-package gui;
+package out_of_the_breach.GUI;
 
-import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;

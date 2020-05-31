@@ -1,4 +1,4 @@
-package gui;
+package out_of_the_breach.GUI;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -6,13 +6,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import out_of_the_breach.GUI.AbsComponentPosition;
-import out_of_the_breach.GUI.CenteredComponentPosition;
-import out_of_the_breach.GUI.ScreenCorner;
+import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
+import out_of_the_breach.GUI.componentPosition.HorizontallyCenteredComponentPosition;
+import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
 
 import static org.junit.Assert.assertEquals;
 
-public class CenteredComponentPositionTest {
+public class HorizontallyCenteredComponentPositionTest {
     private TextGraphics buffer;
 
     @Before
@@ -24,10 +24,10 @@ public class CenteredComponentPositionTest {
 
     @Test
     public void testCenter() {
-        CenteredComponentPosition c = new CenteredComponentPosition();
+        iGUIcomponentPosition c = new HorizontallyCenteredComponentPosition(0);
         TerminalSize boxSize = new TerminalSize(4, 4);
 
-        TerminalPosition res = new TerminalPosition(3, 3);
+        TerminalPosition res = new TerminalPosition(3, 0);
 
         assertEquals(c.getActualOffset(buffer, boxSize), res);
     }

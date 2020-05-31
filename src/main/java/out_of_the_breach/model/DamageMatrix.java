@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/*
+    Stores a matrix that determines what tiles will be taking damage and how much damage they will take.
+ */
+
 public class DamageMatrix {
     List<Integer> incomingDamage;
 

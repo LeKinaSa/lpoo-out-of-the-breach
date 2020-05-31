@@ -1,80 +1,97 @@
 package out_of_the_breach.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static out_of_the_breach.model.AttackDirection.*;
+
+/*
+    Very Stupid Enemy
+    It only targets the weakest hero or city. (The one with less hp)
+    If that targeted unit is inaccessible, it won't move.
+    Prioritizes heroes.
+ */
 
 public class Bug extends Enemy {
 
     public Bug(Position pos, int hp, int damage) {
-        super(pos, hp, new MeleeAttack(damage));
+        super(pos, hp, new LineAttack(damage, 1));
     }
 
     @Override
-    public void moveAndPlanAttack(Model grid) {
-        Position closerPosition = super.getPosition();
-        int smallerDistance = 64;
+    public String getName() {
+        return "Bug";
+    }
 
-        Position pos = super.getPosition();
-        int distance;
+    @Override
+    public String getInitials() {
+        return "BUG";
+    }
 
-        // Find the Nearest Target (Priority : City then Hero)
-        for (City city : grid.getCities()) {
-            distance = pos.distanceTo(city.getPosition());
-            if (distance < smallerDistance) {
-                closerPosition = city.getPosition();
-                smallerDistance = distance;
+    @Override
+    public void moveAndPlanAttack(GameModel grid) {
+        this.setAttackDirection(NONE);
+        Position targetPosition = null;
+        int lowerHp = -1;
+        int hp;
+
+        // Find the Weakest Target -> (Prioritize the attacks on heroes)
+        for (Hero ally : grid.getAllies()) {
+            hp = ally.getHp();
+            if (hp < lowerHp) {
+                lowerHp = hp;
+                targetPosition = ally.getPosition();
+            }
+            else if (lowerHp == -1) {
+                lowerHp = hp;
+                targetPosition = ally.getPosition();
             }
         }
 
-        for (Hero ally : grid.getAllies()) {
-            distance = pos.distanceTo(ally.getPosition());
-            if (distance < smallerDistance) {
-                closerPosition = ally.getPosition();
-                smallerDistance = distance;
+        for (City city : grid.getCities()) {
+            hp = city.getHp();
+            if (hp < lowerHp) {
+                lowerHp = hp;
+                targetPosition = city.getPosition();
             }
+            else if (lowerHp == -1) {
+                lowerHp = hp;
+                targetPosition = city.getPosition();
+            }
+        }
+
+        if (targetPosition == null) {
+            return;
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
-        Position north = closerPosition.north();
-        Position south = closerPosition.south();
-        Position east  = closerPosition.east ();
-        Position west  = closerPosition.west ();
         AttackDirection direction = NONE;
+        Position pos = super.getPosition();
+        Position attackPosition = null;
+        Position p;
+        int smallerDistance = 64;
+        int distance;
 
-        closerPosition = null; // To make sure the enemy doesn't go to the tile of its target
-        smallerDistance = 64;
-        if ((north != null) && (!grid.tileOccupied(north))) {
-            closerPosition = north;
-            smallerDistance = pos.distanceTo(north);
-            direction = NORTH;
-        }
-        if ((south != null) && (!grid.tileOccupied(south))) {
-            distance = pos.distanceTo(south);
-            if (distance < smallerDistance) {
-                closerPosition = south;
-                smallerDistance = distance;
-                direction = SOUTH;
-            }
-        }
-        if ((east != null) && (!grid.tileOccupied(east))) {
-            distance = pos.distanceTo(east);
-            if (distance < smallerDistance) {
-                closerPosition = east;
-                smallerDistance = distance;
-                direction = EAST;
-            }
-        }
-        if ((west != null) && (!grid.tileOccupied(west))) {
-            distance = pos.distanceTo(west);
-            if (distance < smallerDistance) {
-                closerPosition = west;
-                smallerDistance = distance;
-                direction = WEST;
+        List<AttackDirection> directions = new ArrayList<>();
+        List<AttackDirection> opposites = new ArrayList<>();
+        directions.add(NORTH); directions.add(SOUTH); directions.add(EAST); directions.add(WEST);
+        opposites.add (SOUTH); opposites.add (NORTH); opposites.add (WEST); opposites.add (EAST);
+
+        for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
+            p = targetPosition.adjacentPos(directions.get(directionIndex));
+            if (canMove(grid, p)) {
+                distance = pos.distanceTo(p);
+                if (distance < smallerDistance) {
+                    attackPosition = p;
+                    smallerDistance = distance;
+                    direction = opposites.get(directionIndex);
+                }
             }
         }
 
-        if (closerPosition != null) {
-            this.setPosition(closerPosition);
-            this.getAttackStrategy().setDirection(direction);
+        if (attackPosition != null) {
+            this.setPosition(attackPosition);
+            this.setAttackDirection(direction);
         }
     }
 }

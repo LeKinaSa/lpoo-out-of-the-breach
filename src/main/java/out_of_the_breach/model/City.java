@@ -1,24 +1,22 @@
 package out_of_the_breach.model;
 
+/*
+    Cities define the current energy of the grid.
+    When the city takes damage, it's hp will lower and the energy of the grid will lower too proportionally.
+ */
+
 public class City extends Entity {
-    private int power;
-
-    public City(Position pos, int hp, int power) {
+    public City(Position pos, int hp) {
         super(pos, hp);
-        this.power = 0;
-        if (power > 0) {
-            this.power = power;
-        }
     }
 
-    public int getPower() {
-        return this.power;
+    @Override
+    public String getName() {
+        return "City";
     }
 
-    public void setPower(int power) {
-        if (power >= 0) {
-            this.power = power;
-        }
+    @Override
+    public String getInitials() {
+        return "CTY";
     }
-
 }
