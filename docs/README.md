@@ -78,9 +78,6 @@ Some methods are bound to be longer as they contain a larger portion of logic. W
 `Lizard` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Lizard.java (lines 29-70) \
 `Dragon` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Dragon.java (moveAndPlanAttack : lines 36-99 ; calculatePontuation : lines 101-135)
 
-* **Message Chains** \
-To avoid the hard to read and understand message chains we can try to use temporary and meaningful variables to store part of the message so it becomes easier to understand.
-
 * **Data Class** \
 Some of our classes, such as `DamageMatrix` and `MovementMatrix`, can be considered Data Classes as they are mainly a storage for data used by other classes and have no methods other than setters and getters. To solve this smell, it would be appropriate to relocate some methods that use the data on those classes to the data class itself or perhaps even remove the data classes and store the data where it is really needed. In this situation, we feel like these data classes help us move the data between the model and the view so we chose not to remove them.\
 All of our Levels can also be considered data classes as they mainly serve as a storage for our level information, not adding much in terms of functions or behaviour.\
