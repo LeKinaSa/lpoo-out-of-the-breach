@@ -43,22 +43,16 @@ public class AOEAttack extends AttackStrategy {
             damageMatrix.setDamage(pos, this.damage);
         }
 
-        Position damagedPosition;
-        damagedPosition = pos.adjacentPos(NORTH);
-        if (damagedPosition != null) {
-            damageMatrix.setDamage(damagedPosition, this.damage);
-        }
-        damagedPosition = pos.adjacentPos(SOUTH);
-        if (damagedPosition != null) {
-            damageMatrix.setDamage(damagedPosition, this.damage);
-        }
-        damagedPosition = pos.adjacentPos(EAST);
-        if (damagedPosition != null) {
-            damageMatrix.setDamage(damagedPosition, this.damage);
-        }
-        damagedPosition = pos.adjacentPos(WEST);
-        if (damagedPosition != null) {
-            damageMatrix.setDamage(damagedPosition, this.damage);
+        List<Position> positions = new ArrayList<>();
+        positions.add(pos.adjacentPos(NORTH));
+        positions.add(pos.adjacentPos(SOUTH));
+        positions.add(pos.adjacentPos( EAST));
+        positions.add(pos.adjacentPos( WEST));
+
+        for (Position damagedPosition : positions) {
+            if (damagedPosition != null) {
+                damageMatrix.setDamage(damagedPosition, this.damage);
+            }
         }
 
         return damageMatrix;
