@@ -38,6 +38,8 @@ public abstract class AttackStrategy {
                     p = new Position(x, y);
                 }
                 catch (OutsideOfTheGrid o) {
+                    // Impossible to get here
+                    o.printStackTrace();
                     continue;
                 }
                 grid.inflictDamage(p, damageMatrix.getDamage(p));
