@@ -7,6 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.ColorfulRectangle;
 import out_of_the_breach.GUI.ScreenCorner;
+import out_of_the_breach.GUI.componentPosition.HorizontallyCenteredComponentPosition;
 
 public class LevelDisplay extends ColorfulRectangle {
     private int level;
@@ -14,8 +15,7 @@ public class LevelDisplay extends ColorfulRectangle {
     public LevelDisplay() {
         super(
                 new TerminalSize(47, 5),
-                //new CenteredComponentPosition(),
-                new AbsComponentPosition(32, 0, ScreenCorner.TopLeft),
+                new HorizontallyCenteredComponentPosition(0),
                 new TextColor.RGB(0,59,92)
         );
         level = 1;
