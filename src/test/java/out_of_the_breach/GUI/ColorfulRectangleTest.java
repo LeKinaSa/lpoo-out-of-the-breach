@@ -8,9 +8,6 @@ import com.googlecode.lanterna.terminal.virtual.DefaultVirtualTerminal;
 import org.junit.Before;
 import org.junit.Test;
 import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
-import out_of_the_breach.GUI.ColorfulRectangle;
-import out_of_the_breach.GUI.GUIRoot;
-import out_of_the_breach.GUI.LanternaTerminal;
 
 import java.io.IOException;
 

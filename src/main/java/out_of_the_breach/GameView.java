@@ -85,6 +85,8 @@ public class GameView extends GUIparentNode {
         } else if (gameModel.getGameStatus() == GameStatus.PLAYER_WINS) {
             gameOver.setEnabled(true);
             gameOver.setText(" VICTORY!");
+        } else {
+            gameOver.setEnabled(false);
         }
 
         if (isEnabled()) {

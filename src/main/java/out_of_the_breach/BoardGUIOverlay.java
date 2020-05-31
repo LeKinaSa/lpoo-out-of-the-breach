@@ -213,7 +213,13 @@ public class BoardGUIOverlay extends GUIcomponent {
             }
         }
 
-        return stroke.getKeyType() != KeyType.Escape;
+        if (stroke.getKeyType() == KeyType.Escape) {
+            terrainDescription.setEnabled(false);
+            eic.setEnabled(false);
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public boolean processMoveKeystroke(KeyStroke stroke) {

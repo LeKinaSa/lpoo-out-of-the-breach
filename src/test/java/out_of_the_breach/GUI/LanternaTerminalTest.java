@@ -1,13 +1,10 @@
 package out_of_the_breach.GUI;
 
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.virtual.DefaultVirtualTerminal;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-import out_of_the_breach.GUI.LanternaTerminal;
 
 
 import java.io.IOException;
