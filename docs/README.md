@@ -20,7 +20,9 @@ This project was developed by Clara Alves Martins (up201806528@fe.up.pt) and Dan
 ![Level  3](level3.png)
 ![Level  7](level7.png)
 ![Level 12](level12.png)
-
+- **Winner** : Whether a player wins or loses, a message will appear on the screen, indicating the game situation.
+![Victory](victory.png)
+![Defeat ](game_over.png)
 
 ## **Planned Features**
 - Leaving the current level by pressing ESC.
