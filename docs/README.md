@@ -33,13 +33,14 @@ These classes can be found in the following files:
 #### Consequences
 This allows us to isolate the attacking related logic from the moving related logic. It also allows us to introduce new strategies of attack without having to change the enemy. Even the dragon, which calculates the best position in order to deal the most possible damage, can change its strategy of attack without affecting its movement function.
 
-### **Some GUI Problem**
+### **We should be able to place our components anywhere we want**
 #### Problem in context
-Problem
+Some components are drawn in the center of the screen, some are drawn relative to a corner of the screen. How do implement this without a massive switch statement?
 #### Pattern
-Pattern
+We used the strategy pattern to solve this problem in an extensible fashion. Every time we want to add a new way to offset the components, we simply write  a class that implements `iComponentPosition` and pass it to the `GUIComponent` 
+constructor.
 #### Implementation
-T\
+In our specific case we only had to implement 3 different strategies. Not pictured here is the `GUIComponent` class, which depends on `iComponentPosition`.
 ![Strategy Pattern](strategy_pattern_gui_1.png) \
 These classes can be found in the following files:
 - ScreenCorner : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/ScreenCorner.java
@@ -48,22 +49,7 @@ These classes can be found in the following files:
 - HorizontallyCentered : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentPosition/HorizontallyCenteredComponentPosition.java
 - iComponentPosition : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentPosition/iGUIcomponentPosition.java
 #### Consequences
-Consequence
-
-### **Some GUI Problem**
-#### Problem in context
-Problem
-#### Pattern
-Pattern
-#### Implementation
-T\
-![Strategy Pattern](strategy_pattern_gui_2.png) \
-These classes can be found in the following files:
-- iComponentSelectionStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentSelectionStrategy/iComponentSelectionStrategy.java
-- ParentNodeSelectionStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentSelectionStrategy/ParentNodeSelectionStrategy.java
-- RootSelectionStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentSelectionStrategy/RootSelectionStrategy.java
-#### Consequences
-Consequence
+Now implementing a new centering strategy is as easy as implementing a new class.
 
 ### **Composite pattern** 
 The composite pattern is the core foundation of our GUI system.
