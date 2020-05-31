@@ -15,20 +15,20 @@ This project was developed by Clara Alves Martins (up201806528@fe.up.pt) and Dan
 
 ## Design
 ### The enemy should separate its moving strategy from its attack strategy
-* **Problem in context**
+* **Problem in context** \
 If the enemy contains both strategies, it violates the Single Responsibility Principle.
-* **Pattern**
+* **Pattern** \
 In order to avoid violation of the Single Responsibility Principle, we use the Strategy Pattern, separating the enemy from its attack method (`AttackStrategy`). This allows us to easily change and design the types of attacks in our game. It will also help meeting the Open-Closed Principle as we can modify the enemy’s strategy of attack without modifying the enemy.
 * **Implementation** \
 The enemy contains a strategy to attack making the strategy independent from the enemy and making the enemy only responsible for moving himself.
 ![Strategy Pattern](strategy_pattern.png)
-These classes can be found in the following files: \
-- AttackStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/AttackStrategy.java \
-- AOEAttack : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/AOEAttack.java \
-- LineAttack : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/LineAttack.java \
-- Enemy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Enemy.java 
-- Bug : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Bug.java \
-- Lizard : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Lizard.java \ 
+These classes can be found in the following files:
+- AttackStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/AttackStrategy.java
+- AOEAttack : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/AOEAttack.java
+- LineAttack : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/LineAttack.java
+- Enemy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Enemy.java
+- Bug : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Bug.java
+- Lizard : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Lizard.java
 - Dragon : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Dragon.java
 * **Consequences** \
 This allows us to isolate the attacking related logic from the moving related logic. It also allows us to introduce new strategies of attack without having to change the enemy. Even the dragon which calculates the best position in order to deal the most possible damage can change its strategy of attack without affecting its movement function.
