@@ -2,9 +2,8 @@ package out_of_the_breach.model;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class EntityTest {
     @Test
@@ -16,7 +15,7 @@ public class EntityTest {
             pos = new Position(3, 4);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
 
         Entity entity1 = new City(p, 2);
