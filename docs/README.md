@@ -1,9 +1,8 @@
-LPOO_21 - Out Of The Breach
+# LPOO_21 - Out Of The Breach
 
-# Navigation notes
 This project was developed by Clara Alves Martins (up201806528@fe.up.pt) and Daniel Filipe Amaro Monteiro (up201806185@fe.up.pt).
 
-# Implemented Features
+## Implemented Features
 - Interaction with the user : Fully Implemented GUI with responsive window resizing.
 - Navigation keys : Use the arrow keys, `M`, `A`, `Enter` and `Esc` no navigate the GUI.
 - Enemy AI : Enemy intelligence depends on the enemy type, with Bug being the dumber and Dragon being the smarter. Bug will chase low health heroes or cities. If the weaker entity can’t be targeted, it won’t attack in that round. Lizard is a little bit smarter and very lazy so it will try to move the least number of tiles while prioritizing cities over heroes. The Dragon is the smarter one, being able to decide where to attack based on the number of cities, heroes and enemies it will damage. It will prioritize cities over heroes and it will avoid attacking other enemies. If the dragon is currently standing on a block that will be attacked, it won’t avoid attacking there since the dragon is gonna move and it won’t be standing there anymore at the time of the attack.
@@ -11,11 +10,11 @@ This project was developed by Clara Alves Martins (up201806528@fe.up.pt) and Dan
 - Different Levels: There are 12 different levels available to play in our game. They will contain a various number of cities, heroes and enemies. If the player can survive 4 turns without losing all the cities or all the allies, he will win. Otherwise, he will lose.
 
 
-# Planned Features
+## Planned Features
 - Leaving the current level by pressing ESC.
 
-# Design
-## The enemy should separate its moving strategy from its attack strategy
+## Design
+### The enemy should separate its moving strategy from its attack strategy
 * Problem in context: If the enemy contains both strategies, it violates the Single Responsibility Principle.
 * Pattern: In order to avoid violation of the Single Responsibility Principle, we use the Strategy Pattern, separating the enemy from its attack method (`AttackStrategy`). This allows us to easily change and design the types of attacks in our game. It will also help meeting the Open-Closed Principle as we can modify the enemy’s strategy of attack without modifying the enemy.
 * Implementation: The enemy contains a strategy to attack making the strategy independent from the enemy and making the enemy only responsible for moving himself.
@@ -31,15 +30,15 @@ These classes can be found in the following files:
 * Consequences: This allows us to isolate the attacking related logic from the moving related logic. It also allows us to introduce new strategies of attack without having to change the enemy. Even the dragon which calculates the best position in order to deal the most possible damage can change its strategy of attack without affecting its movement function.
 
 
-## Composite pattern : 
+### Composite pattern : 
 The composite pattern is the core foundation of our GUI system. We leave here a rough UML sketch. (https://github.com/FEUP-LPOO/lpoo-2020-g21/tree/master/src/main/java/out_of_the_breach/GUI)
 ![Composite Pattern](composite_pattern.PNG)
 
 
-## MVC pattern : 
+### MVC pattern : 
 We managed to extract all the game logic to the model package (https://github.com/FEUP-LPOO/lpoo-2020-g21/tree/master/src/main/java/out_of_the_breach/model). However, the view and the controler are unified into the `GUIComponent`. This is more akin to the hierarquic MVC pattern.
 
-# Known Code Smells and Refactoring Suggestions
+## Known Code Smells and Refactoring Suggestions
 Even after a code cleanup, there are still some code smells. We tried to minimize the code smells without making the code to complicated to read and understand. When the applicable refactors would make the code to complicated or unreadable, we chose not to refactor the code.
 
 * Switch Statements : 
@@ -71,16 +70,16 @@ All of our Levels can also be considered data classes as they mainly serve as a 
 `Level` : https://github.com/FEUP-LPOO/lpoo-2020-g21/tree/master/src/main/java/out_of_the_breach/levels 
 
 
-# Testing
+## Testing
 As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase.
-## Coverage Report
+### Coverage Report
 ![Coverage Report](coverage_test.PNG)
 
 
-## Mutation Testing Report
+### Mutation Testing Report
 ![Mutation Report](mutation_test.PNG)
 
-# Self-Evaluation
+## Self-Evaluation
 We consider that we both contributed substantially to the project and there aren’t any substantial disparities.
 * Clara Martins : 50 %
 * Daniel Monteiro : 50 %
