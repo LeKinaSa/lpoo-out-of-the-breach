@@ -4,7 +4,7 @@ import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.ColorfulRectangle;
 import out_of_the_breach.GUI.ScreenCorner;
 

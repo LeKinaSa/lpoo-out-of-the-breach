@@ -6,6 +6,8 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import out_of_the_breach.GUI.componentSelectionStrategy.RootSelectionStrategy;
+import out_of_the_breach.GUI.componentSelectionStrategy.iComponentSelectionStrategy;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,14 +17,18 @@ public class GUIRoot {
     private LanternaTerminal terminal;
     private List<GUIcomponent> components;
     private TextColor color;
-    private int selectedComponent;
+    private iComponentSelectionStrategy strat;
 
 
-    public GUIRoot(LanternaTerminal terminal, TextColor backgroundColor) {
+    public GUIRoot(LanternaTerminal terminal, TextColor backgroundColor, iComponentSelectionStrategy strat) {
         this.terminal = terminal;
         this.color    = backgroundColor;
         components = new ArrayList<>();
-        selectedComponent = 0;
+        this.strat = strat;
+    }
+
+    public GUIRoot(LanternaTerminal terminal, TextColor backgroundColor) {
+        this(terminal, backgroundColor, new RootSelectionStrategy());
     }
 
     public void addComponent(GUIcomponent component) {
@@ -62,30 +68,7 @@ public class GUIRoot {
         return true;
     }
 
-    public boolean processKeystroke(KeyStroke stroke) { //TODO: This loop isn't very readable
-        boolean stopAtFirstSelectable = false;
-        for (int i = 0; i < components.size(); i++, selectedComponent = (selectedComponent + 1) % components.size()) {
-            GUIcomponent component = components.get(selectedComponent);
-
-            if (component.isSelectable()) {
-                component.setSelected(true);
-
-                if (stopAtFirstSelectable) {
-                    return false;
-                }
-
-            } else {
-                continue;
-            }
-
-            if (component.processKeystroke(stroke)) {
-                return true;
-            } else {
-                component.setSelected(false);
-                stopAtFirstSelectable = true;
-            }
-        }
-        selectedComponent = 0;
-        return false;
+    public boolean processKeystroke(KeyStroke stroke) {
+        return strat.processKeystroke(stroke, components);
     }
 }

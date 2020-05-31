@@ -1,6 +1,6 @@
 package out_of_the_breach;
 
-import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.GUIcomponent;
 import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.TerminalPosition;
@@ -8,7 +8,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import out_of_the_breach.GUI.iGUIcomponentPosition;
+import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
 import out_of_the_breach.model.*;
 
 public class BoardTilesComponent extends GUIcomponent {

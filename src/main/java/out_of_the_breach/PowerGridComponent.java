@@ -1,6 +1,6 @@
 package out_of_the_breach;
 
-import out_of_the_breach.GUI.AbsComponentPosition;
+import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.ColorfulRectangle;
 import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.*;

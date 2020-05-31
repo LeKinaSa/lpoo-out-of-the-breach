@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
 
 public abstract class GUIcomponent {
     private final TerminalSize componentSize;

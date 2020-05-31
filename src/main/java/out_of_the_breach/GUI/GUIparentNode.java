@@ -3,6 +3,7 @@ package out_of_the_breach.GUI;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
 
 import java.util.ArrayList;
 import java.util.List;

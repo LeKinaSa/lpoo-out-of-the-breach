@@ -2,7 +2,7 @@ package out_of_the_breach;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import out_of_the_breach.GUI.CenteredComponentPosition;
+import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
 import out_of_the_breach.GUI.GUIparentNode;
 
 public class View extends GUIparentNode {

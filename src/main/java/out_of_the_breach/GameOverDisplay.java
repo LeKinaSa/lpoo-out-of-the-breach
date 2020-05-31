@@ -4,7 +4,7 @@ import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import out_of_the_breach.GUI.CenteredComponentPosition;
+import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
 import out_of_the_breach.GUI.ColorfulRectangle;
 
 public class GameOverDisplay extends ColorfulRectangle {

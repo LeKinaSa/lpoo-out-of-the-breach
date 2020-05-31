@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
 
 public class ColorfulRectangle extends GUIparentNode {
     private TextColor color;

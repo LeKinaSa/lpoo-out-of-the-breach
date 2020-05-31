@@ -1,8 +1,9 @@
-package out_of_the_breach.GUI;
+package out_of_the_breach.GUI.componentPosition;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import out_of_the_breach.GUI.ScreenCorner;
 
 public class AbsComponentPosition implements iGUIcomponentPosition {
     private final int x;

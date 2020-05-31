@@ -1,6 +1,6 @@
 package out_of_the_breach;
 
-import out_of_the_breach.GUI.CenteredComponentPosition;
+import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
 import out_of_the_breach.GUI.GUIcomponent;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
