@@ -1,4 +1,4 @@
-package gui;
+package out_of_the_breach.GUI;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;

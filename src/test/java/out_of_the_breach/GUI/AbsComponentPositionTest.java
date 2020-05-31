@@ -1,4 +1,4 @@
-package gui;
+package out_of_the_breach.GUI;
 
 import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
 import out_of_the_breach.GUI.ScreenCorner;
