@@ -43,6 +43,7 @@ public class BoardManager extends GUIcomponent {
         if (!overlay.isSelected()) {
             if (stroke.getKeyType() == KeyType.Enter) {
                 overlay.setSelected(true);
+                overlay.processNormalKeystroke(new KeyStroke(KeyType.ArrowUp));
                 return true;
             } else {
                 return stroke.getKeyType() != KeyType.ArrowRight;
