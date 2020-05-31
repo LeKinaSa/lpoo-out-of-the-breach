@@ -4,18 +4,29 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
+import out_of_the_breach.GUI.componentSelectionStrategy.ParentNodeSelectionStrategy;
+import out_of_the_breach.GUI.componentSelectionStrategy.iComponentSelectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GUIparentNode extends GUIcomponent {
     protected List<GUIcomponent> components;
-    protected int selectedComponent;
+    private iComponentSelectionStrategy strat;
 
-    public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
+    public GUIparentNode(
+            TerminalSize componentSize,
+            iGUIcomponentPosition position,
+            boolean selectable,
+            iComponentSelectionStrategy strat
+    ) {
         super(componentSize, position, selectable);
         components = new ArrayList<>();
-        selectedComponent = 0;
+        this.strat = strat;
+    }
+
+    public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position, boolean selectable) {
+        this(componentSize, position, selectable, new ParentNodeSelectionStrategy());
     }
 
     public GUIparentNode(TerminalSize componentSize, iGUIcomponentPosition position) {
@@ -35,22 +46,6 @@ public class GUIparentNode extends GUIcomponent {
 
     @Override
     public boolean processKeystroke(KeyStroke stroke) {
-        for (; selectedComponent < components.size(); selectedComponent++) {
-            GUIcomponent component = components.get(selectedComponent);
-
-            if (component.isSelectable()) {
-                component.setSelected(true);
-            } else {
-                continue;
-            }
-
-            if (component.processKeystroke(stroke)) {
-                return true;
-            } else {
-                component.setSelected(false);
-            }
-        }
-        selectedComponent = 0;
-        return false;
+        return strat.processKeystroke(stroke, components);
     }
 }

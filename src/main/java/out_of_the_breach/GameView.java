@@ -4,6 +4,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import out_of_the_breach.GUI.GUIcomponent;
 import out_of_the_breach.GUI.GUIparentNode;
+import out_of_the_breach.GUI.componentSelectionStrategy.RootSelectionStrategy;
 import out_of_the_breach.model.GameModel;
 import out_of_the_breach.model.GameStatus;
 
@@ -16,7 +17,7 @@ public class GameView extends GUIparentNode {
     private GameOverDisplay gameOver;
 
     public GameView(GameModel gameModel) {
-        super(null, null, true);
+        super(null, null, true, new RootSelectionStrategy());
 
         this.gameModel = gameModel;
 
@@ -100,33 +101,11 @@ public class GameView extends GUIparentNode {
     }
 
     @Override
-    public boolean processKeystroke(KeyStroke stroke) { // This function is straight up lifted from GUIRoot
+    public boolean processKeystroke(KeyStroke stroke) {
         if (gameModel.getGameStatus() != GameStatus.GAME_IN_PROGRESS) {
             return false;
+        } else {
+            return super.processKeystroke(stroke);
         }
-
-        boolean stopAtFirstSelectable = false;
-        for (int i = 0; i < components.size(); i++, selectedComponent = (selectedComponent + 1) % components.size()) {
-            GUIcomponent component = components.get(selectedComponent);
-
-            if (component.isSelectable()) {
-                component.setSelected(true);
-
-                if (stopAtFirstSelectable) {
-                    return true;
-                }
-            } else {
-                continue;
-            }
-
-            if (component.processKeystroke(stroke)) {
-                return true;
-            } else {
-                component.setSelected(false);
-                stopAtFirstSelectable = true;
-            }
-        }
-        selectedComponent = 0;
-        return true;
     }
 }

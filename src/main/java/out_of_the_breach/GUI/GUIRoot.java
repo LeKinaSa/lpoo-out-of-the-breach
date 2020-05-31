@@ -13,18 +13,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GUIRoot {
+public class GUIRoot extends GUIparentNode {
     private LanternaTerminal terminal;
-    private List<GUIcomponent> components;
     private TextColor color;
-    private iComponentSelectionStrategy strat;
 
 
     public GUIRoot(LanternaTerminal terminal, TextColor backgroundColor, iComponentSelectionStrategy strat) {
+        super(null, null, true, strat);
         this.terminal = terminal;
         this.color    = backgroundColor;
-        components = new ArrayList<>();
-        this.strat = strat;
     }
 
     public GUIRoot(LanternaTerminal terminal, TextColor backgroundColor) {
@@ -66,9 +63,5 @@ public class GUIRoot {
 
         processKeystroke(stroke);
         return true;
-    }
-
-    public boolean processKeystroke(KeyStroke stroke) {
-        return strat.processKeystroke(stroke, components);
     }
 }
