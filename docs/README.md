@@ -110,6 +110,7 @@ We would like to highlight that all the classes in `levels` directory should cou
 ![Coverage Report](code_coverage_3.png)
 
 ### **Mutation Testing Report**
+Report : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/build/reports/pitest/202005312146/index.html
 ![Mutation Report](mutation_1.png)
 ![Mutation Report](mutation_2.png)
 ![Mutation Report](mutation_3.png)
