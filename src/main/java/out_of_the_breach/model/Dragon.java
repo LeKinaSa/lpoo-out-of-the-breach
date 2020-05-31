@@ -48,7 +48,7 @@ public class Dragon extends Enemy {
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
-        Position initialPos = super.getPosition(); // Dragon Position will be temporarily null so it doesn't attack itself
+        Position initialPos = super.getPosition(); // Dragon Position will be temporarily changed to allow us to calculate the efficiency (pontuation) of the attack
         Position attackPosition = null;
         Position targetPosition;
         Position p;
