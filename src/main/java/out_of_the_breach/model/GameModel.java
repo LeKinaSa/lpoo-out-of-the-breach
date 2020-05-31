@@ -76,7 +76,7 @@ public class GameModel {
 
     public int getEnergy() {
         if (initialEnergy != 0) {
-            return (int) ((getCurrentEnergy() * 1.0 / initialEnergy) * 10);
+            return (int) ((getCurrentEnergy() * 10.0) / initialEnergy);
         }
         return getCurrentEnergy();
     }
