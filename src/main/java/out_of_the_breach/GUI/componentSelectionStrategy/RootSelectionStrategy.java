@@ -39,4 +39,8 @@ public class RootSelectionStrategy implements iComponentSelectionStrategy {
         selectedComponent = 0;
         return true;
     }
+
+    public int getSelectedComponent() {
+        return selectedComponent;
+    }
 }

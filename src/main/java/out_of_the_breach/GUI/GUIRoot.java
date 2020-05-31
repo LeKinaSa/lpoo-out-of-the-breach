@@ -44,9 +44,7 @@ public class GUIRoot extends GUIparentNode {
                 new TextCharacter('A', color, color)
         );
 
-        for (GUIcomponent i: components) {
-            i.bondedDraw(buffer);
-        }
+        super.draw(buffer);
 
         terminal.refresh();
     }

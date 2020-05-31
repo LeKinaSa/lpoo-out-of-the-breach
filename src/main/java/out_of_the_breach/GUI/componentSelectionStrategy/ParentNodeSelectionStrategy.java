@@ -32,4 +32,8 @@ public class ParentNodeSelectionStrategy implements iComponentSelectionStrategy 
         selectedComponent = 0;
         return false;
     }
+
+    public int getSelectedComponent() {
+        return selectedComponent;
+    }
 }

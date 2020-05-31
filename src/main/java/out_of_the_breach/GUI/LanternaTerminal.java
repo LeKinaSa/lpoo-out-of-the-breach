@@ -31,7 +31,6 @@ public class LanternaTerminal {
         this(new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(x, y)).createTerminal());
     }
 
-
     public void clear() {
         screen.clear();
     }
