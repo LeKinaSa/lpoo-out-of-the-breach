@@ -39,7 +39,7 @@ public class Lizard extends Enemy {
 
         // Find the Position where we can Attack
         Position pos = super.getPosition();
-        Position closerPosition = null;
+        Position attackPosition = null;
         Position targetPosition;
         Position p;
         double smallerDistance = 64;
@@ -56,15 +56,15 @@ public class Lizard extends Enemy {
                 if (canMove(grid, p)) {
                     distance = pos.distanceTo(p);
                     if (distance < smallerDistance) {
-                        closerPosition = p;
+                        attackPosition = p;
                         smallerDistance = distance;
                     }
                 }
             }
         }
 
-        if (closerPosition != null) {
-            this.setPosition(closerPosition);
+        if (attackPosition != null) {
+            this.setPosition(attackPosition);
         }
     }
 }

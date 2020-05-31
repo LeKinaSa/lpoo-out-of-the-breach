@@ -31,7 +31,7 @@ public class Bug extends Enemy {
     @Override
     public void moveAndPlanAttack(GameModel grid) {
         this.setAttackDirection(NONE);
-        Position targetedPosition = null;
+        Position targetPosition = null;
         int lowerHp = -1;
         int hp;
 
@@ -40,11 +40,11 @@ public class Bug extends Enemy {
             hp = ally.getHp();
             if (hp < lowerHp) {
                 lowerHp = hp;
-                targetedPosition = ally.getPosition();
+                targetPosition = ally.getPosition();
             }
             else if (lowerHp == -1) {
                 lowerHp = hp;
-                targetedPosition = ally.getPosition();
+                targetPosition = ally.getPosition();
             }
         }
 
@@ -52,15 +52,15 @@ public class Bug extends Enemy {
             hp = city.getHp();
             if (hp < lowerHp) {
                 lowerHp = hp;
-                targetedPosition = city.getPosition();
+                targetPosition = city.getPosition();
             }
             else if (lowerHp == -1) {
                 lowerHp = hp;
-                targetedPosition = city.getPosition();
+                targetPosition = city.getPosition();
             }
         }
 
-        if (targetedPosition == null) {
+        if (targetPosition == null) {
             return;
         }
 
@@ -78,7 +78,7 @@ public class Bug extends Enemy {
         opposites.add (SOUTH); opposites.add (NORTH); opposites.add (WEST); opposites.add (EAST);
 
         for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
-            p = targetedPosition.adjacentPos(directions.get(directionIndex));
+            p = targetPosition.adjacentPos(directions.get(directionIndex));
             if (canMove(grid, p)) {
                 distance = pos.distanceTo(p);
                 if (distance < smallerDistance) {
