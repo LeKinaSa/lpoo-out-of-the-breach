@@ -32,7 +32,7 @@ public class PositionTest {
         try {
             pos = new Position(3, 4);
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(3, pos.getX());
         assertEquals(4, pos.getY());
@@ -45,7 +45,7 @@ public class PositionTest {
         try {
             pos = new Position(5, 2);
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(5, pos.getX());
         assertEquals(2, pos.getY());
@@ -58,7 +58,7 @@ public class PositionTest {
         try {
             pos = new Position(0, 0);
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(0, pos.getX());
         assertEquals(0, pos.getY());
@@ -71,7 +71,7 @@ public class PositionTest {
         try {
             pos = new Position(7, 7);
         } catch (OutsideOfTheGrid outsideOfTheGrid) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(7, pos.getX());
         assertEquals(7, pos.getY());
@@ -85,7 +85,7 @@ public class PositionTest {
             pos = new Position(2, 3);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(2, pos.getX());
         assertEquals(3, pos.getY());
@@ -94,7 +94,7 @@ public class PositionTest {
             p = new Position(2, 3);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(true, pos.same(p));
         assertEquals(26, pos.getLinearMatrixPosition());
@@ -109,7 +109,7 @@ public class PositionTest {
             p   = new Position(3, 6);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
         assertEquals(1, pos.getX());
         assertEquals(2, pos.getY());
@@ -130,7 +130,7 @@ public class PositionTest {
             pos = new Position(0, 0);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
         Position north = pos.north();
         Position south = pos.south();
@@ -157,7 +157,7 @@ public class PositionTest {
             pos = new Position(7, 7);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
         Position north = pos.north();
         Position south = pos.south();
@@ -181,7 +181,7 @@ public class PositionTest {
             pos = new Position(3, 5);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
         Position north = pos.north();
         Position south = pos.south();
@@ -209,7 +209,7 @@ public class PositionTest {
             p = new Position(3, 3);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
 
         Position north = p.adjacentPos(AttackDirection.NORTH);
@@ -278,7 +278,7 @@ public class PositionTest {
             p2 = new Position(0, 0);
         }
         catch (OutsideOfTheGrid o) {
-            assertEquals(false, true);
+            fail();
         }
 
         Position l_se = null, l_sw = null, l_wn = null, l_ws = null;
@@ -297,7 +297,7 @@ public class PositionTest {
 
         }
         catch (NullPointerException n) {
-            assertEquals(false, true);
+            fail();
         }
 
         assertEquals(7, p1.getX());

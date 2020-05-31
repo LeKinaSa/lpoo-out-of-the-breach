@@ -198,8 +198,8 @@ public class EnemyTest {
         Mockito.when(grid.getAllies()).thenReturn(allies);
         Mockito.when(grid.getCities()).thenReturn(cities);
 
-        Mockito.when(ally1.getHp()).thenReturn(5);
-        Mockito.when(ally2.getHp()).thenReturn(2); // Weaker Entity
+        Mockito.when(ally1.getHp()).thenReturn(2); // Weaker Entity
+        Mockito.when(ally2.getHp()).thenReturn(2);
         Mockito.when(city1.getHp()).thenReturn(3);
         Mockito.when(city2.getHp()).thenReturn(4);
 
@@ -210,8 +210,7 @@ public class EnemyTest {
         Position east  = Mockito.mock(Position.class);
         Position west  = Mockito.mock(Position.class);
 
-        Mockito.when(ally1.getPosition()).thenReturn(Mockito.mock(Position.class));
-        Mockito.when(ally2.getPosition()).thenReturn(p);
+        Mockito.when(ally1.getPosition()).thenReturn(p);
         Mockito.when(p.adjacentPos(NORTH)).thenReturn(north);
         Mockito.when(p.adjacentPos(SOUTH)).thenReturn(south);
         Mockito.when(p.adjacentPos( EAST)).thenReturn( east);

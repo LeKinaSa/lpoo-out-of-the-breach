@@ -30,63 +30,41 @@ public class Lizard extends Enemy {
     public void moveAndPlanAttack(GameModel grid) {
         // Find the Targets -> (Prioritize the attacks on cities)
         List<Entity> targets = new ArrayList<>();
-
         for (City city : grid.getCities()) {
             targets.add(city);
         }
-
         for (Hero ally : grid.getAllies()) {
             targets.add(ally);
         }
 
         // Find the Position where we can Attack
         Position pos = super.getPosition();
-        Position closerPosition = null;
+        Position attackPosition = null;
         Position targetPosition;
+        Position p;
         double smallerDistance = 64;
         double distance;
+        List<AttackDirection> directions = new ArrayList<>();
+        directions.add(NORTH); directions.add(SOUTH); directions.add(EAST); directions.add(WEST);
 
         // Check what's the closest position to the current position of the lizard
         for (int index = 0; (index < targets.size()) && (smallerDistance != 0); index ++) {
             targetPosition = targets.get(index).getPosition();
 
-            Position north = targetPosition.adjacentPos(NORTH);
-            Position south = targetPosition.adjacentPos(SOUTH);
-            Position east  = targetPosition.adjacentPos( EAST);
-            Position west  = targetPosition.adjacentPos( WEST);
-
-            if (canMove(grid, north)) {
-                distance = pos.distanceTo(north);
-                if (distance < smallerDistance) {
-                    closerPosition = north;
-                    smallerDistance = distance;
-                }
-            }
-            if (canMove(grid, south)) {
-                distance = pos.distanceTo(south);
-                if (distance < smallerDistance) {
-                    closerPosition = south;
-                    smallerDistance = distance;
-                }
-            }
-            if (canMove(grid, east)) {
-                distance = pos.distanceTo(east);
-                if (distance < smallerDistance) {
-                    closerPosition = east;
-                    smallerDistance = distance;
-                }
-            }
-            if (canMove(grid, west)) {
-                distance = pos.distanceTo(west);
-                if (distance < smallerDistance) {
-                    closerPosition = west;
-                    smallerDistance = distance;
+            for (AttackDirection direction : directions) {
+                p = targetPosition.adjacentPos(direction);
+                if (canMove(grid, p)) {
+                    distance = pos.distanceTo(p);
+                    if (distance < smallerDistance) {
+                        attackPosition = p;
+                        smallerDistance = distance;
+                    }
                 }
             }
         }
 
-        if (closerPosition != null) {
-            this.setPosition(closerPosition);
+        if (attackPosition != null) {
+            this.setPosition(attackPosition);
         }
     }
 }

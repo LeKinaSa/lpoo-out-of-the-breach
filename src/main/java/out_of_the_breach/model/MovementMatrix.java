@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /*
-    Stores a matrix that determines where the heros can move.
+    Stores a matrix that determines where the heroes can move.
  */
 
 public class MovementMatrix {

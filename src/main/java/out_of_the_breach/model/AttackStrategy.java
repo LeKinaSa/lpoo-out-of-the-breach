@@ -2,7 +2,7 @@ package out_of_the_breach.model;
 
 /*
     Strategies for the Attacks.
-    Both heros and enemies can use this attack strategies.
+    Both heroes and enemies can use this attack strategies.
     The strategy chosen will impact which tiles will or won't take damage.
  */
 
@@ -38,6 +38,8 @@ public abstract class AttackStrategy {
                     p = new Position(x, y);
                 }
                 catch (OutsideOfTheGrid o) {
+                    // Impossible to get here
+                    o.printStackTrace();
                     continue;
                 }
                 grid.inflictDamage(p, damageMatrix.getDamage(p));

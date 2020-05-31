@@ -113,6 +113,7 @@ public class Position {
                     return this.north().north().east();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_NORTHWEST:
@@ -120,6 +121,7 @@ public class Position {
                     return this.north().north().west();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_SOUTHEAST:
@@ -127,6 +129,7 @@ public class Position {
                     return this.south().south().east();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_SOUTHWEST:
@@ -134,6 +137,7 @@ public class Position {
                     return this.south().south().west();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_EASTNORTH:
@@ -141,6 +145,7 @@ public class Position {
                     return this.east().east().north();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_EASTSOUTH:
@@ -148,6 +153,7 @@ public class Position {
                     return this.east().east().south();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_WESTNORTH:
@@ -155,6 +161,7 @@ public class Position {
                     return this.west().west().north();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             case L_WESTSOUTH:
@@ -162,6 +169,7 @@ public class Position {
                     return this.west().west().south();
                 }
                 catch (NullPointerException n) {
+                    // In case one of the two first invocations returns null
                     return null;
                 }
             default:

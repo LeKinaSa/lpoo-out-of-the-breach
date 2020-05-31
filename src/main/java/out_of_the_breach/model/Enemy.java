@@ -37,7 +37,7 @@ public abstract class Enemy extends Entity {
 
     /*
         Prepare the attack for the next turn.
-        It will move and plan an attack on cities and/or heros.
+        It will move and plan an attack on cities and/or heroes.
      */
     public abstract void moveAndPlanAttack(GameModel grid);
 
