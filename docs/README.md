@@ -67,7 +67,7 @@ Consequence
 
 ### **Composite pattern** 
 The composite pattern is the core foundation of our GUI system.
-![Composite Pattern](composite_gui.PNG)
+![Composite Pattern](composite_gui.png)
 
 
 ### **MVC pattern** 
@@ -104,11 +104,14 @@ All of our Levels can also be considered data classes as they mainly serve as a 
 
 
 ## **Testing**
-As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase.
+As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase. There isn't much value in testing the individual game components, 
+
 ### **Coverage Report**
 ![Coverage Report](code_coverage_1.png)
 ![Coverage Report](code_coverage_3.png)
 ![Coverage Report](code_coverage_3.png)
+
+We would like to highlight that all the classes in `levels` directory should count as data, instead of code. There isn't much value in testing the individual components of the game, given how simple these components are (except for the `BoardTilesComponent` class, which has to deal with a considerable amount of state).
 
 ### **Mutation Testing Report**
 ![Mutation Report](mutation_1.png)
