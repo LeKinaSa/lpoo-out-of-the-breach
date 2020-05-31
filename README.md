@@ -1,14 +1,7 @@
-# LPOO G21
+LPOO_21 - Out Of The Breach
 
-### Implemented Features
+# Interesting Screenshots
 
-### Planned Features
-- 8x8 grid with 2 layers
-
-### Design Patterns Used
-- Factory-Method Pattern
-- Strategy Pattern
-
-### Existing Code Smells
-
-### Refactoring Techniques
+# Credits
+Clara Alves Martins : up201806528@fe.up.pt
+Daniel Filipe Amaro Monteiro : up201806185@fe.up.pt
