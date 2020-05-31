@@ -1,5 +1,8 @@
 package out_of_the_breach.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static out_of_the_breach.model.AttackDirection.*;
 
 /*
@@ -62,49 +65,34 @@ public class Bug extends Enemy {
         }
 
         // Find the Position where we can Attack and the Direction of the Attack
-        Position north = targetedPosition.adjacentPos(NORTH);
-        Position south = targetedPosition.adjacentPos(SOUTH);
-        Position east  = targetedPosition.adjacentPos( EAST);
-        Position west  = targetedPosition.adjacentPos( WEST);
         AttackDirection direction = NONE;
-
-        targetedPosition = null; // To make sure the enemy doesn't go to the tile of its target
         Position pos = super.getPosition();
+        Position attackPosition = null;
+        Position p;
         int smallerDistance = 64;
         int distance;
 
-        if (canMove(grid, north)) {
-            distance = pos.distanceTo(north);
-            targetedPosition = north;
-            smallerDistance = distance;
-            direction = SOUTH;
-        }
-        if (canMove(grid, south)) {
-            distance = pos.distanceTo(south);
-            if (distance < smallerDistance) {
-                targetedPosition = south;
-                smallerDistance = distance;
-                direction = NORTH;
-            }
-        }
-        if (canMove(grid, east)) {
-            distance = pos.distanceTo(east);
-            if (distance < smallerDistance) {
-                targetedPosition = east;
-                smallerDistance = distance;
-                direction = WEST;
-            }
-        }
-        if (canMove(grid, west)) {
-            distance = pos.distanceTo(west);
-            if (distance < smallerDistance) {
-                targetedPosition = west;
-                direction = EAST;
+        List<AttackDirection> directions = new ArrayList<>();
+        List<AttackDirection> opposites = new ArrayList<>();
+        directions.add(NORTH); opposites.add(SOUTH);
+        directions.add(SOUTH); opposites.add(NORTH);
+        directions.add( EAST); opposites.add( WEST);
+        directions.add( WEST); opposites.add( EAST);
+
+        for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
+            p = targetedPosition.adjacentPos(directions.get(directionIndex));
+            if (canMove(grid, p)) {
+                distance = pos.distanceTo(p);
+                if (distance < smallerDistance) {
+                    attackPosition = p;
+                    smallerDistance = distance;
+                    direction = opposites.get(directionIndex);
+                }
             }
         }
 
-        if (targetedPosition != null) {
-            this.setPosition(targetedPosition);
+        if (attackPosition != null) {
+            this.setPosition(attackPosition);
             this.getAttackStrategy().setDirection(direction);
         }
     }
