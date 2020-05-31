@@ -44,6 +44,7 @@ public class Dragon extends Enemy {
         Position initialPos = super.getPosition(); // Dragon Position will be temporarily null so it doesn't attack itself
         Position attackPosition = null;
         Position targetPosition;
+        Position p;
         double mostEnemiesHit = 0;
         double enemiesHit;
         AttackDirection direction = NONE;
@@ -54,150 +55,52 @@ public class Dragon extends Enemy {
         for (int index = 0; (index < targets.size()) && (mostEnemiesHit != this.range * 1.1); index ++) {
             targetPosition = targets.get(index).getPosition();
 
-            Position north = targetPosition.adjacentPos(NORTH);
-            Position south = targetPosition.adjacentPos(SOUTH);
-            Position east  = targetPosition.adjacentPos( EAST);
-            Position west  = targetPosition.adjacentPos( WEST);
+            List<AttackDirection> directions = new ArrayList<>();
+            List<AttackDirection> opposites = new ArrayList<>();
+            directions.add(NORTH); opposites.add(SOUTH);
+            directions.add(SOUTH); opposites.add(NORTH);
+            directions.add( EAST); opposites.add( WEST);
+            directions.add( WEST); opposites.add( EAST);
 
-            if (canMove(grid, north)) {
-                // Dragon Temporary Position is null
-                super.setPosition(null);
+            for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
+                p = targetPosition.adjacentPos(directions.get(directionIndex));
 
-                auxPos = north;
-                enemiesHit = 0;
-                for (int i = 0; i < this.range; i ++) {
-                    auxPos = auxPos.adjacentPos(SOUTH); // Check the positions in line of attack
-                    if (auxPos == null) {
-                        break;
-                    }
-                    else if (grid.tileOccupied(auxPos)) {
-                        entity = grid.getEntityAt(auxPos);
-                        if (entity instanceof City) {
-                            enemiesHit += 1.1;
-                        }
-                        else if (entity instanceof Hero) {
-                            enemiesHit += 1;
-                        }
-                        else {
-                            // It's hitting another enemy
-                            enemiesHit -= 2 * this.range;
-                        }
-                    }
-                }
+                if (canMove(grid, p)) {
+                    // Dragon Temporary Position is null
+                    super.setPosition(null);
 
-                if (enemiesHit > mostEnemiesHit) {
-                    attackPosition = north;
-                    mostEnemiesHit = enemiesHit;
-                    direction = SOUTH;
-                }
-
-                // Reset Dragon Position
-                super.setPosition(initialPos);
-            }
-            if (canMove(grid, south)) {
-                // Dragon Temporary Position is null
-                super.setPosition(null);
-
-                auxPos = south;
-                enemiesHit = 0;
-                for (int i = 0; i < this.range; i ++) {
-                    auxPos = auxPos.adjacentPos(NORTH); // Check the positions in line of attack
-                    if (auxPos == null) {
-                        break;
-                    }
-                    else if (grid.tileOccupied(auxPos)) {
-                        entity = grid.getEntityAt(auxPos);
-                        if (entity instanceof City) {
-                            enemiesHit += 1.1;
+                    auxPos = p;
+                    enemiesHit = 0;
+                    for (int i = 0; i < this.range; i ++) {
+                        auxPos = auxPos.adjacentPos(opposites.get(directionIndex)); // Check the positions in line of attack
+                        if (auxPos == null) {
+                            break;
                         }
-                        else if (entity instanceof Hero) {
-                            enemiesHit += 1;
-                        }
-                        else {
-                            // It's hitting another enemy
-                            enemiesHit -= 2 * this.range;
+                        else if (grid.tileOccupied(auxPos)) {
+                            entity = grid.getEntityAt(auxPos);
+                            if (entity instanceof City) {
+                                enemiesHit += 1.1;
+                            }
+                            else if (entity instanceof Hero) {
+                                enemiesHit += 1;
+                            }
+                            else {
+                                // It's hitting another enemy
+                                enemiesHit -= 2 * this.range;
+                            }
                         }
                     }
-                }
 
-                if (enemiesHit > mostEnemiesHit) {
-                    attackPosition = south;
-                    mostEnemiesHit = enemiesHit;
-                    direction = NORTH;
-                }
-
-                // Reset Dragon Position
-                super.setPosition(initialPos);
-            }
-            if (canMove(grid, east)) {
-                // Dragon Temporary Position is null
-                super.setPosition(null);
-
-                auxPos = east;
-                enemiesHit = 0;
-                for (int i = 0; i < this.range; i ++) {
-                    auxPos = auxPos.adjacentPos(WEST); // Check the positions in line of attack
-                    if (auxPos == null) {
-                        break;
+                    if (enemiesHit > mostEnemiesHit) {
+                        attackPosition = p;
+                        mostEnemiesHit = enemiesHit;
+                        // The direction of attack is the opposite to the direction in which the dragon had to move to prepare the attack
+                        direction = opposites.get(directionIndex);
                     }
-                    else if (grid.tileOccupied(auxPos)) {
-                        entity = grid.getEntityAt(auxPos);
-                        if (entity instanceof City) {
-                            enemiesHit += 1.1;
-                        }
-                        else if (entity instanceof Hero) {
-                            enemiesHit += 1;
-                        }
-                        else {
-                            // It's hitting another enemy
-                            enemiesHit -= 2 * this.range;
-                        }
-                    }
+
+                    // Reset Dragon Position
+                    super.setPosition(initialPos);
                 }
-
-                if (enemiesHit > mostEnemiesHit) {
-                    attackPosition = east;
-                    mostEnemiesHit = enemiesHit;
-                    direction = WEST;
-                }
-
-                // Reset Dragon Position
-                super.setPosition(initialPos);
-            }
-            if (canMove(grid, west)) {
-                // Dragon Temporary Position is null
-                super.setPosition(null);
-
-                auxPos = west;
-                enemiesHit = 0;
-                for (int i = 0; i < this.range; i ++) {
-                    auxPos = auxPos.adjacentPos(EAST); // Check the positions in line of attack
-                    if (auxPos == null) {
-                        break;
-                    }
-                    else if (grid.tileOccupied(auxPos)) {
-                        entity = grid.getEntityAt(auxPos);
-                        if (entity instanceof City) {
-                            enemiesHit += 1.1;
-                        }
-                        else if (entity instanceof Hero) {
-                            enemiesHit += 1;
-                        }
-                        else {
-                            // It's hitting another enemy
-                            enemiesHit -= 2 * this.range;
-                        }
-                    }
-                }
-
-                if (enemiesHit > mostEnemiesHit) {
-                    attackPosition = west;
-                    mostEnemiesHit = enemiesHit;
-                    direction = EAST;
-                }
-
-                // Reset Dragon Position
-                super.setPosition(initialPos);
             }
         }
 
