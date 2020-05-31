@@ -1,6 +1,7 @@
 # LPOO_21 - Out Of The Breach
 
-## Interesting Screenshots
+## Little Video (gif)
+![Game GIF](docs/game.gif)
 
 ## Credits
 * Clara Alves Martins : up201806528@fe.up.pt

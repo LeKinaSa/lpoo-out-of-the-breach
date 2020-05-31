@@ -5,10 +5,24 @@ This project was developed by Clara Alves Martins (up201806528@fe.up.pt) and Dan
 ## **Implemented Features**
 - **Interaction with the user** : Fully Implemented GUI with responsive window resizing.
 - **Navigation keys** : Use the arrow keys, `M`, `A`, `Enter` and `Esc` to navigate the GUI.
+![Arrow Keys](level6.png)
+![Other Keys](keys.png)
 - **Enemy AI** : Enemy intelligence depends on the enemy type, with Bug being the dumber and Dragon being the smarter. Bug will chase low health heroes or cities. If the weaker entity can’t be targeted, it won’t attack in that round. Lizard is a little bit smarter and very lazy so it will try to move the least number of tiles while prioritizing cities over heroes. The Dragon is the smarter one, being able to decide where to attack based on the number of cities, heroes and enemies it will damage. It will prioritize cities over heroes and it will avoid attacking other enemies. If the dragon is currently standing on a block that will be attacked, it won’t avoid attacking there since the dragon is gonna move and it won’t be standing there anymore at the time of the attack.
+![Bug](bug.png)
+![Lizard](lizard.png)
+![Dragon](dragon.png)
 - **Hero Movement and Attack Rounds** : The hero can move around the grid and attack enemies. Once the hero has moved once, it won’t be able to move again until the end of the turn. Once the hero has attacked once, it won’t be able to attack or move anymore until that round ends.
+![Tank Move](tank_move.png)
+![Tank Attack](tank_attack.png)
+![Archer Move](archer_move.png)
+![Archer Attack](archer_attack.png)
 - **Different Levels** : There are 12 different levels available to play. They contain a various number of cities, heroes and enemies. If the player can survive 4 turns without losing all the cities or all the allies, he will win. Otherwise, he will lose.
-
+![Level  3](level3.png)
+![Level  7](level7.png)
+![Level 12](level12.png)
+- **Winner** : Whether a player wins or loses, a message will appear on the screen, indicating the game situation.
+![Victory](victory.png)
+![Defeat ](game_over.png)
 
 ## **Planned Features**
 - Leaving the current level by pressing ESC.
