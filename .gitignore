@@ -118,11 +118,11 @@ hs_err_pid*
 
 ### Gradle ###
 .gradle
-build/classes
-build/generated
-build/libs
-build/test-results
-build/tmp
+build/classes/
+build/generated/
+build/libs/
+build/test-results/
+build/tmp/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -135,9 +135,6 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
-
-### Gradle Patch ###
-**/build/
 
 # End of https://www.gitignore.io/api/java,gradle,intellij
 .idea/lpoo-2020-g21.iml
