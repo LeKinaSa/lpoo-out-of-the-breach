@@ -24,9 +24,6 @@ This project was developed by Clara Alves Martins (up201806528@fe.up.pt) and Dan
 ![Victory](victory.png)
 ![Defeat ](game_over.png)
 
-## **Planned Features**
-- Leaving the current level by pressing ESC.
-
 ## **Design**
 ### **The enemy should separate its moving strategy from its attack strategy**
 #### Problem in context
