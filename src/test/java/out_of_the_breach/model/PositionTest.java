@@ -117,10 +117,6 @@ public class PositionTest {
         assertEquals(6,   p.getY());
 
         assertEquals(6, pos.distanceTo(p));
-
-        pos.setPosition(p);
-        assertEquals(3, pos.getX());
-        assertEquals(6, pos.getY());
     }
 
     @Test

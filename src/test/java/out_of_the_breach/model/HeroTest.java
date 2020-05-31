@@ -41,8 +41,6 @@ public class HeroTest {
         Hero hero2 = new Tank(null, 31, 1, 9);
         assertEquals(1, hero1.getMovementRange());
         assertEquals(9, hero2.getMovementRange());
-        hero1.setMovementRange(4);
-        assertEquals(4, hero1.getMovementRange());
     }
 
     @Test

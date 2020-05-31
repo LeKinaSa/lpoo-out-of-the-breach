@@ -33,11 +33,6 @@ public class Position {
         return this.x + this.y * 8;
     }
 
-    public void setPosition(Position pos) {
-        this.x = pos.x;
-        this.y = pos.y;
-    }
-
     /*
         Determine whether two positions are located in the same tile in the grid.
      */

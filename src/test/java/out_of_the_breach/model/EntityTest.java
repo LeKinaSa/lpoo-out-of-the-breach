@@ -58,7 +58,7 @@ public class EntityTest {
         assertEquals(0, entity.getHp());
         assertEquals(true, entity.isDead());
 
-        entity.setHp(20);
+        entity = new City(null, 20);
         assertEquals(20, entity.getHp());
 
         entity.takeDamage(21);
@@ -71,11 +71,11 @@ public class EntityTest {
         Entity entity = new Bug(null, 0, 2);
         assertEquals(0, entity.getHp());
 
-        entity.setHp(-10);
+        entity = new Bug(null, -10, 2);
         assertEquals(0, entity.getHp());
         assertEquals(true, entity.isDead());
 
-        entity.setHp(20);
+        entity = new Bug(null, 20, 2);
         assertEquals(20, entity.getHp());
 
         entity.takeDamage(-10);

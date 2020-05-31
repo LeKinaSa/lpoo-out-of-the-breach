@@ -27,10 +27,6 @@ public abstract class Hero extends Entity {
         return this.strategies;
     }
 
-    public void setMovementRange(int movementRange) {
-        this.movementRange = movementRange;
-    }
-
     public int getMovementRange() {
         return this.movementRange;
     }

@@ -12,14 +12,6 @@ public abstract class Enemy extends Entity {
         this.strategy = strategy;
     }
 
-    public AttackStrategy getAttackStrategy() {
-        return this.strategy;
-    }
-
-    public void setAttackStrategy(AttackStrategy strategy) {
-        this.strategy = strategy;
-    }
-
     public void setAttackDirection(AttackDirection direction) {
         this.strategy.setDirection(direction);
     }

@@ -25,12 +25,6 @@ public abstract class Entity {
         return this.pos;
     }
 
-    public void setHp(int hp) {
-        if (hp > 0) {
-            this.hp = hp;
-        }
-    }
-
     public int getHp() {
         return this.hp;
     }

@@ -13,37 +13,6 @@ import static out_of_the_breach.model.AttackDirection.*;
 
 public class EnemyTest {
     @Test
-    public void strategyTest() {
-        AttackStrategy strategy = Mockito.mock(AttackStrategy.class);
-        Mockito.when(strategy.getDirection()).thenReturn(NORTH);
-        Enemy enemy = new Bug(null, 10, 3);
-
-        assertEquals(LineAttack.class, enemy.getAttackStrategy().getClass());
-        assertEquals(AttackDirection.NONE, enemy.getAttackDirection());
-
-        enemy.setAttackStrategy(strategy);
-        assertEquals(strategy, enemy.getAttackStrategy());
-        assertEquals(NORTH, enemy.getAttackDirection());
-    }
-
-    @Test
-    public void attackTest() {
-        AttackStrategy strategy = Mockito.mock(AttackStrategy.class);
-        DamageMatrix dmgMatrix = Mockito.mock(DamageMatrix.class);
-        Position p1 = Mockito.mock(Position.class);
-        Mockito.when(strategy.previewAttack(p1)).thenReturn(dmgMatrix);
-        Mockito.when(strategy.previewAttack(p1)).thenReturn(dmgMatrix);
-
-        Enemy enemy = new Bug(p1, 1, 2);
-        enemy.setAttackStrategy(strategy);
-        assertEquals(dmgMatrix, enemy.previewAttack());
-
-        GameModel grid = Mockito.mock(GameModel.class);
-        enemy.attack(grid);
-        verify(strategy, times(1)).attack(grid, p1);
-    }
-
-    @Test
     public void canMoveTest() {
         GameModel grid = Mockito.mock(GameModel.class);
 
