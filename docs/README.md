@@ -106,11 +106,14 @@ All of our Levels can also be considered data classes as they mainly serve as a 
 ## **Testing**
 As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase.
 ### **Coverage Report**
-![Coverage Report](coverage_test.PNG)
-
+![Coverage Report](code_coverage_1.PNG)
+![Coverage Report](code_coverage_3.png)
+![Coverage Report](code_coverage_3.png)
 
 ### **Mutation Testing Report**
-![Mutation Report](mutation_test.PNG)
+![Mutation Report](mutation_1.png)
+![Mutation Report](mutation_2.png)
+![Mutation Report](mutation_3.png)
 
 ## **Self-Evaluation**
 We consider that we both contributed substantially to the project and there aren’t any substantial disparities.
