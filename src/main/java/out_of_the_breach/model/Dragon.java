@@ -53,8 +53,8 @@ public class Dragon extends Enemy {
 
         List<AttackDirection> directions = new ArrayList<>();
         List<AttackDirection> opposites = new ArrayList<>();
-        directions.add(NORTH); directions.add(SOUTH); directions.add( EAST); directions.add( WEST);
-        opposites.add (SOUTH); opposites.add (NORTH); opposites.add ( WEST); opposites.add ( EAST);
+        directions.add(NORTH); directions.add(SOUTH); directions.add(EAST); directions.add(WEST);
+        opposites.add (SOUTH); opposites.add (NORTH); opposites.add (WEST); opposites.add (EAST);
 
         // Check what is the position that will cause more damages to entities
         for (int index = 0; (index < targets.size()) && (mostEnemiesHit != this.range * 1.1); index ++) {
@@ -104,10 +104,10 @@ public class Dragon extends Enemy {
 
         if (attackPosition != null) {
             this.setPosition(attackPosition);
-            this.getAttackStrategy().setDirection(direction);
+            this.setAttackDirection(direction);
         }
         else {
-            this.getAttackStrategy().setDirection(NONE);
+            this.setAttackDirection(NONE);
         }
     }
 }

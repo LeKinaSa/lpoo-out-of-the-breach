@@ -45,7 +45,7 @@ public class Lizard extends Enemy {
         double smallerDistance = 64;
         double distance;
         List<AttackDirection> directions = new ArrayList<>();
-        directions.add(NORTH); directions.add(SOUTH); directions.add( EAST); directions.add( WEST);
+        directions.add(NORTH); directions.add(SOUTH); directions.add(EAST); directions.add(WEST);
 
         // Check what's the closest position to the current position of the lizard
         for (int index = 0; (index < targets.size()) && (smallerDistance != 0); index ++) {
