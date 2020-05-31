@@ -47,13 +47,14 @@ These classes can be found in the following files:
 #### Consequences
 This allows us to isolate the attacking related logic from the moving related logic. It also allows us to introduce new strategies of attack without having to change the enemy. Even the dragon, which calculates the best position in order to deal the most possible damage, can change its strategy of attack without affecting its movement function.
 
-### **Some GUI Problem**
+### **We should be able to place our components anywhere we want**
 #### Problem in context
-Problem
+Some components are drawn in the center of the screen, some are drawn relative to a corner of the screen. How do implement this without a massive switch statement?
 #### Pattern
-Pattern
+We used the strategy pattern to solve this problem in an extensible fashion. Every time we want to add a new way to offset the components, we simply write  a class that implements `iComponentPosition` and pass it to the `GUIComponent` 
+constructor.
 #### Implementation
-T\
+In our specific case we only had to implement 3 different strategies. Not pictured here is the `GUIComponent` class, which depends on `iComponentPosition`.
 ![Strategy Pattern](strategy_pattern_gui_1.png) \
 These classes can be found in the following files:
 - ScreenCorner : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/ScreenCorner.java
@@ -62,26 +63,11 @@ These classes can be found in the following files:
 - HorizontallyCentered : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentPosition/HorizontallyCenteredComponentPosition.java
 - iComponentPosition : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentPosition/iGUIcomponentPosition.java
 #### Consequences
-Consequence
-
-### **Some GUI Problem**
-#### Problem in context
-Problem
-#### Pattern
-Pattern
-#### Implementation
-T\
-![Strategy Pattern](strategy_pattern_gui_2.png) \
-These classes can be found in the following files:
-- iComponentSelectionStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentSelectionStrategy/iComponentSelectionStrategy.java
-- ParentNodeSelectionStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentSelectionStrategy/ParentNodeSelectionStrategy.java
-- RootSelectionStrategy : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/GUI/componentSelectionStrategy/RootSelectionStrategy.java
-#### Consequences
-Consequence
+Now implementing a new centering strategy is as easy as implementing a new class.
 
 ### **Composite pattern** 
 The composite pattern is the core foundation of our GUI system.
-![Composite Pattern](composite_gui.PNG)
+![Composite Pattern](composite_gui.png)
 
 
 ### **MVC pattern** 
@@ -106,9 +92,6 @@ Some methods are bound to be longer as they contain a larger portion of logic. W
 `Lizard` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Lizard.java (lines 29-70) \
 `Dragon` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Dragon.java (moveAndPlanAttack : lines 36-99 ; calculatePontuation : lines 101-135)
 
-* **Message Chains** \
-To avoid the hard to read and understand message chains we can try to use temporary and meaningful variables to store part of the message so it becomes easier to understand.
-
 * **Data Class** \
 Some of our classes, such as `DamageMatrix` and `MovementMatrix`, can be considered Data Classes as they are mainly a storage for data used by other classes and have no methods other than setters and getters. To solve this smell, it would be appropriate to relocate some methods that use the data on those classes to the data class itself or perhaps even remove the data classes and store the data where it is really needed. In this situation, we feel like these data classes help us move the data between the model and the view so we chose not to remove them.\
 All of our Levels can also be considered data classes as they mainly serve as a storage for our level information, not adding much in terms of functions or behaviour.\
@@ -118,11 +101,14 @@ All of our Levels can also be considered data classes as they mainly serve as a 
 
 
 ## **Testing**
-As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase.
+As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase. There isn't much value in testing the individual game components, 
+
 ### **Coverage Report**
 ![Coverage Report](code_coverage_1.png)
 ![Coverage Report](code_coverage_3.png)
 ![Coverage Report](code_coverage_3.png)
+
+We would like to highlight that all the classes in `levels` directory should count as data, instead of code. There isn't much value in testing the individual components of the game, given how simple these components are (except for the `BoardTilesComponent` class, which has to deal with a considerable amount of state).
 
 ### **Mutation Testing Report**
 ![Mutation Report](mutation_1.png)
