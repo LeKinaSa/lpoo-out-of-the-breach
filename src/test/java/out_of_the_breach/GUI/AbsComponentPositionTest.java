@@ -1,7 +1,6 @@
 package out_of_the_breach.GUI;
 
 import out_of_the_breach.GUI.componentPosition.AbsComponentPosition;
-import out_of_the_breach.GUI.ScreenCorner;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -10,7 +9,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class AbsComponentPositionTest {
     private TextGraphics buffer;

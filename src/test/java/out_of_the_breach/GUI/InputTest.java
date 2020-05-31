@@ -5,10 +5,6 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import org.junit.Test;
 import org.mockito.Mockito;
-import out_of_the_breach.GUI.ColorfulRectangle;
-import out_of_the_breach.GUI.GUIRoot;
-import out_of_the_breach.GUI.GUIcomponent;
-import out_of_the_breach.GUI.LanternaTerminal;
 import out_of_the_breach.GUI.componentSelectionStrategy.ParentNodeSelectionStrategy;
 import out_of_the_breach.GUI.componentSelectionStrategy.RootSelectionStrategy;
 

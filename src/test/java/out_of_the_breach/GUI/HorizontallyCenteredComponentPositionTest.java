@@ -6,7 +6,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import out_of_the_breach.GUI.componentPosition.CenteredComponentPosition;
 import out_of_the_breach.GUI.componentPosition.HorizontallyCenteredComponentPosition;
 import out_of_the_breach.GUI.componentPosition.iGUIcomponentPosition;
 
