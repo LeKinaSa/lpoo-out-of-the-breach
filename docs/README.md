@@ -77,8 +77,8 @@ Even after a code cleanup, there are still some code smells. We tried to minimiz
 We have a big switch operator in `Position.adjacentPos ( AttackDirection )`. In this case, we could use some refactorings such as Replace Type Code with Subclass or Replace Type Code with State / Strategy. However, we feel like that change may result in a much more confusing code as it will split important parts of our class and generate a but load of classes. \
 `Position.adjacentPos ( AttackDirection )` : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Position.java (lines 92-174)
 
-* **Comments** \ 
-In the longer functions, comments help us keep up with the flow of execution. However, sometimes the comments could be replaced by easier to understand functions. This happens in the Enemy Subclasses inside the moveAndPlanAttack( ) method. To solve this smell, we could use Extract Method to allow us to have segmentation on our code and avoid big and complex functions. \
+* **Comments** \
+In the longer functions, comments help us keep up with the flow of execution. However, sometimes the comments could be replaced by easier to understand functions. This happens in the Enemy Subclasses inside the moveAndPlanAttack( ) method. To solve this smell, we could use Extract Method to allow us to have more segmentation on our code and avoid big and complex functions. \
 `Bug` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Bug.java (lines 38, 67) \
 `Lizard` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Lizard.java (lines 31, 40, 50) \
 `Dragon` function : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/Dragon.java (lines 41, 50, 51, 64, 72, 76, 86)
@@ -91,21 +91,20 @@ Some methods are bound to be longer as they contain a larger portion of logic. W
 
 * **Data Class** \
 Some of our classes, such as `DamageMatrix` and `MovementMatrix`, can be considered Data Classes as they are mainly a storage for data used by other classes and have no methods other than setters and getters. To solve this smell, it would be appropriate to relocate some methods that use the data on those classes to the data class itself or perhaps even remove the data classes and store the data where it is really needed. In this situation, we feel like these data classes help us move the data between the model and the view so we chose not to remove them.\
-All of our Levels can also be considered data classes as they mainly serve as a storage for our level information, not adding much in terms of functions or behaviour.\
+All of our `Levels` can also be considered data classes as they mainly serve as a storage for our level information, not adding much in terms of functions or behaviour.\
 `DamageMatrix` : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/DamageMatrix.java \
 `MovementMatrix` : https://github.com/FEUP-LPOO/lpoo-2020-g21/blob/master/src/main/java/out_of_the_breach/model/MovementMatrix.java \
 `Level` : https://github.com/FEUP-LPOO/lpoo-2020-g21/tree/master/src/main/java/out_of_the_breach/levels 
 
 
 ## **Testing**
-As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase. There isn't much value in testing the individual game components, 
+As you can see, we mostly focused on testing the GUI and model packages, as these are the most stable (i.e. finished) portions of the codebase. There isn't much value in testing the individual game components, as they will almost always work, unless we make a really obvious mistake.
 
 ### **Coverage Report**
+We would like to highlight that all the classes in `levels` directory should count as data, instead of code. There isn't much value in testing the individual components of the game, given how simple these components are (except for the `BoardTilesComponent` class, which has to deal with a considerable amount of state). \
 ![Coverage Report](code_coverage_1.png)
 ![Coverage Report](code_coverage_3.png)
 ![Coverage Report](code_coverage_3.png)
-
-We would like to highlight that all the classes in `levels` directory should count as data, instead of code. There isn't much value in testing the individual components of the game, given how simple these components are (except for the `BoardTilesComponent` class, which has to deal with a considerable amount of state).
 
 ### **Mutation Testing Report**
 ![Mutation Report](mutation_1.png)
