@@ -9,7 +9,7 @@ import static out_of_the_breach.model.AttackDirection.*;
     Very Stupid Enemy
     It only targets the weakest hero or city. (The one with less hp)
     If that targeted unit is inaccessible, it won't move.
-    Prioritizes heros.
+    Prioritizes heroes.
  */
 
 public class Bug extends Enemy {
@@ -35,7 +35,7 @@ public class Bug extends Enemy {
         int lowerHp = -1;
         int hp;
 
-        // Find the Weakest Target -> (Prioritize the attacks on heros)
+        // Find the Weakest Target -> (Prioritize the attacks on heroes)
         for (Hero ally : grid.getAllies()) {
             hp = ally.getHp();
             if (hp < lowerHp) {

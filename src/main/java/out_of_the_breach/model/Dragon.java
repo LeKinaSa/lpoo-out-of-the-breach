@@ -6,7 +6,7 @@ import java.util.List;
 import static out_of_the_breach.model.AttackDirection.*;
 
 /*
-    This enemy will look to damage the most heros or cities.
+    This enemy will look to damage the most heroes or cities.
     Prioritizes cities.
     Avoids hitting enemies.
  */

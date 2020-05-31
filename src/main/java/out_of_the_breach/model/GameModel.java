@@ -5,9 +5,9 @@ import java.util.List;
 
 /*
     Class Representing the 8x8 grid.
-    Contains all tiles, enemies, heros and cities in the grid at the moment.
+    Contains all tiles, enemies, heroes and cities in the grid at the moment.
     Can calculate the energy left and the game status.
-    Allows the heros to start new turns and the enemies to both prepare attacks and execute them.
+    Allows the heroes to start new turns and the enemies to both prepare attacks and execute them.
  */
 
 public class GameModel {
@@ -171,7 +171,7 @@ public class GameModel {
     }
 
     /*
-        Starts new turn for all the heros.
+        Starts new turn for all the heroes.
      */
     public void resetHeroes() {
         for (Hero h : allies) {
