@@ -16,7 +16,7 @@ public class Dragon extends Enemy {
     static final private double cityPoints = 1.1;
     static final private double heroPoints = 1.0;
     static final private double enemyPenalty = 2.0;
-    private int range = 3;
+    private int range;
 
     public Dragon(Position pos, int hp, int damage) {
         super(pos, hp, new LineAttack(damage, 3));
