@@ -61,17 +61,12 @@ public class Dragon extends Enemy {
         directions.add(NORTH); directions.add(SOUTH); directions.add(EAST); directions.add(WEST);
         opposites.add (SOUTH); opposites.add (NORTH); opposites.add (WEST); opposites.add (EAST);
 
-        int watcher;
         // Check what is the position that will cause more damages to entities
         for (int index = 0; (index < targets.size()) && (mostEnemiesHit != this.range * max(cityPoints, heroPoints)); index ++) {
             targetPosition = targets.get(index).getPosition();
 
             for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
                 p = targetPosition.adjacentPos(directions.get(directionIndex));
-                watcher = -1;
-                if (p != null) {
-                    watcher = p.getLinearMatrixPosition();
-                }
 
                 if (canMove(grid, p)) {
                     // Dragon Temporary Position and Attack Direction
