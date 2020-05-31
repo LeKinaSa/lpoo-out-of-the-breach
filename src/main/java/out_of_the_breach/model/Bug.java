@@ -74,10 +74,8 @@ public class Bug extends Enemy {
 
         List<AttackDirection> directions = new ArrayList<>();
         List<AttackDirection> opposites = new ArrayList<>();
-        directions.add(NORTH); opposites.add(SOUTH);
-        directions.add(SOUTH); opposites.add(NORTH);
-        directions.add( EAST); opposites.add( WEST);
-        directions.add( WEST); opposites.add( EAST);
+        directions.add(NORTH); directions.add(SOUTH); directions.add( EAST); directions.add( WEST);
+        opposites.add (SOUTH); opposites.add (NORTH); opposites.add ( WEST); opposites.add ( EAST);
 
         for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
             p = targetedPosition.adjacentPos(directions.get(directionIndex));

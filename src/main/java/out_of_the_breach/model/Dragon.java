@@ -51,16 +51,14 @@ public class Dragon extends Enemy {
         Entity entity;
         Position auxPos;
 
+        List<AttackDirection> directions = new ArrayList<>();
+        List<AttackDirection> opposites = new ArrayList<>();
+        directions.add(NORTH); directions.add(SOUTH); directions.add( EAST); directions.add( WEST);
+        opposites.add (SOUTH); opposites.add (NORTH); opposites.add ( WEST); opposites.add ( EAST);
+
         // Check what is the position that will cause more damages to entities
         for (int index = 0; (index < targets.size()) && (mostEnemiesHit != this.range * 1.1); index ++) {
             targetPosition = targets.get(index).getPosition();
-
-            List<AttackDirection> directions = new ArrayList<>();
-            List<AttackDirection> opposites = new ArrayList<>();
-            directions.add(NORTH); opposites.add(SOUTH);
-            directions.add(SOUTH); opposites.add(NORTH);
-            directions.add( EAST); opposites.add( WEST);
-            directions.add( WEST); opposites.add( EAST);
 
             for (int directionIndex = 0; directionIndex < directions.size(); directionIndex ++) {
                 p = targetPosition.adjacentPos(directions.get(directionIndex));
